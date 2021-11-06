@@ -1,0 +1,6 @@
+.Pokedex {
+}
+
+.Pokedex__cards {
+  display: flex;
+}

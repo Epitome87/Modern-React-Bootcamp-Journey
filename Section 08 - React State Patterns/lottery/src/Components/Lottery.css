@@ -1,0 +1,43 @@
+.Lottery {
+  background-color: #9ccfe7;
+  color: white;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid gray;
+  border-radius: 20px;
+  margin: 2rem auto;
+}
+
+.Lottery__header {
+  font-size: 3rem;
+  margin: 1rem;
+}
+
+.Lottery__balls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  color: white;
+  background-color: #f5a9cb;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 2rem 0;
+  border: none;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.1s ease-in;
+}
+
+button:hover {
+  background-color: #b87f98;
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.6);
+}
