@@ -545,7 +545,147 @@ We can use third party libraries to help with IDs also
 
 ## Section 11 - Hangman Exercise
 
+### Introducing the Hangman Exercise
+
+In this section, we will build upon a Hangman game that Colt provides the starter code for. We have a few things to add to the Hangman project: 0. Install Colt's starter code
+
+1. Add a Key prop to the buttons
+2. Number of wrong guesses
+3. End game on loss
+4. Alt text for images, saying current state in game
+5. Use a random word
+6. Add "Restart" button
+7. Additional Ideas - better styling, game-won message, refactor by adding an AlphaButtons component (renders a sequence of buttons corresponding to letters, Hangman component should keep track of which letters have been guessed)
+
+### Starter Code Walkthrough
+
+**TODO** Come back to this? It's not essential, though.
+
+### Adding Keys
+
+Short and sweet:
+
+```js
+<button key={letter}>..Etc</button>
+```
+
+We can just use the letter that corresponds to the button since we only use each letter once, so they'll be unique. They never change, so we could also use the index of the array.
+
+### Tracking Incorrect Guesses
+
+Also short and sweet:
+
+```js
+<p>Guessed Wrong: {this.state.nWrong}</p>
+```
+
+We already keep track of number of wrong guesses in state, so we simply access this information and display it in the returned JSX.
+
+### Adding Game Over
+
+First, we can display a loss-state message with a conditional:
+
+```js
+<p className='Hangman-btns'>
+  {this.state.nWrong < this.props.maxWrong
+    ? this.generateButtons()
+    : `You Lose! Answer was: ${this.state.answer}`}
+</p>
+```
+
+We can also hide the user's guessed word and replace it with the answer upon game over:
+
+```js
+render() {
+    const isGameOver = this.state.nWrong >= this.props.maxWrong;
+    return (
+      <div className='Hangman'>
+        <h1>Hangman</h1>
+        <img
+          src={this.props.images[this.state.nWrong]}
+        />
+        <p>Guessed Wrong: {this.state.nWrong}</p>
+        <p className='Hangman-word'>
+          {!isGameOver ? this.guessedWord() : this.state.answer}
+        </p>
+        <p className='Hangman-btns'>
+          {!isGameOver ? this.generateButtons() : 'You Lose!'}
+        </p>
+        <button onClick={this.handleClick}>Reset</button>
+      </div>
+    );
+  }
+```
+
+### Adding Alt Text
+
+Another short and sweet challenge:
+
+```js
+const altText = `Hangman with ${this.state.nWrong} wrong out of ${this.props.maxWrong}`;
+
+// In returned JSX
+<img src={this.props.images[this.state.nWrong]} alt={altText} />;
+```
+
+### Randomizing Words
+
+Simple, since Colt provides us a file with a list of words and a method that returns a random one. We simply import this function into our Hangman file:
+
+```js
+import { randomWord } from './words';
+this.state = { nWrong: 0, guessed: new Set(), answer: randomWord() };
+```
+
+### Adding a Reset Button
+
+```js
+resetHangman() {
+  const resetState = { nWrong: 0, guessed: new Set(), answer: randomWord() };
+  this.setState(resetState);
+}
+
+handleClick() {
+  this.resetHangman();
+}
+
+// JSX render
+<button onClick={this.handleClick}>Reset</button>
+```
+
+### Making the Game Winnable and Styling
+
+A bit of work, but essentially here is our final JSX:
+
+```js
+const isWinner = this.guessedWord().join('') === this.state.answer;
+
+// JSX
+return (
+  <div className='Hangman'>
+    <h1>Hangman</h1>
+    <img src={this.props.images[this.state.nWrong]} alt={altText} />
+    <p>Guessed Wrong: {this.state.nWrong}</p>
+    <p className='Hangman-word'>
+      {!isGameOver ? this.guessedWord() : this.state.answer}
+    </p>
+    <p className='Hangman-btns'>{gameState}</p>
+    <button id='reset' onClick={this.handleClick}>
+      {isWinner ? 'Play Again' : 'Reset'}
+    </button>
+  </div>
+);
+```
+
 ## Section 12 - Lights Out Game
+
+### Displaying the Game Board
+
+### Flipping Cells
+
+### Winning the Game
+
+### Styling the Game
 
 ## Section 13 - Forms in React
 
