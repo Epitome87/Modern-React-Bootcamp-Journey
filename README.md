@@ -260,11 +260,13 @@ For a simple Lottery app, we need the following.
    - Events:
      - None!
 
-### State Design Example: LotoBall
-
-### State Design Example:
+The rest of this section is spent coding this example. It is rather simple and straightforward, so not many notes to be written!
 
 ## Section 09 - State Exercises
+
+In this section, we work on two small projects to reinforce our React state knowledge: A Coin-Flipper and a Random Colored Boxes app.
+
+Nothing major or new took place, so not really any notes to make! For the Color Boxes app, we have a parent component keep track of all its children component's current color, and the children have no state. While this works, the problem is each box has its own click handler, and how can we figure out which box was clicked on and update the parent state? We'll learn that next section!
 
 ## Section 10 - The World of React Events
 

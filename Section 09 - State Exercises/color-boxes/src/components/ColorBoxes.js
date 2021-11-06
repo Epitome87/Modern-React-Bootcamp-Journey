@@ -5,7 +5,34 @@ import ColorBox from './ColorBox';
 class ColorBoxes extends React.Component {
   static defaultProps = {
     numBoxes: 18,
-    allColors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'],
+    allColors: [
+      'red',
+      'orange',
+      'yellow',
+      'green',
+      'blue',
+      'indigo',
+      'violet',
+      'aqua',
+      'rebeccapurple',
+      'rosybrown',
+      'royalblue',
+      'salmon',
+      'seagreen',
+      'skyblue',
+      'slateblue',
+      'slategray',
+      'snow',
+      'springgreen',
+      'steelblue',
+      'tan',
+      'teal',
+      'thistle',
+      'tomato',
+      'turquoise',
+      'wheat',
+      'yellowgreen',
+    ],
   };
 
   constructor(props) {

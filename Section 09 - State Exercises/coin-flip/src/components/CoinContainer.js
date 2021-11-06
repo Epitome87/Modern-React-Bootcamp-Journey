@@ -39,9 +39,13 @@ class CoinContainer extends React.Component {
         currentCoin: newCoin,
         numFlips: prevState.numFlips + 1,
         numHeads:
-          newCoin.side == 'heads' ? prevState.numHeads + 1 : prevState.numHeads,
+          newCoin.side === 'heads'
+            ? prevState.numHeads + 1
+            : prevState.numHeads,
         numTails:
-          newCoin.side == 'tails' ? prevState.numTails + 1 : prevState.numTails,
+          newCoin.side === 'tails'
+            ? prevState.numTails + 1
+            : prevState.numTails,
       };
     });
   }
