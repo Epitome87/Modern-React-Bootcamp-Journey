@@ -58,6 +58,34 @@ Section 38 - Bonus: Webpack Mini Course - Your Own Simple Version of Create Reac
 
 ## Section 06 - Introducing State
 
+- Props are immutable; a component cannot change its own prop. We cannot say this.props.color = red, for instance!
+
+- State is different: This is internal data specific to a component, and this data can (and will) change over time!
+
+- In React, state is an instance attribute on a component. It's always an object (POJO -- plain-old javascript object), since you'll want to keep track of several keys/values.
+
+- State should be initialized as soon as the component is created. So we set it in the construction function: this.state = { }
+
+- Props don't need to be initialized, State does.
+
+- If your component is stateless, you can omit the constructor function. If you are building a component w/state, you need a standard React constructor.
+
+- With newer JS we can drop the constructor, drop the super, and drop the "this"! At the time of Colt's course, this was experimental. But now it is common for Babel to convert this to older, compatible JS.
+
+- If we need to access "props" in a Component's constructor, we have to make a call to "super(props)" first! Then we can use "this.props".
+
+- If we need to access "this" in a Component's constructor, you have to at least call super() -- with or without the props passed into it.
+
+- DO NOT change this.state directly! Use React's interface for doing so -- "this.setState()" Cannot call setState in the constructor (it has not yet been mounted by this point). Try not to set state in your render either.
+
+- Changing State: 1) Can call in any instance method except the constructor. 2) Takes an object describing the state changes. 3) Patches state object -- keys that you didn't specify don't change. 4) Asynchronous! -The component state will eventually update. -React controls when the state will actually change, for performance reasons.
+
+- setState can receive a function or an object. It can receive an optional callback as well.
+
+- React will determine when the actual best time to apply the state changes is.
+
+- "State as Props": A common pattern we will see over and over again is a stateful ("smart") parent component passing down its state values as props to stateless ("dumb") child components. This idea is generalized in React as "downward data flow". It means that components get simpler as you go down the component hierarchy, and parents tend to be more stateful than their children.
+
 ## Section 07 - React State Dice Exercise
 
 ### `Originally Started: 11/05/2021`
@@ -261,6 +289,22 @@ For a simple Lottery app, we need the following.
      - None!
 
 The rest of this section is spent coding this example. It is rather simple and straightforward, so not many notes to be written!
+
+### Old Notes For Section 8
+
+- If a call to setSTate() depends on current state, the safest thing is to use the alternate "callback form". A good example of why is if we were to call setState() on the same value multiple times in a row (for some reason). Only the final call to setState() would be used, since React will notice the previous calls and assume that the final one holds the correct state. Callback form: setState( (prevState) => return { count: prevState.count + 1}. This is for Class-Components
+
+- It's good to define a callback function elsewhere in the code for the above purposes. It looks nicer and lends itself for use in Redux. Example: function incrementCounter(prevState) { <stuff> }; And then below: this.setState(incrementCounter). Easier for testing too: expect(incrementCounter({ count: 0 })).toEqual({ count: 1});
+
+- Mutating nested data structures in your state can cause problems w/React. Do immutable state updates: A much better way is to make a new copy of the data structure in question and then add new data / update it. We can use any "pure function" to do this, like array.map, .filter, .reduce, and the spreado perator. **IS THIS STILL VALID, OR IS COLT OUTDATED**
+
+- To solve the above, make use of the spread operator: this.setState({ icons: [...this.state.icons, newIcon]})
+
+- Minimize Your State: In React, you want to try to put as little data in state as possible. Litmus test: Does x change? If not, x should not be part of state. Should be a prop. Is x already captured by some other value y in state or props? Derive it from there instead.
+
+- Examples of Bad State Design: this.state = { first: "Matt", last: "McGrath", birthday: <some data>, age: 34, mood: "irate". 1) Does Matt's first name or last name ever change? No! 2) Does his birthday ever change? Nope! 3) Matt's age DOES change, however if we had this.props.birthday we could easily derive it from that. 4) Mood is a valid candidate for state.
+
+- State should live on the Parent: We want to support the downward data flow philosphy of React. It makes more sense for a parent component to manage state and have a bunch of dumb stateless child display components. Makes debugging easier because the state is centralized. Easier to predict where to find state: \* Is current component stateless? Find out what is rendering it. There's the state.
 
 ## Section 09 - State Exercises
 
