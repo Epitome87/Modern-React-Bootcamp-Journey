@@ -50,6 +50,10 @@ class Board extends React.Component {
 
     // Flip this cell and the cells around it
     flipCell(row, col); // This cell
+    flipCell(row + 1, col); // Cell to right
+    flipCell(row - 1, col); // Cell to left
+    flipCell(row, col + 1); // Cell below
+    flipCell(row, col - 1); // Cell above
 
     // Win when every cell is turned off
     let hasWon = board.every((row) => row.every((cell) => cell === false));
