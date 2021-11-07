@@ -679,13 +679,37 @@ return (
 
 ## Section 12 - Lights Out Game
 
+### `Originally Started: 11/06/2021`
+
+### Introducing Lights Out
+
+Lights Out is a game in which there is a grid of lights which you must turn off. The game begins with some lights already turned on. When you click a square in the grid, all surrounding grids have the state of their light togged: If the light was on, it is now off; if it was off, it is now on. This happens in a "+" shape, with the center being the grid you click on. The goal is to turn all the lights off!
+
+### Exploring the Starter Code
+
+What Components might we need to do this?
+
+- 1 App (of course!)
+- 2 Board
+  - The most sophisticated component. It will hold the state that represents the in-memory grid of true/false for lights-on/off. Since the state for the board lives here, this is also where the setState() calls will need to go -- and therefore all the functions that call setState()
+- 3 Cell
+  - A simpler component. This will simply render a <div> where the CSS classes will indicate whether this cell is lit or unlit. This is waht the user clicks on -- but it will need to call a function from the Board, since that will need to udpate the state.
+
 ### Displaying the Game Board
+
+Added logic for displaying the game board.
 
 ### Flipping Cells
 
+Adding logic to toggle the lights for the cell clicked and those around it.
+
 ### Winning the Game
 
+Added logic for when the player wins.
+
 ### Styling the Game
+
+Styled the game, thus completing the Lights Out project!
 
 ## Section 13 - Forms in React
 
