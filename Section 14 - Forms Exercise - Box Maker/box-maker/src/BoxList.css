@@ -1,0 +1,16 @@
+.BoxList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.BoxList__title {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.BoxList__boxes {
+  align-self: flex-start;
+}

@@ -1,0 +1,42 @@
+.NewBoxForm {
+  display: flex;
+  max-width: 500px;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.NewBoxForm label {
+  font-size: 1rem;
+  color: white;
+}
+
+.NewBoxForm input {
+  display: block;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+}
+
+.NewBoxForm button {
+  font-family: inherit;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  transition: 0.1s ease;
+}
+
+.NewBoxForm button:hover {
+  cursor: pointer;
+}
+
+.NewBoxForm button:active {
+  transform: scale(0.98);
+}

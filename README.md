@@ -942,9 +942,26 @@ import uuid from 'uuid/v4';
 
 This will generate a long, unique ID. It's incredibly easy!
 
-## Section 14 - Forms Exercise
+## Section 14 - Forms Exercise - Box Maker
 
-## Section 15 - Todo List Project
+This section and the next consist of two exercises
+
+Part 1 - Color Box Maker
+Create a new React app with the following Components:
+
+- App: Should render the Boxlist Component
+- BoxList: Place your state that contains all of the boxes here. This Component should render all of the Box Components along with the NewBoxForm Component
+- Box: This Component should display a div with a background color, width and height based on the props passed to it
+- NewBoxForm: This Comopnent should render a form that when submitted creates a new Box. You should be able to specify the Box's width, height and background color. When then form is submitted, clear the input values
+- When each Box Component is displayed, add a button with the text of "X" next to each Box. When this button is clicked, remove that specific Box. This will require you to pass a function down as props - the button should not be a seperate Component, it should be included in the Box Component
+
+**I did it!!!** My solution works -- with 0 outside help! I missed a minor quirk here and there, but nothing that wasn't solved within a few minutes.
+
+## Section 15 - Forms Exercise - Todo List Project
+
+This section consist of the second form exercise.
+
+Part 2 - Todo App - List, Add, Remove Todos
 
 ## Section 16 - Building Yahtzee
 
