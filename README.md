@@ -757,6 +757,191 @@ Styled the game, thus completing the Lights Out project!
 
 ## Section 13 - Forms in React
 
+### Intro to React Forms
+
+Goals
+
+- Build forms with React
+- Understand what **controlled components** are
+
+Forms
+
+- HTML form elements work differently than other DOM elements in React
+  - Form elements naturally keep some internal state. They have data that the form knows about that the rest of the app might not know about until the form is submitted.
+
+Thinking About State
+
+- It's convenient to have a Javascript function that
+  - Handles the submission of the form _and_
+  - Has access to the data the user entered
+- The technique to get this is **controlled components**
+
+Controlled Components
+
+- In HTML, form elements such as <input>, <textarea>, and <select> typically maintain their own state and update it based on user input.
+- In React, mutable state is kept in the _state_ of components, and only updated with setState().
+- So, how do we use React to control form input state?
+  - Example, we want username in state to be 100% in sync with the form input, instead of waiting for user to click submit on the form
+
+One Source of Truth
+
+- We make the React state be the "single source of truth"
+- React controls:
+  - What is _shown_ (the value of the component)
+  - What happens when the user types (_this_ gets kept in state)
+- Input elements controlled in this way are **controlled components**
+
+Example Form Component
+
+```js
+class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { username: '' };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ username: event.target.value });
+  }
+
+  render() {
+    return (
+      <div>
+        <form>
+          <input
+            type='text'
+            value={this.state.username}
+            onChange={this.handleChange}
+          />
+        </form>
+      </div>
+    );
+  }
+}
+```
+
+How the Controlled Form Works
+
+- Since _value_ attribute is set on element, displayed value will always be this.state.fullName -- making the React state _the_ source of truth!
+- Since handleChagne runs on every keystroke to update the React state, the displayed value will update as the user types.
+- With a controlled component, every state mutation will have an associated handler function. This makes it easy to modify or validate user input.
+- The annoying part: Forms get pretty long and lots of handle change methods!
+
+```js
+class NameForm extends Component {
+  // ...
+
+  handleChange(event) {
+    // Runs on every keystroke
+    this.setState({
+      fullName: event.target.value,
+    });
+  }
+  // ...
+}
+```
+
+If we want to do something when the form is submitted, we can do it via a button, or when the form is submitted
+
+```js
+handleSubmit(event) {
+  event.preventDefault();
+  console.log(`You typed: ${this.state.username}`);
+  // It's typical to then reset the form state!
+  this.setState({username: ""});
+}
+
+<form onSubmit={this.handleSubmit} >
+  <button>Submit!</button>
+</form>
+```
+
+### Writing Forms with Multiple Inputs
+
+- If we want multiple inputs, do we have to create a new onChange handler for each one, and bind _this_? That's a lot of work! Although we could do this, we fortunately have a better solution!
+
+ES2015 Review
+
+- ES2015 introduced a few object enhancements...
+- This includes the ability to create objects with dynamic keys based on JavaScript expressions
+- The feature is called _computed property names_
+
+ES5:
+
+```js
+var catData = {};
+var microchip = 14827938;
+catData[microchip] = 'Blue Steele';
+```
+
+ES2015:
+
+```js
+let microchip = 14827938;
+let catData = {
+  // Property computed inside the object literal
+  [microchip]: 'Blue Steele',
+};
+```
+
+The output in both will be:
+
+```js
+catData = { 14827938: 'Blue Steele' };
+```
+
+Application to React Form Components
+
+- Why does the above ES2015 enhancement matter?
+  - Instead of making a separate onChange handler for every single input, we can make one generic function for multiple inputs!
+
+```js
+class YourComponent extends React.Component {
+  // ...
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  <input type="text" name="username" value={this.state.username} onChange={this.handleChange}>
+  <input type="email" name="email" value={this.state.email} onChange={this.handleChange}>
+  <input type="password" name="password" value={this.state.password} onChange={this.handleChange}>
+}
+```
+
+- To handle multiple controlled inputs, add the HTML `name` attribute to each JSX input element and
+- Let handler function decide the appropriate key in state to uddate based on `event.target.naem`
+- So we have to have a name attribute that matches the name we used in the state!
+
+### The htmlFor Attribute
+
+How do we do labels in React?
+
+- We typically use a `for` attribute on a label that matches an `id` attribute on the input
+- In React, we use `htmlFor` instead, since `for` is a reserved word already
+
+### Design Pattern Passing Data Upwards
+
+- In React we generally have downward data flow. "Smart" parent components with simpler child components.
+- For Forms, we typically need to pass data upward to the parent.
+
+(This was a rather lengthy lecture that didn't seem to be of anything new. We are just passing data upwards in the same manner as before, except utilizing a form's onSubmit event instead, and making that form a child Component.)
+
+### Using the UUID Library
+
+- We've seen that using an iteration index as a key prop is a bad idea
+- No natural unique key? Use a library to create a uuid
+- Install it using `npm install uuid`
+
+```js
+import uuid from 'uuid/v4';
+
+<li key={uuid()}>Item</li>;
+```
+
+This will generate a long, unique ID. It's incredibly easy!
+
 ## Section 14 - Forms Exercise
 
 ## Section 15 - Todo List Project
