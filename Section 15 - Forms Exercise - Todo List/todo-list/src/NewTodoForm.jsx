@@ -1,5 +1,6 @@
 import React from 'react';
 import './NewTodoForm.css';
+import { v4 as uuid } from 'uuid';
 
 class NewTodoForm extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class NewTodoForm extends React.Component {
     event.preventDefault();
 
     // Add a Todo with this input text to TodoList
-    this.props.addTodo(this.state.task);
+    this.props.addTodo({ ...this.state, id: uuid(), isCompleted: false });
 
     // Reset form inputs
     this.setState({ task: '' });
@@ -25,19 +26,18 @@ class NewTodoForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleOnSubmit}>
-          <label htmlFor='task'>Task</label>
-          <input
-            type='text'
-            name='task'
-            id='task'
-            value={this.state.task}
-            onChange={this.handleOnChange}
-          />
-        </form>
-      </div>
-    );
+      <form className='NewTodoForm' onSubmit={this.handleOnSubmit}>
+        <label htmlFor='task'>Task</label>
+        <input
+          type='text'
+          name='task'
+          id='task'
+          value={this.state.task}
+          onChange={this.handleOnChange}
+        />
+        <button>Add Todo</button>
+      </form>
+    ); 
   }
 }
 export default NewTodoForm;

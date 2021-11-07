@@ -757,6 +757,8 @@ Styled the game, thus completing the Lights Out project!
 
 ## Section 13 - Forms in React
 
+### `Originally Started: 11/06/2021`
+
 ### Intro to React Forms
 
 Goals
@@ -944,6 +946,8 @@ This will generate a long, unique ID. It's incredibly easy!
 
 ## Section 14 - Forms Exercise - Box Maker
 
+### `Originally Started: 11/06/2021`
+
 This section and the next consist of two exercises
 
 Part 1 - Color Box Maker
@@ -960,6 +964,8 @@ Create a new React app with the following Components:
 
 ## Section 15 - Forms Exercise - Todo List Project
 
+### `Originally Started: 11/07/2021`
+
 This section consist of the second form exercise.
 
 Part 2 - Todo App - List, Add, Remove Todos
@@ -975,9 +981,207 @@ Part 3 - Todo App - Editing
 
 - Each _Todo_ Component should also display a button with the text "edit" that when clicked displays a _form_ with the task of the todo as an input and a button to submit the form. When the form is submitted, the task of the text should be updated and the form should be hidden.
 
+**I did it, again!!!** Without watching Colt's solution, I was able to finish the Todo List. After watching Colt's solution, I noticed we did it very similiar. However, when handling the ability to toggle if a Todo is "complete" or not, he does a rather tedious way by having the TodoList control almost entirely, and passing Todo a prop key of "isCompleted". However, my solution simply gives the Todo component a new state key of "isCompleted", and the logic becomes much simpler. I can't think of why Colt approaches this functionality the way he did; we already have multiple pieces of state in our Todo component, so it's not like adding another would conflict with any design philosophy, as the Todo component is already note "stateless".
+
 ## Section 16 - Building Yahtzee
 
+### `Originally Started: 11/07/2021`
+
+(Skipping this section for now, as it is a rather lengthy project for a game I do not know. It's also the **third** form practice project, so I'd rather revisit it in a week to see if I still remember how to do React forms)
+
 ## Section 17 - React Lifecycle Methods
+
+### `Originally Started: 11/07/2021`
+
+Goals
+
+- Describe what component lifecycle is
+- Contrast methods for mounting, updating and unmounting
+- Overview the less commonly used lifecycle methods
+
+React Component Lifecycle
+
+- Every component comes with methods that allow devs to update application state and reflect the changes to the UI before/after key React "events"
+- There are 3 main phases to know about:
+  - Mounting
+  - Updating
+  - Unmounting
+
+### Introducing ComponentDidMount
+
+Mounting Phase of React Lifecycle
+
+- constructor()
+  - Often used for initializing state or binding event handlers to class instance
+- render()
+  - After the constructor, React calls render(). It tells React what should be displayed. React updates the DOM to match the output of render()
+- componentDidMount()
+  - This method runs after the component is mounted
+  - "Mounting" is the first time the component is rendered to DOM
+  - This is a good place to load any data via AJAX or set up subscriptions / timers
+  - Calling `setState()` here will trigger re-render, so be cautious
+  - Only runs once
+
+componentDidMount() Example
+
+- Let's start a timer when a Clock instance is first rendered to DOM
+- componentDidMount() method runs after the component has been rendered
+
+```js
+class Timer extends Component {
+  constructor(props) {
+    super(props) {
+      console.log("CONSTRUCTOR");
+      this.state = { time: new Date() };
+    }
+
+    componentDidMount() {
+      console.log("IN COMP MOUNT");
+      this.timerID = setInterval(() => {
+        this.setState({time: newDate() });
+      }, 1000);)
+    }
+
+    render () {
+      console.log("IN RENDER");
+      return <h1>{this.state.time.getSeconds()}</h1>
+    }
+  }
+}
+```
+
+Why put code like this in componentDidMount() instead of a constructor? Next lesson covers that!
+
+### Loading Data Via AJAX
+
+componentDidMount() AJAX Example
+
+- componentDidMount is also quite useful for making AJAX requests when the component is mounted
+- We'll use `npm install axios` to make easier AJAX requests
+
+```js
+// Note we don't need "./" in directory because it is a node module in this directory
+import axios from 'axios';
+
+class ZenQuote extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { quote: '' };
+  }
+
+  componentDidMount() {
+    // Load data
+    axios.get('https://api.github.com/zen').then((response) => {
+      this.setState({ quote: response.data });
+    });
+
+    // Set state with that data
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.quote}</h1>
+      </div>
+    );
+  }
+}
+```
+
+Why not just call `axios.get()` in the constructor? It seems to work...
+
+- Convention not to set state inside of constructor
+- Could be problematic in future React, so prepare for it now
+
+### Adding Animated Loaders
+
+- If we're making requests _after_ component renders the first time, aren't we going to have a gap where info is loading and not yet displayed?
+  - Yes!
+- So having some type of loading animation might be nice!
+
+Loading Process
+
+- Add state for when loading is occuring
+- Use conditional logic based on that state to determine what is rendered
+- Set loading state to represent not loading when the request / whatever has finished
+- The loading animation can simply be a class that is given to a div element that is shown when is loading
+
+### Loading Data with Async Functions
+
+```js
+constructor(props) {
+  super(props);
+  this.state = { imgUrl: "", name: "" };
+}
+
+async componentDidMount() {
+  let response = await axios.get(`https://api.github/users/${this.props.username}`);
+  // Code that occurs after response has been returned
+  this.setState({ imgUrl: response.data.avatar_url, name: response.data.name });
+}
+render() {
+  return (
+    <div>
+      <h1>Github User: {this.state.name} </h1>
+      <img src={this.state.imgUrl} />
+    </div>
+  )
+}
+```
+
+Not good practice to render empty HTML elements (the h1 and img above before a user is fetched), but it works.
+
+### Introducing cmponentDidUpdate
+
+Multiple things can cause an update / re-render
+
+- New props (can't change them, but can pass them in from parent with new values)
+- setState()
+- forceUpdate()
+
+After these re-renders / updates occur, `componentDidUpdate` gets called
+
+- But **not** until after componentDidMount! Updates before that point aren't followed by a componentDidUpdate
+  - Constructor -> Render -> componentDidMount -> Render -> componentDidUpdate
+
+This is a suitable place to implement any side effect operations
+
+- Syncing up with `localStorage`
+- Auto-saving
+- Updating DOM for uncontrolled components
+
+### PrevProps and PrevState in ComponentDidUpdate
+
+componentDidUpdate()
+
+- This method is called after every render occurs.
+- You can do a comparison between the previous and current props and state:
+
+```js
+componentDidUpdate(prevProps, prevState) {
+  // You can call setState here as well if you need!
+}
+```
+
+### Introducing componentWillUnmount
+
+componentWillUnmount()
+
+- Pretty straightforward: called right before a component is destroyed or unmounted (removed from page)
+- Perform any necessary cleanup in this method:
+  - iInvalidating timers
+  - Canceling network request
+  - Removing event handlers directly put on DOM
+  - Cleaning up subscriptions
+- Calling `setState` here is useless -- there will be no re-rendering after this!
+
+In our previous Clock example, this is the perfect place to clear that setInterval timer!
+
+```js
+componentWillUnmount() {
+  clearInterval(this.timerID);
+}
+```
 
 ## Section 18 - Lifecycle Methods and API Exercise
 
