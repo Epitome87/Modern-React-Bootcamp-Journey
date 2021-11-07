@@ -16,6 +16,9 @@ class NewBoxForm extends React.Component {
       ...this.state,
       id: uuid(),
     });
+
+    // Reset inputs to be blank
+    this.setState({ color: '', width: '', height: '' });
   }
 
   handleOnChange(event) {
@@ -37,7 +40,7 @@ class NewBoxForm extends React.Component {
 
           <label htmlFor='width'>Width</label>
           <input
-            type='text'
+            type='number'
             id='width'
             name='width'
             value={this.state.width}
@@ -46,7 +49,7 @@ class NewBoxForm extends React.Component {
 
           <label htmlFor='height'>Height</label>
           <input
-            type='text'
+            type='number'
             id='height'
             name='height'
             value={this.state.height}

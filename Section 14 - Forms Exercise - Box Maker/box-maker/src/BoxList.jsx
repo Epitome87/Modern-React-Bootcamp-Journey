@@ -21,7 +21,6 @@ class BoxList extends React.Component {
       return box.id !== id;
     });
 
-    console.log('REMOVING', filteredBoxes);
     this.setState({ boxes: [...filteredBoxes] });
   }
 

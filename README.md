@@ -778,7 +778,7 @@ Thinking About State
 
 Controlled Components
 
-- In HTML, form elements such as <input>, <textarea>, and <select> typically maintain their own state and update it based on user input.
+- In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input.
 - In React, mutable state is kept in the _state_ of components, and only updated with setState().
 - So, how do we use React to control form input state?
   - Example, we want username in state to be 100% in sync with the form input, instead of waiting for user to click submit on the form
@@ -956,12 +956,24 @@ Create a new React app with the following Components:
 - When each Box Component is displayed, add a button with the text of "X" next to each Box. When this button is clicked, remove that specific Box. This will require you to pass a function down as props - the button should not be a seperate Component, it should be included in the Box Component
 
 **I did it!!!** My solution works -- with 0 outside help! I missed a minor quirk here and there, but nothing that wasn't solved within a few minutes.
+**Update** Watch Colt's solution the next morning, and it was nearly word-for-word what I arrived at! Although I spent time styling the app a little bit.
 
 ## Section 15 - Forms Exercise - Todo List Project
 
 This section consist of the second form exercise.
 
 Part 2 - Todo App - List, Add, Remove Todos
+
+- Create a Todo App that allows users to see, add, edit, and remove todos. It should contain the following Components:
+- App - This Component should render the _TodoList_ component
+- TodoList - This component should render the NewTodoForm component and should render the list of Todo components. Place your state that contains all of the todos in this component.
+- NewTodoForm - This component should render a form with one text input for the task to be created. When this form is submitted, a new _Todo_ component should be created.
+- Todo - This component should display a div with the task of the todo
+- For each Todo component, there should also be a button with the text "X" that - when clicked - removes the todo.
+
+Part 3 - Todo App - Editing
+
+- Each _Todo_ Component should also display a button with the text "edit" that when clicked displays a _form_ with the task of the todo as an input and a button to submit the form. When the form is submitted, the task of the text should be updated and the form should be hidden.
 
 ## Section 16 - Building Yahtzee
 
