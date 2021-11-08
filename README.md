@@ -1195,6 +1195,10 @@ In this section, I built a card-dealer app! It's a simple page where you can pre
 
 An app that displays dad jokes! They are grabbed from an API and displayed in a list. The user can upvote / downvote jokes. A lot of nice styling going on! I will attempt the logic myself, but most likely just use the same styling Colt will show.
 
+Random tidbits I learned while working on this project:
+
+- `window.localStorage.clear()` will clear your local storage.
+
 ## Section 20 - React Router
 
 ## Section 21 - Vending Machine Exercise
