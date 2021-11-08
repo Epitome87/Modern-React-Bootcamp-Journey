@@ -1185,11 +1185,19 @@ componentWillUnmount() {
 
 ## Section 18 - Lifecycle Methods and API Exercise
 
+### `Originally Started: 11/07/2021`
+
+In this section, I built a card-dealer app! It's a simple page where you can press a button to be dealt a new card from a deck. I did it mostly without consulting Colt's videos, but I did use his styling entirely. Not many lifecycle methods were used, so it was mostly just a project to work with an API (one for dealing cards).
+
 ## Section 19 - Building the Dad Jokes App
+
+### `Originally Started: 11/07/2021`
+
+An app that displays dad jokes! They are grabbed from an API and displayed in a list. The user can upvote / downvote jokes. A lot of nice styling going on! I will attempt the logic myself, but most likely just use the same styling Colt will show.
 
 ## Section 20 - React Router
 
-## Section 21 - Vending Machien Exercise
+## Section 21 - Vending Machine Exercise
 
 ## Section 22 - React Router Patterns
 
