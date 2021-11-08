@@ -1,4 +1,9 @@
 # The Modern React Bootcamp (Hooks, Context, NextJS, Router) - by Colt Steele
+<!-- 
+|                                                         Project                                                          | Demo                                                                                                |
+| :----------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------- |
+| [Expanding Cards](https://github.com/Epitome87/Modern-React-Bootcamp-Journey/tree/main/Day%2001%20-%20Expanding%20Cards) | [Demo](https://epitome87.github.io/Modern-React-Bootcamp-Journey/Day%2001%20-%20Expanding%20Cards/) |
+|  [Progress Steps](https://github.com/Epitome87/Modern-React-Bootcamp-Journey/tree/main/Day%2002%20-%20Progress%20Steps)  | [Demo](https://epitome87.github.io/Modern-React-Bootcamp-Journey/Day%2002%20-%20Progress%20Steps/)  | -->
 
 ## Table of Contents
 
