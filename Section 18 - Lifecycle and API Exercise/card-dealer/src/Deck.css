@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
+
+.Deck {
+  font-family: 'Slabo 27px', sans-serif;
+  margin-top: 3rem;
+}
+
+.Deck__title {
+  color: azure;
+  font-size: 2.75rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-top: -1rem;
+}
+
+.Deck__card-container {
+  margin-top: 7.5rem;
+  position: relative;
+}
+
+.Deck__button {
+  background: none;
+  border: 2px solid;
+  border-radius: 100px;
+  outline: none;
+  font: inherit;
+  margin: 0.5em;
+  padding: 1em 2em;
+  color: #009688;
+  transition: 0.25s linear;
+}
+
+.Deck__button:hover {
+  border-color: #4caf50;
+  color: white;
+  box-shadow: inset 0 0 0 2em #4caf50;
+}

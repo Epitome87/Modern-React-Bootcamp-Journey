@@ -1,0 +1,11 @@
+.Card {
+  width: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(50%);
+}
+
+.Card img {
+  width: 100%;
+}
