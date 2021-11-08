@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Modern-React-Bootcamp-Journey/static/css/main.fac8e76d.chunk.css",
-    "main.js": "/Modern-React-Bootcamp-Journey/static/js/main.69bb7712.chunk.js",
-    "main.js.map": "/Modern-React-Bootcamp-Journey/static/js/main.69bb7712.chunk.js.map",
-    "runtime-main.js": "/Modern-React-Bootcamp-Journey/static/js/runtime-main.fdbe23fc.js",
-    "runtime-main.js.map": "/Modern-React-Bootcamp-Journey/static/js/runtime-main.fdbe23fc.js.map",
-    "static/js/2.8a0980e0.chunk.js": "/Modern-React-Bootcamp-Journey/static/js/2.8a0980e0.chunk.js",
-    "static/js/2.8a0980e0.chunk.js.map": "/Modern-React-Bootcamp-Journey/static/js/2.8a0980e0.chunk.js.map",
-    "static/js/3.b91883f0.chunk.js": "/Modern-React-Bootcamp-Journey/static/js/3.b91883f0.chunk.js",
-    "static/js/3.b91883f0.chunk.js.map": "/Modern-React-Bootcamp-Journey/static/js/3.b91883f0.chunk.js.map",
-    "index.html": "/Modern-React-Bootcamp-Journey/index.html",
-    "static/css/main.fac8e76d.chunk.css.map": "/Modern-React-Bootcamp-Journey/static/css/main.fac8e76d.chunk.css.map",
-    "static/js/2.8a0980e0.chunk.js.LICENSE.txt": "/Modern-React-Bootcamp-Journey/static/js/2.8a0980e0.chunk.js.LICENSE.txt"
+    "main.css": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/css/main.7105e26c.chunk.css",
+    "main.js": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/main.71975f5d.chunk.js",
+    "main.js.map": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/main.71975f5d.chunk.js.map",
+    "runtime-main.js": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/runtime-main.ae4e1239.js",
+    "runtime-main.js.map": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/runtime-main.ae4e1239.js.map",
+    "static/js/2.ff1bb466.chunk.js": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/2.ff1bb466.chunk.js",
+    "static/js/2.ff1bb466.chunk.js.map": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/2.ff1bb466.chunk.js.map",
+    "static/js/3.b379cbf4.chunk.js": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/3.b379cbf4.chunk.js",
+    "static/js/3.b379cbf4.chunk.js.map": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/3.b379cbf4.chunk.js.map",
+    "index.html": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/index.html",
+    "static/css/main.7105e26c.chunk.css.map": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/css/main.7105e26c.chunk.css.map",
+    "static/js/2.ff1bb466.chunk.js.LICENSE.txt": "/Modern-React-Bootcamp-Journey/Section%2019%20-%20Dad%20Jokes%20App/dad-jokes/static/js/2.ff1bb466.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.fdbe23fc.js",
-    "static/js/2.8a0980e0.chunk.js",
-    "static/css/main.fac8e76d.chunk.css",
-    "static/js/main.69bb7712.chunk.js"
+    "static/js/runtime-main.ae4e1239.js",
+    "static/js/2.ff1bb466.chunk.js",
+    "static/css/main.7105e26c.chunk.css",
+    "static/js/main.71975f5d.chunk.js"
   ]
 }
