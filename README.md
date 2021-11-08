@@ -1,5 +1,6 @@
 # The Modern React Bootcamp (Hooks, Context, NextJS, Router) - by Colt Steele
-<!-- 
+
+<!--
 |                                                         Project                                                          | Demo                                                                                                |
 | :----------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------- |
 | [Expanding Cards](https://github.com/Epitome87/Modern-React-Bootcamp-Journey/tree/main/Day%2001%20-%20Expanding%20Cards) | [Demo](https://epitome87.github.io/Modern-React-Bootcamp-Journey/Day%2001%20-%20Expanding%20Cards/) |
@@ -1205,6 +1206,216 @@ Random tidbits I learned while working on this project:
 - `window.localStorage.clear()` will clear your local storage.
 
 ## Section 20 - React Router
+
+### `Originally Started: 11/08/2021`
+
+### Intro to Client-Side Routing
+
+Goals
+
+- Describe what client-side routing is and why it's useful
+- Compare client-side routing to server-side routing
+- Implement basic client-side routing with React Router
+
+Server-Side Routing
+
+- The term "routing" used to only refer to server-side, but now there's client-side
+- Traditional routing is "Server-side routing"
+- Server decides what HTML to return based on URL requested, entire page refreshes
+- We basically fake that type of behavior in client-side routing, since we don't actually leave the page
+
+Client-Side Routing
+
+- We could fake client-side routing...just render various Components based on a current state, but that has limitations:
+  - We don't get different URL as we move around "pages"
+  - We can't go back and forth in our browser to follow the history of our clicks
+  - A way to bookmark a "page" on the site
+  - More complex route/pattern matching
+  - A lot more features we don't have access to with this setup
+- React Router lets us handle this more gracefully!
+
+### Adding Our First Route
+
+Real Client-Side Routing!
+
+- Client-side routing handles mapping between URL bar and the content a user sees via _browser_ rather than via _server_
+- Sites that exclusively use client-side routing are single-page applications
+- We use JavaScript to manipulate the URL bar with a Web API called History
+
+React Router
+
+- Many tools we can use for client-side routing
+- Not part of React; its own tool, different developers
+
+Including the Router
+
+- Install with `npm install react-router-dom` or `npm install --save react-router-dom`
+- (There are different types of routers, but we'll be using BrowserRouter for now)
+
+```js
+// src/index.js
+import { BrowserRouter } from 'react-router-dom';
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+  document.getElemetnById("root");
+);
+```
+
+- Next we need to define routes
+
+```js
+// Dog and Cat component created and imported
+// ...
+import {Route} from "react-router-dom";
+
+// Some component's render method
+render() {
+  return (
+    <div className="App">
+      <Route path="/" component={Home} />
+      <Route path="/dog" component={Dog} />
+      <Route path="/cat" component={Cat} />
+    <div>
+  )
+}
+```
+
+### Using Switch and Exact
+
+In our last example, there is one small issue
+
+- When we are on the /dog route, the home route also displays.
+- When are are on the /cat route, the home route also displays.
+
+Why is this happening?
+
+- React Router wants to match as many paths as possible.
+- So "/dog" is matching "/" since it includes the "/" as part of it
+
+We can fix this by importing `Switch`!
+`import { Route, Switch } from "react-router-dom";`
+
+- We wrap it around the Route tags
+- It's like a Switch-statement: compare one thing to multiple conditions, and only one can be true
+  - Whichever path is matched first is returned
+- Still not fixed! "/dog" now just shows us the "/" route, instead of "/" and "/dog". So still have issues!
+- We _could_ order the routes in an order that avoids this
+  - A little tedious though
+- Pass in an `exact` property to the Route tag to fix this!
+  - The route has to match the entire string
+    - But "/dog" and "dog/hater" would still get both be matched. The Switch ensures only the first is used
+
+```js
+<Route exact path="/dog">
+```
+
+### Intro to the Link Component
+
+So far we can only visit our Routes by typing them directly into the URL. But this is a horrible user experience. Howe can we have links control the URL we go to?
+
+- We do not use anchor tag. This will refresh the entire page, but it does take us to the correct URL (via a Get request)
+  - But we don't want to make requsts or refresh page!
+- Solution?
+
+Link Component
+
+- The `<Link>` component acts as a replacement for `<a>` tags
+- Instead of an **href** attribute, `<Link>` uses a **to** prop
+- Click on `<Link>` does _not_ issue a GET request
+  - JavaScript intercepts click and does client-side routing
+
+```js
+import { Link } from "react-router-dom"
+
+<Link to="/">Home</Link>
+<Link to="/dog">Dog</Link>
+<Link to="/cat">Cat</Link>
+```
+
+### Adding in NavLinks
+
+NavLink Component
+
+- `<NavLink> is just like `<Link>`, but with one additional feature
+  - If at page that link would go to, the `<a>` gets a CSS class of _active_
+  - You can style the anchor tags selectively based on which ones are active
+  - This lets you stylize links to "page you are already at" using the `activeStyle` (in-line) or `activeClassName` props
+
+```js
+import { NavLik } from "react-router-dom";
+
+<NavLink exact to="/" activeClassName="active-link">Home</NavLink>
+<NavLink exact to="/dog" activeClassName="active-link">Dog</NavLink>
+<NavLink exact to="/cat" activeClassName="active-link">Cat</NavLink>
+
+// In a CSS file
+.active-link { // Can be named anything
+  color: pink;
+  border-bottom: 1px solid white;
+}
+```
+
+### Render Props vs Component Props in Routes
+
+We don't have to just render `component` as a prop in a Route. We can specify `render` too
+
+With our current setup, we have an issue. What if we want to pass a prop into Dog? How can we right now with:
+
+```js
+// In App.js
+<Route exact path='/dog' component={Dog} />
+```
+
+There's no spot to pass a prop from App to Dog! We could do this:
+
+```js
+<Route exact path="/dog" component={() => <Dog name="Leon" />}>
+```
+
+Works, but a little clunky. But there is an even bigger issue:
+
+- We aren't reusing an old Component, we are creating a new Dog component each time the route is visited
+
+There is a better alternative! We use `render` instead of `component`
+
+```js
+<Route exact path="/dog" render={() => <Dog name="Leon" />}>
+```
+
+Now the Dog component won't keep getting mounted / unmounted each time you are on the Dog route and visit the Dog route from the same page. (Note the typical mount / unmount will happen if you visit, say, Cat Route and then Dog Route again.)
+
+In the React source code, we can see what is happening:
+
+```js
+if (component) return match ? React.createElement(component, props) : null;
+
+if (render) match ? render(props) : null;
+```
+
+You can think of `component=` as doing:
+
+```js
+<Route exact path='/dog'>
+  <Dog name='Leon' />
+</Route>
+```
+
+...And `render=` as doing:
+
+```js
+<Route exact path='/dog'>
+  {Dog()}
+</Route>
+```
+
+Colt will stick to `render` whenever passing props in, and `component` otherwise.
+
+A StackOverflow post notes that:
+
+> There is not a performance difference between component and render prop if you are using component={AppComponent} directly. If you want to assign some props to AppComponent, use render={() => <AppComponent { ...props } />} instead of component={() => <AppComponent { ...props }>}
 
 ## Section 21 - Vending Machine Exercise
 
