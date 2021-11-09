@@ -1,0 +1,23 @@
+.Navbar {
+  background-color: rgba(69, 90, 100, 1);
+  font-size: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: rgba(144, 164, 174, 1);
+  transition: 0.5s ease;
+}
+
+/* Add .Navbar a. to increase specificityy so this gets called */
+.Navbar a.active {
+  color: white;
+}
+
+.Navbar a.customActive {
+  font-size: 3rem;
+}

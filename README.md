@@ -1417,7 +1417,60 @@ A StackOverflow post notes that:
 
 > There is not a performance difference between component and render prop if you are using component={AppComponent} directly. If you want to assign some props to AppComponent, use render={() => <AppComponent { ...props } />} instead of component={() => <AppComponent { ...props }>}
 
+### Well, Dang!!!
+
+After staring to do the project in Section 21 without any assistance, it became very clear that the way Colt taught React Router is quite outdated! So here are some quick things I learned:
+
+- To install it, we seem to need to do the following if project created in create-react-app: `npm add react-router-dom@6 history@5`
+- We still wrap everything in a `BrowserRouter` tag
+- There doesn't seem to be a `Switch` tag
+- We wrap every `Route` element inside a `Routes` tag
+- Instead of a `component` or `render` prop on a `Route`, we use `element`:
+
+```js
+    <Route path='/vm' element={<VendingMachine />}>
+```
+
+- In the above, note how we use the actual tags for VendingMachine. In Colt's outdated way we just passed the Component name in, making it harder to pass props in. Now we just pass it inside the tag as normal!
+- Don't seem to need the `exact` attribute? Not sure though!
+- We can nest routes. Doing so will automatically append the parent URL to the front of the child. Example:
+
+```js
+<Routes>
+  <Route path='/vm' element={<VendingMachine />}>
+    <Route exact path='chips' element={<Chips />}>
+      <Route exact path=':chipsType' element={<Doritos />} />
+  </Route>
+  <Route path='soda' element={<Soda />} />
+</Routes>
+```
+
+- In the above, the Chips component is called at the URL "/vm/chips". So notice how the parent's URL is prepended to it.
+- Also in the above, Doritos is called at the URL "/vm/chips/anyInputHere"
+- We can use ":<anythingHere>" as a path to specify a URL param
+  - Inside the component called in that Route, we can access the param passed in like so:
+
+```js
+import { useParams } from 'react-router-dom';
+function Doritos() {
+  let params = useParams();
+
+  return <div>Doritos type: {params.chipsType}</div>;
+}
+```
+
+- To preserve the layout of nested Routes, we give the parent Route(s) an `<Outlet />` tag at the end of their render.
+  - Still a bit confused on this!
+
 ## Section 21 - Vending Machine Exercise
+
+This section will be a relatively quick (and pointless!) project that uses some React Router concepts. The app should consist of the following:
+
+- A **VendingMachine** component, which shows a page with a list of snacks you can get from the machine.
+- At least three different snack components, each one corresponding to a vending machine snack
+- By clicking on an item in the **VendingMachine** you can view one of the things inside of it. Clicking should update the URL and show the snack that you've clicked on.
+- From each snack component, you should be able to go back to the main **VendingMachine** component
+- Add a second copy of the links to a site-wide navigation bar. This should show at the top of each page and should have some style to highlight the active link
 
 ## Section 22 - React Router Patterns
 
