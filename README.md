@@ -1474,6 +1474,227 @@ This section will be a relatively quick (and pointless!) project that uses some 
 
 ## Section 22 - React Router Patterns
 
+### `Originally Started: 11/05/2021`
+
+### Working with URL Params
+
+- URL parameters are done with "/:id" as a path name, with "id" being any identifier you want
+- Example: `path = "/food/:name"
+
+But how do we access what was typed into the URL, so we can use that information dynamically?
+
+- All three render methods (render, component, and children) on a Route are passed the same three route props
+  - match, location, and history
+
+```js
+<Route path="/food/:name" render={(routeProps) => <Food name="egg" stuff={routeProps}/> >}>
+```
+
+`stuff` will be an object with history, location, and match. For now, we're concerned with match -- it contains information about this path and the route that was matched. In particular, we care about the `params` property! It will contain what's in place of "/:name".
+
+Ideally we deconstruct the route props as we pass it into our components:
+
+```js
+render={routeProps => <Food {...routeProps } />}
+
+// In Food.js
+// We have access to: history, location, match
+const name = this.props.match.params.name;
+
+render() {
+  return <h1>Food is {name}</h2>
+}
+```
+
+Now visiting `localhost:3000/food/beans will return an h1 with "Food is beans"
+
+You can't use `component` type syntax if your Component has props; for that you have to use the `render` syntax. But if there are no props, you can -- and you don't need to explicitely specify the route props to have access to them!
+`<Route path="/food/:name" component=({Food} />`
+
+But also can't forget to leave out the route props if you use the `render` syntax:
+`render={() => <Food />` won't work! `render={(routeProps) => <Food {...routeProps}>}`
+
+**UPDATE**
+
+As of the newest React update, we do not pass a routes prop object into our Route component. And inside the Component that needs access to the URL params, we simply:
+
+```js
+import { useParams } from 'react-router-dom';
+const params = useParams();
+
+// If we have a param called "name"
+const name = params.name;
+
+// Or destructure from the get-go!
+const { name } = useParams();
+```
+
+### Multiple Route Params
+
+We can use multiple Route Params: `/food/:foodName/drink/:drinkName`
+
+Be sure to use the `exact` attribute in the Route tag, otherwise `/food/:foodName/` and `/food/:foodName/drink/:drinkName` will both match and have their content rendered.
+
+Now in a Component we can grab both our URL Params (using updated 2021 method):
+
+```js
+const { foodName, drinkName } = useParams();
+```
+
+You can have as many route params as you'd like, but try to keep them minimal and re-think your route structure if you need more.
+
+### Adding a 404 Not Found Route
+
+If no valid Routes are detected, we can simply define a route without a path as the **final** route in the list:
+
+```js
+<Switch>
+  <Route exact path='/about' render={() => <About />} />
+  <Route exact path='/contact' render={() => <Contact />} />
+  <Route render={() => <NotFound />} />
+</Switch>
+```
+
+Note that it **must** be in a Switch tag, otherwise it will alwys be called, since it is always matched!
+
+**Updated** Note we no longer need the Switch tag, and the order of Routes doesn't matter as much any more.
+
+### Writing a Simple Search Form
+
+```js
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+const FoodSearch = (props) => {
+  const [query, setQuery] = useState('');
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  return (
+    <div className='FoodSearch'>
+      <h1>Search for a Food!</h1>
+      <input
+        type='text'
+        placeholder='Search for a food'
+        value={query}
+        onChange={handleChange}
+      />
+      <Link to={`/food/${query}`}>Go!</Link>
+    </div>
+  );
+};
+
+export default FoodSearch;
+```
+
+### The Redirect Component
+
+**NOTE** This is a lot different in newer versions of React Router
+
+Client-Side Redirects
+
+- With React Router we can mimic the behavior of server-side redirects
+- Useful after certain actions (e.g. submitting a form)
+- Can be used in lieu of having a catch-all 404 component
+
+How to Redirect
+
+- In React Router, there are two ways to redirect:
+  - Using the `<Redirect>` component
+    - Useful for "you shouldn't have gotten here, go here instead"
+
+```js
+import { Redirect } from "react-router-dom";
+
+// Check if name contains a number, if it does redirect, if not continue normally
+{/\d/.test(name) ? <Redirect to="/" /> : <h1>I love to eat {name}!</h1>
+```
+
+**UPTDATED** Here is how you do Redirects in latest React Router!
+
+Redirect Component no longer exists. Instead, use `Navigate`:
+
+```js
+<Navigate to='/home' />
+```
+
+This just pushes a navigation to this page onto the navigation stack. If we truly want to redirect (replace current page with new page) we have to add the replace prop:
+
+```js
+<Navigate replace to='/home' />
+```
+
+### Pushing onto the History Prop
+
+How to Redirect (continuned)
+
+- In React Router, there are two ways to redirect:
+
+  - Using the `<Redirect>` component
+    - Useful for "you shouldn't have gotten here, go here instead"
+  - Calling `.push` method in `history` route prop
+
+- With Redirect, we are taken directly when we click
+- With `this.props.history.push` we can do a bunch of actions first, and then redirect at the end
+
+**UPDATED** What is the new React Router version of this?
+
+### Comparing History and Redirect
+
+Very important difference around how the Back / Forward navigation works.
+
+- Pressing "back" on a Redirect (when used in a Component that immediately redirects due to error) will take you back from the current error page directly to the page you were at _before_ the path the Component was rendered at.
+- Example: We are on home, we choose to go to "/food/7up" but our food route does not allow numbers, so in that Food component we Redirect to "/notfound". Now on "/notfound" we press Back button and immediately go back to our home page, skipping "/food/7up" entirely.
+- Using history.push will have the "Back" button send us back to the 7up route.
+
+Typically preferrable to use Redirect in "Oh shoot, you shouldn't see this" type situations, and `history.push` when you are trying to _successfully_ send someone somewhere (e.g. something happened, you saved, a user did some action)
+
+### withRouter High Order Component
+
+What if we have, say a Navbar Component that we always want rendered, so we don't place it inside a Route element. But in that Navbar, we want to use the `this.props.history.push` functionality. Well, we can't yet, since we do not have access to such a property without being given route props. How can we fix this? Simple!
+
+```js
+import { withRouter } from 'react-router-dom';
+// Component code
+export default withRouter(Navbar);
+```
+
+This connects components that know nothing about React Router to one another. We now have access to things like the history object.
+
+**UPDATED**
+
+- In newer React Router, this was depracated. You would have to use the hook version (and thus on a functional component):
+
+```js
+import { useHistory } from 'react-router-dom';
+const Navbar = (props) => {
+  const history = useHistory();
+};
+export default Navbar;
+```
+
+And was shortly again updated to be be:
+
+```js
+import { useNavigate } from 'react-router-dom';
+const Navbar = (props) => {
+  const history = useNavigate();
+  navigate('/home');
+};
+export default Navbar;
+```
+
+### Implementing a Back Button
+
+What if you want a button or link that takes the user back? Usually you just let the user use the browser's forward and back button, but we could also implement this ourself. The history object provides us with the ability to do so.
+
+```js
+<button onClick={this.props.history.goBack}>Go Back</button>>
+<button onClick={this.props.history.goForward}>Go Forward</button>>
+```
+
 ## Section 23 - Router Exercises Part 2
 
 ## Section 24 - The Massive Color Project Part 1
