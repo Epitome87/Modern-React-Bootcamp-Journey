@@ -1474,7 +1474,7 @@ This section will be a relatively quick (and pointless!) project that uses some 
 
 ## Section 22 - React Router Patterns
 
-### `Originally Started: 11/05/2021`
+### `Originally Started: 11/11/2021`
 
 ### Working with URL Params
 
@@ -1696,6 +1696,10 @@ What if you want a button or link that takes the user back? Usually you just let
 ```
 
 ## Section 23 - Router Exercises Part 2
+
+### `Originally Started: 11/06/2021`
+
+This section was a hands-on exercise to practice the concepts taught on React Router.
 
 ## Section 24 - The Massive Color Project Part 1
 
