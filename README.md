@@ -1697,11 +1697,47 @@ What if you want a button or link that takes the user back? Usually you just let
 
 ## Section 23 - Router Exercises Part 2
 
-### `Originally Started: 11/06/2021`
+### `Originally Started: 11/11/2021`
 
 This section was a hands-on exercise to practice the concepts taught on React Router.
 
 ## Section 24 - The Massive Color Project Part 1
+
+### `Originally Started: 11/12/2021`
+
+This section marks the start of the massive Colors project! It will be a project extremely similar to Flat UI Colors. As it is so big in scope, it may be hard to attempt a lot of it on my own without following along (as I don't want to invest so much time in an approach that 10 hours later into the project ends up conflicting with featurs Colt adds).
+
+Although most of it is just coding and using prior knowledge, there will be some new topics. I will try my best to document these in my notes!
+
+### Copying to Clipboard
+
+Although adding copying / clipboard functionality from scratch isn't too difficult, we are using a package to help us: "react-copy-to-clipboard" from NPM.
+
+Installation: `npm install --save react-copy-to-clipboard`
+
+Usage:
+
+```js
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+```
+
+And then wrap the JSX you want to receive easy clipboard functionality around a `CopyToClipboard` element:
+
+```js
+<CopyToClipboard text={background}>
+  <div className='ColorBox' style={{ background }}>
+    <div className='copy-container'>
+      <div className='box-content'>
+        <span>{name}</span>
+      </div>
+      <button className='copy-button'>Copy</button>
+    </div>
+    <span className='see-more'>More</span>
+  </div>
+</CopyToClipboard>
+```
+
+Now upon receiving a click, any of the divs inside `CopyToClipboard` will cause the `background` prop value to be stored in the clipboard.
 
 ## Section 25 - The Massive Color Project Part 2
 
@@ -1717,16 +1753,258 @@ This section was a hands-on exercise to practice the concepts taught on React Ro
 
 ## Section 31 - The Massive Color Project Part 7
 
-## Section 32 - React Hooks Project
+## Section 32 - Introducing React Hooks
 
-## Section 33 - Introducing the Context API
+### `Originally Started: 11/12/2021`
 
-## Section 34 - Using Context with Hooks
+### Intro to Hooks & useState
 
-## Section 35 - State Management with useReducer and useContext
+What are Hooks?
 
-## Section 36 - Next JS
+- They allow you to hook into the internal workings of React
+- Allow you to write functional components that have all of the features of a class component
+- Can write code that is shorter and easier to understand
+- Reusable!
 
-## Section 37 - Next: Fetching and Server API
+One of the hooks we will use most often is `useState`
 
-## Section 38 - Bonus: Webpack Mini Course - Your Own Simple Version of Create React App
+- Allows us to write a functional component but still have stateful logic!
+- `useState()` returns two pieces of information via an array:
+  - A reference to the piece of state
+  - Function to update that piece of state
+- So we grab the information with array destructuring: `const [count, setCount] = useState(0);`
+  - Convention to name the method with a "set" prefix.
+  - The argument of useState() is the initial value
+
+```js
+import { useState } from "react";
+
+function MyComponent {
+  const [count, setCount] = useState(0);
+
+  handleClick = (event) => {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>The count is: {count}</h1>
+      <button onClick={handleClick}>Increment!</button>
+    </div>
+  );
+}
+```
+
+### Building a Custom Hook useToggleState
+
+We will make our own toggle hook, which will store true / false and be able to flip it, and be able to share it between components!
+
+Consider an app where we have multiple pieces in a component that have the basic behavior of receiving a click and toggling between two values as a response. Currently, we would have to declare two pieces of state, two toggle helper functions, etc:
+
+```js
+const [isHappy, setIsHappy] = useState(true);
+const [isHeartbroken, setIsHeartbroken] = useState(false);
+
+const toggleIsHappy = () => {
+  setIsHappy(!isHappy);
+};
+
+const toggleIsHeartbroken = () => {
+  setIsHeartroken(!isHeartbroken);
+};
+
+return (
+  <div>
+    <p onClick={toggleIsHappy}>{isHappy ? ':)' : ':('}</p>
+    <p onClick={toggleIsHeartbroken}>{isHeartbroken ? '</3' : '<3'}</p>
+  </div>
+);
+```
+
+In the above, there is a lot of redundant code! We can create our own hook to simplify this.
+
+```js
+// Convention to put in a hooks folder and in its own file
+// In hooks/useToggle.js
+import { useState } from "react";
+
+// Takes an init value. Good to set a default value if none provided
+function useToggle(initialValue = false) {
+  // Call useState, "reserve piece of state"
+  const [ourState, setOurState] useState(initialValue);
+  const toggle = () => {
+    setState(!state);
+  }
+
+  // Return the piece of state, and our method that calls upon setSTate
+  return [state, toggle];
+}
+
+export default useToggle;
+
+// In App.js or other Component
+import { useToggle } from "./hooks/useToggle";
+
+const [isHappy, toggleIsHappy] = useToggle(true);
+const [isHeartbroken, toggleIsHeartbroken] = useToggle(false);
+
+return (
+  <div>
+    <p onClick={toggleIsHappy}>{isHappy ? ':)' : ':('}</p>
+    <p onClick={toggleIsHeartbroken}>{isHeartbroken ? '</3' : '<3'}</p>
+  </div>
+)
+```
+
+Using our useToggle hook, we saved ourselves from having to create a unique onClick method for each state that toggles a value when clicked.
+
+### Building a Custom Hook useInputState
+
+Building forms with controlled inputs is rather tedious and complex in React. We can simplify this by creating our own custom hook! We're going to extract the common stateful logic required in forms (piece of state, onChange handler, a way to reset an input, etc) so we can quickly and succinctly create new inputs.
+
+```js
+// In hooks/useInputState.js
+import { useState } from 'react';
+
+// Exporting annoynmous function
+export default (initialValue) => {
+  const [value, setValue] = useState(initialValue);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const reset = () => {
+    setValue('');
+  };
+
+  // Can return an array OR object
+  return [value, handleChange, reset];
+};
+
+// E.g usage
+import useInputState from './hooks/useInputState';
+
+const [age, updateAge, resetAge] = useInputState('');
+const [email, updateEmail, resetEmail] = useInputState('');
+
+return (
+  <div>
+    <h1>The value is... {email}</h1>
+    <input type='text' value={email} onChange={updateEmail} />
+    <input type='text' value={age} onChange={updateAge} />
+    <button
+      onClick={(event) => {
+        resetEmail(event);
+        resetAge(event);
+      }}
+    >
+      Submit
+    </button>
+  </div>
+);
+```
+
+Much simpler! Instantly create new inputs with one line for the state and another line for the JSX input tags.
+
+### The useEffect Hook
+
+Another very commonly-used built-in hook -- useEffect
+
+- Since we do not have access to the React class lifecycle methods inside of functional components, we use useHook() instead.
+- Dealing with React class lifecycle methods, useEffect() is essentially componentDidMount, componentDidUpdate, and componentWIllUnmount combined!
+- By default, useEffect runs after every render.
+  - Instead of thinking in terms of "mounting" and "updating", it might be easier to think that effects happen "after render"
+  - React guarantees the DOM has been updated by teh time it runs the effect.
+
+Example Usage
+
+- Say we want to have a side effect occur after an update to a state.
+- With hooks and specifically useState, we do not have the second argument as a callback to put code in that we want to happen _after_ that state change. So we _cannot_ do something like:
+
+```js
+setState({count: count+1}, () => { Do stuff after state update })
+```
+
+In fact, with functional components, React will give us a Warning message:
+`State updates from the useState() and useReducer() Hooks don't support the second callback argument. To execute a side effect after rendering, declare it in the component body with useEffect()`
+
+So we make use of useEffect:
+
+```js
+import { useEffect } from 'react';
+
+function ClickerComponent() {
+  const [count, setCount] = useState(0);
+
+  // Pass in a function
+  useEffect(() => {
+    alert('Something changed!');
+    document.title = `You clicked ${count} times`;
+  });
+}
+```
+
+The above happens _every single_ time the Component renders -- even when the page first loads.
+
+### Fetching Data with the useEffect Hook
+
+```js
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function StarWarsMovies() {
+  const [number, setNumber] = useState(1);
+  const [movie, setMovie] = useState('');
+
+  // Not allowed! "An effect function must not return anything besides a function, which is used for clean-up
+  // It looks like you wrote useEffect(async () => ...) or returned a Promise.
+  // Instead, write the async function inside your effect and call it immediately:
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get(`https://swapi.co/api/films/${number}`);
+      setMovie(response.data);
+    }
+
+    fetchData();
+  }, [number]); // Important to add this second argument!
+
+  // useEffect(async () => {
+  //   const response = await axios.get(`https://swapi.co/api/films/${number}`);
+  //   console.log('Alert');
+  // });
+
+  return (
+    <div>
+      <h1>Pick a Movie</h1>
+      <h4>You chose: {movie.title}</h4>
+      <select
+        value={number}
+        onChange={(event) => setNumber(event.target.value)}
+      >
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+      </select>
+    </div>
+  );
+}
+```
+
+In the above, we set a state (setMovie) inside our useEffect. But this is bad -- it causes a re-render each time! So we will re-render, which triggers useEffect, which calls upon setMovie, which triggers useEffect again, etc. We fix this by passing in a second argument to useEffect, which takes the form of an array. It represents which things in the state that we want to trigger useEffect when they change. If anything else changes, useEffect won't re-run.
+
+We can also have multiple useEffects! One that runs when one state changes, and another that runs when some other state changes.
+
+## Section 33 - React Hooks Project
+
+## Section 34 - Introducing the Context API
+
+## Section 35 - Using Context with Hooks
+
+## Section 36 - State Management with useReducer and useContext
+
+## Section 37 - Next JS
+
+## Section 38 - Next: Fetching and Server API
+
+## Section 39 - Bonus: Webpack Mini Course - Your Own Simple Version of Create React App
