@@ -1,19 +1,23 @@
 import React from 'react';
 import './ColorBox.css';
+import { CopyToClipboard } from 'react-copy-to-clipboard'; // Easy Clipboard functionality
 
 const ColorBox = (props) => {
   const { name, background } = props;
 
   return (
-    <div className='ColorBox' style={{ background }}>
-      <div className='copy-container'>
-        <div className='box-content'>
-          <span>{name}</span>
+    // Wrap in CopyToClipBoard, which will copy the value of background when Component is clicked
+    <CopyToClipboard text={background}>
+      <div className='ColorBox' style={{ background }}>
+        <div className='copy-container'>
+          <div className='box-content'>
+            <span>{name}</span>
+          </div>
+          <button className='copy-button'>Copy</button>
         </div>
-        <button className='copy-button'>Copy</button>
+        <span className='see-more'>More</span>
       </div>
-      <span className='see-more'>More</span>
-    </div>
+    </CopyToClipboard>
   );
 };
 
