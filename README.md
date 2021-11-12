@@ -1997,7 +1997,50 @@ We can also have multiple useEffects! One that runs when one state changes, and 
 
 ## Section 33 - React Hooks Project
 
+### `Originally Started: 11/11/2021`
+
+Another section where I will be creating a project! It will be another full-CRUD Todo App. This one will use Material UI and be primarily a mobile version.
+
+(I am skipping this section for now, as going from a class-based Todo List to a functional / hook-based one is not substantial enough)
+
 ## Section 34 - Introducing the Context API
+
+### `Originally Started: 11/11/2021`
+
+### Where We Are Heading
+
+This section will cover:
+
+- Using Context without hooks (class-based component)
+- Using Context with hooks (useContext)
+- Using Context with hooks and reducers (Redux-like functionality)
+  - How's it compare to Redux?
+
+### What Even Is Context
+
+What's the point?
+
+- Solution to a common pain-point: Gets messy to share data with one component high up the tree to another many levels down
+
+Context
+
+- Context provides a way to pass data through the Component tree without having to pass props down manually at every level.
+- Can be used with or without Hooks
+
+When to Use Context
+
+- Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language.
+
+Before You Use Context
+
+- Context is primarily used when some data needs to be accessible by _many_ components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+- If you only want to avoid passing some props through many levels, component composition is often a simpler solution than context.
+
+Even though the React documentation warns against using Context too much, you can use useContext and useReducer to replace Redux. So there is some debate whether or not to use it sparingly or not!
+
+### Adding a Responsive Navbar to Our Context App
+
+(As this lesson and the project it builds throughout the rest of the section rely on information taught in the Colors project, I am taking a small detour away from the Context API)
 
 ## Section 35 - Using Context with Hooks
 
