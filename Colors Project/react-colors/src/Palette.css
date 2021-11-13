@@ -4,4 +4,7 @@
 
 .Palette__colors {
   height: 90%;
+
+  /* Temporary to fix growing overlay when Copied */
+  overflow: hidden;
 }
