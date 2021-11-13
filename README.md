@@ -1772,6 +1772,42 @@ Some Features
 
 We will make use of its `scale()` method
 
+### Adding Color Slider
+
+Instead of creating a slider component from scratch, we will use a library called rc-slider (React Component Slider)
+
+We install it with: `npm install rc-slider`
+
+It is very straightforward to use:
+
+```js
+<Slider />
+```
+
+And for our purposes, we need to add a few props:
+
+```js
+const [level, setLevel] = useState(500);
+
+const handleSliderChange = (value) => {
+  setLevel(value);
+};
+
+const colorBoxes = props.palette.colors[level].map((color) => (
+  <ColorBox background={color.hex} name={color.name} />
+));
+
+<Slider
+  defaultValue={500}
+  min={100}
+  max={900}
+  ste={100}
+  onChangeAfter={handleSliderChange}
+/>;
+```
+
+In the above code, we declare a state to represent the "Level" of the color palette we wish to view. This level is based on the position the Slider is currently in.
+
 ## Section 25 - The Massive Color Project Part 2
 
 ## Section 26 - JSS and withStyles (Color App)
