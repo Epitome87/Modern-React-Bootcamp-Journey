@@ -1865,7 +1865,49 @@ Or if you want to use styled-components as a styling engine:
 
 Currently, we want to use MUI Core's "Select" component, which can be referenced here: https://mui.com/components/selects/
 
-One downside with Material UI is you sometimes have to import a lot of small pieces to work with one of the larger pieces.
+One downside with Material UI is you sometimes have to import a lot of small pieces to work with one of the larger pieces. In our case, Select isn't so bad! Just need MenuItem also.
+
+### Adding Snackbar
+
+In this section, we added a "Snackbar" to the Navbar component. A Snackbar is a pop-up that can be dismissed manually, or automatically after a set time. This is given to us with the Material UI package!
+
+Here's how we use it:
+
+```js
+import { Snackbar, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
+<Snackbar
+  anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+  open={isOpenSnackbar}
+  autoHideDuration={3000}
+  onClose={closeSnackbar}
+  message={
+    <span id='message-id'>Format changed to {format.toUpperCase()}</span>
+  }
+  ContentProps={{ 'aria-describedby': 'message-id' }}
+  action={[
+    <IconButton
+      onClick={closeSnackbar}
+      color='inherit'
+      key='close'
+      aria-label='close'
+    >
+      <CloseIcon />
+    </IconButton>,
+  ]}
+/>;
+```
+
+Let's break down the props it receives!
+
+- anchorOrigin: We can specify a vertical and horizontal alignment for the Snackbar, passed via an object.
+- open: This is a boolean that represents if the Snackbar is open or not. If we flag this to true, it opens.
+- autoHideDuration: The amount of time (in milliseconds) the Snackbar should stay open if not dismissed
+- onClose: A callback function that is called when the user clicks anywhere. If our callback sets the flag used in the "open" prop to false, it will cause the Snackbar to go close.
+- message: The message we want to display.
+- action: This is an array; really not quite sure what it does but we gave it an IconButton with a CloseIcon inside it!
+- contentProps: Also not sure, for accessibility?
 
 ## Section 26 - JSS and withStyles (Color App)
 
