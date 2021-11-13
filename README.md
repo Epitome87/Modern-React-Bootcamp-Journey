@@ -1836,6 +1836,37 @@ It may be helpful to import the rc-slider styles before our custom stylesheet, a
 
 ## Section 25 - The Massive Color Project Part 2
 
+### `Originally Started: 11/05/2021`
+
+### Intro to Material UI & Adding Select
+
+Material-UI
+
+- Very popular library with pre-based React components that you can customize
+- React components that implement Google's Material Design (a set of design standards by Google)
+
+Easy Installation
+`npm install --save @material-ui/core`
+
+**UPDATE**
+As of September 15th, 2021, Material-UI is now MUI!
+
+- Material-UI: The organization is now called **MUI**
+- Material-UI: The set of foundational MIT React components is now called **MUI Core**
+- Material-UI X: The set of advanced React components is now called **MUI X**
+
+**We now install MUI Core via npm with**
+`npm install @mui/material @emotion/react @emotion/styled`
+
+Or if you want to use styled-components as a styling engine:
+`npm install @mui/material @mui/styled-engine-sc styled-components`
+
+(However, NPMJS.com says we install thusly: `npm install @material-ui/core`)
+
+Currently, we want to use MUI Core's "Select" component, which can be referenced here: https://mui.com/components/selects/
+
+One downside with Material UI is you sometimes have to import a lot of small pieces to work with one of the larger pieces.
+
 ## Section 26 - JSS and withStyles (Color App)
 
 ## Section 27 - The Massive Color Project Part 3
