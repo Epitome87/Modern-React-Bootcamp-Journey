@@ -1739,6 +1739,39 @@ And then wrap the JSX you want to receive easy clipboard functionality around a 
 
 Now upon receiving a click, any of the divs inside `CopyToClipboard` will cause the `background` prop value to be stored in the clipboard.
 
+### Copy Overlay Animation
+
+In this section, we utilized the callback aspect of the `CopyToClipboard` component:
+
+```js
+<CopyToClipboard text={background} onCopy={changeCopyState}>
+```
+
+This gives us the ability to pass in a function that is triggered when the copy to the clipboard is made.
+
+### Generating Shades of Colors
+
+Because we need multiple "levels" for each color, and the complexity that is associated with doing so, we will be using a library to help us with our color handling! The library is **chroma.js**
+
+chroma.js
+
+- Can find it here: https://gka.github.io/chroma.js/
+- Relatively small, zero-dependency Javascript library -- coming in at only 13.5kB!
+- Used for all kinds of color conversions and color scales
+
+Some Features
+
+- Read colors from a wide range of formats
+- Analyze and manipulate colors
+- Convert colors into wide range of formats
+- Linear and bezier interpolation in different color spaces
+- E.g: `chroma("pink").darken().saturate(2).hex()`
+- Can also generate nice colors using various methods
+  - E.g. used in color palette for maps or data visualization: `chroma.scale([#fafa6e", "#2A4858"]).mode("lch").colors(6)`
+- So much more!
+
+We will make use of its `scale()` method
+
 ## Section 25 - The Massive Color Project Part 2
 
 ## Section 26 - JSS and withStyles (Color App)
