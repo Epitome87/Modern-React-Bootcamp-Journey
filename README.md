@@ -1,68 +1,77 @@
-# The Modern React Bootcamp (Hooks, Context, NextJS, Router) - by Colt Steele
+# Modern React Bootcamp Journey
 
-<!--
-|                                                         Project                                                          | Demo                                                                                                |
-| :----------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------- |
-| [Expanding Cards](https://github.com/Epitome87/Modern-React-Bootcamp-Journey/tree/main/Day%2001%20-%20Expanding%20Cards) | [Demo](https://epitome87.github.io/Modern-React-Bootcamp-Journey/Day%2001%20-%20Expanding%20Cards/) |
-|  [Progress Steps](https://github.com/Epitome87/Modern-React-Bootcamp-Journey/tree/main/Day%2002%20-%20Progress%20Steps)  | [Demo](https://epitome87.github.io/Modern-React-Bootcamp-Journey/Day%2002%20-%20Progress%20Steps/)  | -->
+My progress through Colt Steele's Udemy course, "The Modern React Bootcamp (Hooks, Context, NextJS, Router)
 
 ## Table of Contents
 
-[Section 01 - A Taste of React](#section-01-a-taste-of-react)
-[Section 05 - Pokedex Project](#section-05-pokedex-project)
-[Section 17 - React Lifecycle Methods](#section-17-react-lifecycle-methods)
-[Section 36 - Next JS](#section-36-next-js)
+- [Section 1 - A Taste of React](#section-1-a-taste-of-react)
+- [Section 2 - Introducing JSX](#section-2-introducing-jsx)
+- [Section 3 - Props and More](#section-3-props-and-more)
+- [Section 4 - Introducing Create React App](#section-4-introducing-create-react-app)
+- [Section 5 - Pokedex Project](#section-5-pokedex-project)
 
-Section 01 - A Taste of React
-Section 02 - Introducing JSX
-Section 03 - Props and More
-Section 04 - Introducing Create React App
-Section 05 - Pokedex Project
-Section 06 - Introducing State
-Section 07 - React State Dice Exercise
-Section 08 - React State Patterns
-Section 09 - State Exercises
-Section 10 - The World of React Events
-Section 11 - Hangman Exercise
-Section 12 - Lights Out Game
-Section 13 - Forms in React
-Section 14 - Forms Exercise
-Section 15 - Todo List Project
-Section 16 - Building Yahtzee
-Section 17 - React Lifecycle Methods
-Section 18 - Lifecycle Methods and API Exercise
-Section 19 - Building the Dad Jokes App
-Section 20 - React Router
-Section 21 - Vending Machien Exercise
-Section 22 - React Router Patterns
-Section 23 - Router Exercises Part 2
-Section 24 - The Massive Color Project Part 1
-Section 25 - The Massive Color Project Part 2
-Section 26 - JSS and withStyles (Color App)
-Section 27 - The Massive Color Project Part 3
-Section 28 - The Massive Color Project Part 4
-Section 29 - The Massive Color Project Part 5
-Section 30 - The Massive Color Project Part 6
-Section 31 - The Massive Color Project Part 7
-Section 32 - React Hooks Project
-Section 33 - Introducing the Context API
-Section 34 - Using Context with Hooks
-Section 35 - State Management with useReducer and useContext
-Section 36 - Next JS
-Section 37 - Next: Fetching and Server API
-Section 38 - Bonus: Webpack Mini Course - Your Own Simple Version of Create React App
+- [Section 6 - Pokedex Project](#section-6-introducing-state)
+- [Section 7 - React State Dice Exercise](#section-7-react-state-dice-exercise)
+- [Section 8 - React State Patterns](#section-8-react-state-patterns)
+- [Section 9 - State Exercises](#section-9-state-exercises)
+- [Section 10 - The World of React Events](#section-10-the-world-of-react-events)
 
-## Section 01 - A Taste of React
+- [Section 11 - Hangman Exercise](#section-11-hangman-exercise)
+- [Section 12 - Lights Out Game](#section-12-lights-out-game)
+- [Section 13 - Forms in React](#section-13-forms-in-react)
+- [Section 14 - Forms Exercise](#section-14-forms-exercise)
+- [Section 15 - Todo List Project](#section-15-todo-list-project)
 
-## Section 02 - Introducing JSX
+- [Section 16 - Building Yahtzee](#section-16-building-yahtzee)
+- [Section 17 - React Lifecycle Methods](#section-17-react-lifecycle-methods)
+- [Section 18 - Forms in React](#section-18-forms-in-react)
+- [Section 19 - Forms Exercise](#section-19-forms-exercise)
+- [Section 20 - React Router](#section-20-react-router)
 
-## Section 03 - Props and More
+- [Section 21 - Vending Machine Exercise](#section-21-vending-machine-exercise)
+- [Section 22 - React Router Pattners](#section-22-react-router-patterns)
+- [Section 23 - Router Exercises Part 2](#section-23-router-exercises-part-2)
+- [Section 24 - The Massive Color Project Part 1](#section-24-the-massive-color-project-part-1)
+- [Section 25 - The Massive Color Project Part 2](#section-25-the-massive-color-project-part-2)
 
-## Section 04 - Introducing Create React App
+- [Section 26 - JSS and withStyles (Color App)](#section-26-jss-and-withstyles-color-app)
+- [Section 27 - The Massive Color Project Part 3](#section-27-the-massive-color-project-part-3)
+- [Section 28 - The Massive Color Project Part 4](#section-28-the-massive-color-project-part-4)
+- [Section 29 - The Massive Color Project Part 5](#section-29-the-massive-color-project-part-5)
+- [Section 30 - The Massive Color Project Part 6](#section-30-the-massive-color-project-part-6)
 
-## Section 05 - Pokedex Project
+- [Section 31 - The Massive Color Project Part 7](#section-31-the-massive-color-project-part-7)
+- [Section 32 - Introducing React Hooks](#section-32-introducing-react-hooks)
+- [Section 33 - React Hooks Project](#section-33-react-hooks-project)
+- [Section 34 - Introducing the Context API](#section-34-introducing-the-context-api)
+- [Section 35 - Using Context with Hooks](#section-35-using-context-with-hooks)
 
-## Section 06 - Introducing State
+- [Section 36 - State Management w/ Reducer & Context](#section-36-state-management-with-usereducer-and-usecontext)
+- [Section 37 - Next JS](#section-37-next-js)
+- [Section 38 - Next: Fetching & Server API](#section-38-next-fetching-and-server-api)
+- [Section 39 - Bonus: Webpack Mini Course](#section-39-bonus-webpack-mini-course)
+
+## Section 1: A Taste of React
+
+Notes missing
+
+## Section 2: Introducing JSX
+
+Notes missing
+
+## Section 3: Props and More
+
+Notes missing
+
+## Section 4: Introducing Create React App
+
+Notes missing
+
+## Section 5: Pokedex Project
+
+Notes missing
+
+## Section 6: Introducing State
 
 - Props are immutable; a component cannot change its own prop. We cannot say this.props.color = red, for instance!
 
@@ -92,13 +101,13 @@ Section 38 - Bonus: Webpack Mini Course - Your Own Simple Version of Create Reac
 
 - "State as Props": A common pattern we will see over and over again is a stateful ("smart") parent component passing down its state values as props to stateless ("dumb") child components. This idea is generalized in React as "downward data flow". It means that components get simpler as you go down the component hierarchy, and parents tend to be more stateful than their children.
 
-## Section 07 - React State Dice Exercise
+## Section 7: React State Dice Exercise
 
 ### `Originally Started: 11/05/2021`
 
 Just created a rather simple dice-rolling app! Did it without any assistance, although I did end up using Colt's "wiggle" animation.
 
-## Section 08 - React State Patterns
+## Section 8: React State Patterns
 
 ### `Originally Started: 11/05/2021`
 
@@ -312,7 +321,7 @@ The rest of this section is spent coding this example. It is rather simple and s
 
 - State should live on the Parent: We want to support the downward data flow philosphy of React. It makes more sense for a parent component to manage state and have a bunch of dumb stateless child display components. Makes debugging easier because the state is centralized. Easier to predict where to find state: \* Is current component stateless? Find out what is rendering it. There's the state.
 
-## Section 09 - State Exercises
+## Section 9: State Exercises
 
 ### `Originally Started: 11/06/2021`
 
@@ -320,7 +329,7 @@ In this section, we work on two small projects to reinforce our React state know
 
 Nothing major or new took place, so not really any notes to make! For the Color Boxes app, we have a parent component keep track of all its children component's current color, and the children have no state. While this works, the problem is each box has its own click handler, and how can we figure out which box was clicked on and update the parent state? We'll learn that next section!
 
-## Section 10 - The World of React Events
+## Section 10: The World of React Events
 
 ### `Originally Started: 11/06/2021`
 
@@ -593,7 +602,7 @@ We can use third party libraries to help with IDs also
 - shortid
 - uuid
 
-## Section 11 - Hangman Exercise
+## Section 11: Hangman Exercise
 
 ### Introducing the Hangman Exercise
 
@@ -727,7 +736,7 @@ return (
 );
 ```
 
-## Section 12 - Lights Out Game
+## Section 12: Lights Out Game
 
 ### `Originally Started: 11/06/2021`
 
@@ -761,7 +770,7 @@ Added logic for when the player wins.
 
 Styled the game, thus completing the Lights Out project!
 
-## Section 13 - Forms in React
+## Section 13: Forms in React
 
 ### `Originally Started: 11/06/2021`
 
@@ -950,7 +959,7 @@ import uuid from 'uuid/v4';
 
 This will generate a long, unique ID. It's incredibly easy!
 
-## Section 14 - Forms Exercise - Box Maker
+## Section 14: Forms Exercise - Box Maker
 
 ### `Originally Started: 11/06/2021`
 
@@ -968,7 +977,7 @@ Create a new React app with the following Components:
 **I did it!!!** My solution works -- with 0 outside help! I missed a minor quirk here and there, but nothing that wasn't solved within a few minutes.
 **Update** Watch Colt's solution the next morning, and it was nearly word-for-word what I arrived at! Although I spent time styling the app a little bit.
 
-## Section 15 - Forms Exercise - Todo List Project
+## Section 15: Forms Exercise - Todo List Project
 
 ### `Originally Started: 11/07/2021`
 
@@ -989,13 +998,13 @@ Part 3 - Todo App - Editing
 
 **I did it, again!!!** Without watching Colt's solution, I was able to finish the Todo List. After watching Colt's solution, I noticed we did it very similiar. However, when handling the ability to toggle if a Todo is "complete" or not, he does a rather tedious way by having the TodoList control almost entirely, and passing Todo a prop key of "isCompleted". However, my solution simply gives the Todo component a new state key of "isCompleted", and the logic becomes much simpler. I can't think of why Colt approaches this functionality the way he did; we already have multiple pieces of state in our Todo component, so it's not like adding another would conflict with any design philosophy, as the Todo component is already note "stateless".
 
-## Section 16 - Building Yahtzee
+## Section 16: Building Yahtzee
 
 ### `Originally Started: 11/07/2021`
 
 (Skipping this section for now, as it is a rather lengthy project for a game I do not know. It's also the **third** form practice project, so I'd rather revisit it in a week to see if I still remember how to do React forms)
 
-## Section 17 - React Lifecycle Methods
+## Section 17: React Lifecycle Methods
 
 ### `Originally Started: 11/07/2021`
 
@@ -1189,13 +1198,13 @@ componentWillUnmount() {
 }
 ```
 
-## Section 18 - Lifecycle Methods and API Exercise
+## Section 18: Lifecycle Methods and API Exercise
 
 ### `Originally Started: 11/07/2021`
 
 In this section, I built a card-dealer app! It's a simple page where you can press a button to be dealt a new card from a deck. I did it mostly without consulting Colt's videos, but I did use his styling entirely. Not many lifecycle methods were used, so it was mostly just a project to work with an API (one for dealing cards).
 
-## Section 19 - Building the Dad Jokes App
+## Section 19: Building the Dad Jokes App
 
 ### `Originally Started: 11/07/2021`
 
@@ -1205,7 +1214,7 @@ Random tidbits I learned while working on this project:
 
 - `window.localStorage.clear()` will clear your local storage.
 
-## Section 20 - React Router
+## Section 20: React Router
 
 ### `Originally Started: 11/08/2021`
 
@@ -1462,7 +1471,9 @@ function Doritos() {
 - To preserve the layout of nested Routes, we give the parent Route(s) an `<Outlet />` tag at the end of their render.
   - Still a bit confused on this!
 
-## Section 21 - Vending Machine Exercise
+## Section 21: Vending Machine Exercise
+
+### `Originally Started: 11/08/2021`
 
 This section will be a relatively quick (and pointless!) project that uses some React Router concepts. The app should consist of the following:
 
@@ -1472,7 +1483,7 @@ This section will be a relatively quick (and pointless!) project that uses some 
 - From each snack component, you should be able to go back to the main **VendingMachine** component
 - Add a second copy of the links to a site-wide navigation bar. This should show at the top of each page and should have some style to highlight the active link
 
-## Section 22 - React Router Patterns
+## Section 22: React Router Patterns
 
 ### `Originally Started: 11/11/2021`
 
@@ -1695,13 +1706,13 @@ What if you want a button or link that takes the user back? Usually you just let
 <button onClick={this.props.history.goForward}>Go Forward</button>>
 ```
 
-## Section 23 - Router Exercises Part 2
+## Section 23: Router Exercises Part 2
 
 ### `Originally Started: 11/11/2021`
 
 This section was a hands-on exercise to practice the concepts taught on React Router.
 
-## Section 24 - The Massive Color Project Part 1
+## Section 24: The Massive Color Project Part 1
 
 ### `Originally Started: 11/12/2021`
 
@@ -1834,9 +1845,9 @@ It may be helpful to import the rc-slider styles before our custom stylesheet, a
 **You can type just 'rcc' and press Tab and have it create the template of a class-based React component for you!**
 **Can also do "rfc" and "rfce" for function-based components! The first exports the function in the function declaration and the 2nd exports it externally (like I prefer)**
 
-## Section 25 - The Massive Color Project Part 2
+## Section 25: The Massive Color Project Part 2
 
-### `Originally Started: 11/05/2021`
+### `Originally Started: 11/12/2021`
 
 ### Intro to Material UI & Adding Select
 
@@ -1909,19 +1920,31 @@ Let's break down the props it receives!
 - action: This is an array; really not quite sure what it does but we gave it an IconButton with a CloseIcon inside it!
 - contentProps: Also not sure, for accessibility?
 
-## Section 26 - JSS and withStyles (Color App)
+## Section 26: JSS and withStyles (Color App)
 
-## Section 27 - The Massive Color Project Part 3
+### `Originally Started: TBD`
 
-## Section 28 - The Massive Color Project Part 4
+## Section 27: The Massive Color Project Part 3
 
-## Section 29 - The Massive Color Project Part 5
+### `Originally Started: TBD`
 
-## Section 30 - The Massive Color Project Part 6
+## Section 28: The Massive Color Project Part 4
 
-## Section 31 - The Massive Color Project Part 7
+### `Originally Started: TBD`
 
-## Section 32 - Introducing React Hooks
+## Section 29: The Massive Color Project Part 5
+
+### `Originally Started: TBD`
+
+## Section 30: The Massive Color Project Part 6
+
+### `Originally Started: TBD`
+
+## Section 31: The Massive Color Project Part 7
+
+### `Originally Started: TBD`
+
+## Section 32: Introducing React Hooks
 
 ### `Originally Started: 11/12/2021`
 
@@ -2163,7 +2186,7 @@ In the above, we set a state (setMovie) inside our useEffect. But this is bad --
 
 We can also have multiple useEffects! One that runs when one state changes, and another that runs when some other state changes.
 
-## Section 33 - React Hooks Project
+## Section 33: React Hooks Project
 
 ### `Originally Started: 11/11/2021`
 
@@ -2171,7 +2194,7 @@ Another section where I will be creating a project! It will be another full-CRUD
 
 (I am skipping this section for now, as going from a class-based Todo List to a functional / hook-based one is not substantial enough)
 
-## Section 34 - Introducing the Context API
+## Section 34: Introducing the Context API
 
 ### `Originally Started: 11/11/2021`
 
@@ -2210,12 +2233,24 @@ Even though the React documentation warns against using Context too much, you ca
 
 (As this lesson and the project it builds throughout the rest of the section rely on information taught in the Colors project, I am taking a small detour away from the Context API)
 
-## Section 35 - Using Context with Hooks
+## Section 35: Using Context with Hooks
 
-## Section 36 - State Management with useReducer and useContext
+### `Originally Started: TBD`
 
-## Section 37 - Next JS
+## Section 36: State Management with useReducer and useContext
 
-## Section 38 - Next: Fetching and Server API
+### `Originally Started: TBD`
 
-## Section 39 - Bonus: Webpack Mini Course - Your Own Simple Version of Create React App
+## Section 37: Next JS
+
+### `Originally Started: TBD`
+
+## Section 38: Next: Fetching and Server API
+
+### `Originally Started: TBD`
+
+## Section 39: Bonus: Webpack Mini Course
+
+Your Own Simple Version of Create React App!
+
+### `Originally Started: TBD`
