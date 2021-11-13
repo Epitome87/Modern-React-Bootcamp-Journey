@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Palette.css';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
+import { palette } from '@mui/system';
 
 const Palette = (props) => {
   const [level, setLevel] = useState(500);
@@ -16,7 +17,7 @@ const Palette = (props) => {
   };
 
   const colorBoxes = props.palette.colors[level].map((color) => (
-    <ColorBox background={color[format]} name={color.name} />
+    <ColorBox key={color.id} background={color[format]} name={color.name} />
   ));
 
   return (
@@ -27,7 +28,10 @@ const Palette = (props) => {
         changeFormat={handleChangeFormat}
       />
       <div className='Palette__colors'>{colorBoxes}</div>
-      {/* Footer eventually */}
+      <footer className='Palette__footer'>
+        {props.palette.paletteName}
+        <span className='emoji'>{props.palette.emoji}</span>
+      </footer>
     </div>
   );
 };

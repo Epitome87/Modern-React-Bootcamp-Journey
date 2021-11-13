@@ -1,5 +1,9 @@
 .Palette {
   height: 100vh;
+
+  /* To fix being able to scroll */
+  display: flex;
+  flex-direction: column;
 }
 
 .Palette__colors {
@@ -9,3 +13,16 @@
   overflow: hidden;
 }
 
+.Palette__footer {
+  background-color: white;
+  height: 5vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: bold;
+}
+
+.Palette__footer .emoji {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
