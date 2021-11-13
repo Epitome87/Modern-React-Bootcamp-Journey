@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './Palette.css';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
-import { palette } from '@mui/system';
 
+import { generatePalette } from './colorHelpers';
+
+// Receives all "palettes"
 const Palette = (props) => {
+  function findPalette(id) {
+    return props.palettes.find((palette) => palette.id === id);
+  }
+
+  const params = useParams();
+  // Generate the palette based on the URL
+  const palette = generatePalette(findPalette(params.id));
+
+  // Basically componentDidMount
+  useEffect(() => {
+    console.log('PAL', palette);
+  }, [palette]);
+
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
 
@@ -16,7 +32,7 @@ const Palette = (props) => {
     setFormat(formatValue);
   };
 
-  const colorBoxes = props.palette.colors[level].map((color) => (
+  const colorBoxes = palette.colors[level].map((color) => (
     <ColorBox key={color.id} background={color[format]} name={color.name} />
   ));
 
@@ -29,8 +45,8 @@ const Palette = (props) => {
       />
       <div className='Palette__colors'>{colorBoxes}</div>
       <footer className='Palette__footer'>
-        {props.palette.paletteName}
-        <span className='emoji'>{props.palette.emoji}</span>
+        {palette.paletteName}
+        <span className='emoji'>{palette.emoji}</span>
       </footer>
     </div>
   );

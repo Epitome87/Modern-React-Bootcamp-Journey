@@ -1,4 +1,4 @@
-export default [
+const palettes = [
   {
     paletteName: 'Material UI Colors',
     id: 'material-ui-colors',
@@ -106,7 +106,7 @@ export default [
       { name: 'DraculaOrchid', color: '#2d3436' },
     ],
   },
-  { 
+  {
     paletteName: 'Flat UI Colors Aussie',
     id: 'flat-ui-colors-aussie',
     emoji: '🎈', // 🇦🇺
@@ -242,3 +242,5 @@ export default [
     ],
   },
 ];
+
+export default palettes;
