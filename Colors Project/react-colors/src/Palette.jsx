@@ -17,13 +17,16 @@ const Palette = (props) => {
 
   return (
     <div className='Palette'>
-      <Slider
-        defaultValue={level}
-        min={100}
-        max={900}
-        step={100}
-        onAfterChange={handleSliderChange}
-      />
+      <div className='slider'>
+        <Slider
+          defaultValue={level}
+          min={100}
+          max={900}
+          step={100}
+          onAfterChange={handleSliderChange}
+        />
+      </div>
+
       {/* Navbar goes here */}
       <div className='Palette__colors'>{colorBoxes}</div>
       {/* Footer eventually */}

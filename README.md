@@ -1808,6 +1808,26 @@ const colorBoxes = props.palette.colors[level].map((color) => (
 
 In the above code, we declare a state to represent the "Level" of the color palette we wish to view. This level is based on the position the Slider is currently in.
 
+### Styling the Color Slider
+
+The `rc-slider` package provides our Slider components with 3 classes we can style:
+
+```js
+.rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider-rail {
+  // Style
+}
+
+.rc-slider-handle {
+  // Style
+}
+```
+
+It may be helpful to import the rc-slider styles before our custom stylesheet, as the vendor's styling may override ours. Personally this did not happen in my CSS file.
+
 ## Section 25 - The Massive Color Project Part 2
 
 ## Section 26 - JSS and withStyles (Color App)
