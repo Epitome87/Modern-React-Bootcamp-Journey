@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './Navbar.css';
@@ -26,7 +27,7 @@ function Navbar(props) {
   return (
     <header className='Navbar'>
       <div className='logo'>
-        <a href='/'>React-Color-Picker</a>
+        <Link to='/'>React-Color-Picker</Link>
       </div>
       <div className='slider-container'>
         <span>Level: {props.level}</span>
