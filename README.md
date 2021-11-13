@@ -1828,6 +1828,12 @@ The `rc-slider` package provides our Slider components with 3 classes we can sty
 
 It may be helpful to import the rc-slider styles before our custom stylesheet, as the vendor's styling may override ours. Personally this did not happen in my CSS file.
 
+### Adding Navbar Component
+
+**NOTE VERY SUPER IMPORTANT -- PUT THIS SOMEWHERE MORE GLOBAL**
+**You can type just 'rcc' and press Tab and have it create the template of a class-based React component for you!**
+**Can also do "rfc" and "rfce" for function-based components! The first exports the function in the function declaration and the 2nd exports it externally (like I prefer)**
+
 ## Section 25 - The Massive Color Project Part 2
 
 ## Section 26 - JSS and withStyles (Color App)

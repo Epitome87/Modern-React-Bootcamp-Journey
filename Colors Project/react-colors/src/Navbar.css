@@ -1,0 +1,50 @@
+.Navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 6vh;
+}
+
+.Navbar .logo {
+  margin-right: 15px;
+  padding: 0 13px;
+  font-size: 22px;
+  background-color: #eceff1;
+  font-family: Roboto, sans-serif;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Navbar .logo a {
+  text-decoration: none;
+  color: black;
+}
+
+.Navbar .slider {
+  width: 340px;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.Navbar .slider .rc-slider-track {
+  background-color: transparent;
+}
+
+.Navbar .slider .rc-slider-rail {
+  height: 8px;
+}
+
+.Navbar .slider .rc-slider-handle,
+.Navbar .slider .rc-slider-handle:active,
+.Navbar .slider .rc-slider-handle:focus,
+.Navbar .slider .rc-slider-handle:hover {
+  background-color: green;
+  outline: none;
+  border: 2px solid green;
+  box-shadow: none;
+  width: 13px;
+  height: 13px;
+  margin-left: -7px;
+  margin-top: -3px;
+}

@@ -9,30 +9,3 @@
   overflow: hidden;
 }
 
-.Palette .slider {
-  width: 340px;
-  margin: 0 10px;
-  display: inline-block;
-}
-
-.Palette .slider .rc-slider-track {
-  background-color: transparent;
-}
-
-.Palette .slider .rc-slider-rail {
-  height: 8px;
-}
-
-.Palette .slider .rc-slider-handle,
-.Palette .slider .rc-slider-handle:active,
-.Palette .slider .rc-slider-handle:focus,
-.Palette .slider .rc-slider-handle:hover {
-  background-color: green;
-  outline: none;
-  border: 2px solid green;
-  box-shadow: none;
-  width: 13px;
-  height: 13px;
-  margin-left: -7px;
-  margin-top: -3px;
-}
