@@ -8,7 +8,17 @@
   margin-bottom: -3.5px;
 }
 
-.copy-button {
+/* If ColorBox is in a SingleColorPalette */
+.SingleColorPalette .ColorBox {
+  height: 50%;
+}
+
+.ColorBox.go-back {
+  background-color: black;
+}
+
+.copy-button,
+.back-button {
   width: 100px;
   height: 30px;
   position: absolute;
@@ -26,7 +36,12 @@
   text-transform: uppercase;
   border: none;
   opacity: 0;
+  text-decoration: none;
   transition: opacity 0.5s linear;
+}
+
+.back-button {
+  opacity: 1;
 }
 
 .box-content {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, Link } from 'react-router-dom';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
@@ -39,7 +39,7 @@ function SingleColorPalette({ palettes }) {
   const renderedShades = shades.map((shade) => {
     return (
       <ColorBox
-        key={shade.id}
+        key={shade.name}
         name={shade.name}
         background={shade[format]}
         showLink={false}
@@ -48,9 +48,16 @@ function SingleColorPalette({ palettes }) {
   });
 
   return (
-    <div className='Palette'>
+    <div className='SingleColorPalette Palette'>
       <Navbar changeFormat={handleChangeFormat} showingAllColors={false} />
-      <div className='Palette__colors'>{renderedShades}</div>
+      <div className='Palette__colors'>
+        {renderedShades}
+        <div className='go-back ColorBox'>
+          <Link to={`/palette/${params.paletteId}`} className='back-button'>
+            GO BACK
+          </Link>
+        </div>
+      </div>
       <PaletteFooter palette={palette} />
     </div>
   );
