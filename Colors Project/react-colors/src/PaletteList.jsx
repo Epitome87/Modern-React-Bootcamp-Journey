@@ -66,7 +66,7 @@ function PaletteList(props) {
               <MiniPalette
                 key={palette.id}
                 {...palette}
-                handleClick={() => goToPalette(palette.id)}
+                // handleClick={() => goToPalette(palette.id)}
               />
             );
           })}

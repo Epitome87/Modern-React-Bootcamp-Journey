@@ -13,6 +13,10 @@ function App() {
         path='/palette/:id'
         element={<Palette palettes={seedPalettes} />}
       />
+      <Route
+        path='/palette/:paletteId/:colorId'
+        element={<h1>Single Color Page</h1>}
+      />
     </Routes>
   );
 }

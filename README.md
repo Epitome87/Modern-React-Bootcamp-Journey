@@ -2011,6 +2011,16 @@ export default MiniPalette;
 
 To link from our homepage to an individual Palette, we _could_ wrap each MiniPalette around a **Link** component. This basically just results in an anchor tag under the React hook. But it is not a good idea to put interactive content, a div, delete button, etc inside of an anchor tag. It is not good practice, and results in some default text-decoration styling. We'll have to arrive at a new solution.
 
+We'll just handle our MiniPalette's onClick method to make use of the `useNavigate` hook, and navigate us to the appropriate 'palette/:id' route, using the props.id provided to the MiniPalette from the PaletteList. Colt handles this a little differently, first passing down a handleClick prop from PaletteList to MiniPalette. But this is convoluted, since MiniPalette can call navigate() directly on its own.
+
+### Brainstorming Single Color Palette
+
+When we click on a color on a Palette, we want to be directed to a new URL and page that displays that color at all 9 "Levels". We also need to do some things similar to what we do with a Palette, but also some things different. Is it worth trying to make Palette re-usable and flexible enough to cover both of these use cases? Or should we just create a new component? We will start by creating a new Component and see if handling the conditional logic in them would be easy enough to combine into one component.
+
+### Adding More Links
+
+We need to make the "More" button (span, really) on an individal ColorBox actually do something. 
+
 ## Section 28: The Massive Color Project Part 4
 
 ### `Originally Started: TBD`

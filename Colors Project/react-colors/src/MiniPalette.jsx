@@ -33,6 +33,8 @@
 import React from 'react';
 import { withStyles } from '@mui/styles';
 
+import { useNavigate } from 'react-router-dom';
+
 const styles = {
   root: {
     backgroundColor: 'white',
@@ -84,6 +86,7 @@ const styles = {
 
 function MiniPalette(props) {
   const { classes } = props;
+  const navigate = useNavigate();
 
   const miniColorBoxes = props.colors.map((color) => {
     return (
@@ -96,7 +99,11 @@ function MiniPalette(props) {
   });
 
   return (
-    <div className={classes.root} onClick={props.handleClick}>
+    <div
+      className={classes.root}
+      onClick={() => navigate(`/palette/${props.id}`)}
+      //   onClick={() => props.handleClick(props.id)}
+    >
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {props.paletteName}
