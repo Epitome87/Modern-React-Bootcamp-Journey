@@ -17,11 +17,16 @@ const styles = {
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between',
+    alignItems: 'center',
     color: 'white',
 
     // Colt didn't do this
     '& h1': {
       margin: '1.5rem 0',
+    },
+
+    '& a': {
+      color: 'white',
     },
   },
   palettes: {

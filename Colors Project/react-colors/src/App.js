@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import NewPaletteForm from './components/NewPaletteForm';
 import Palette from './components/Palette';
 import PaletteList from './components/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette';
@@ -8,6 +9,7 @@ import seedPalettes from './seedPalettes';
 function App() {
   return (
     <Routes>
+      <Route path='/palette/new' element={<NewPaletteForm />} />
       <Route path='/' element={<PaletteList palettes={seedPalettes} />} />
       <Route
         path='/palette/:id'
