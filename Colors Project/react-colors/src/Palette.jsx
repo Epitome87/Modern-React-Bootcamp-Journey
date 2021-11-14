@@ -38,6 +38,7 @@ const Palette = ({ palettes }) => {
       name={color.name}
       id={color.id}
       paletteId={palette.id}
+      showLink={true}
     />
   ));
 

@@ -15,7 +15,9 @@ function App() {
       />
       <Route
         path='/palette/:paletteId/:colorId'
-        element={<SingleColorPalette />}
+        element={
+          <SingleColorPalette palettes={seedPalettes} />
+        }
       />
     </Routes>
   );
