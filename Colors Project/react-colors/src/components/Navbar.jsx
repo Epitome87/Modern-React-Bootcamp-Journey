@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import { Select, MenuItem, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import '../Navbar.css';
+import { withStyles } from '@mui/styles';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import navbarStyles from '../styles/NavbarStyles';
 
-function Navbar(props) {
+function Navbar({
+  level,
+  changeLevel,
+  changeFormat,
+  showingAllColors,
+  classes,
+}) {
   const [format, setFormat] = useState('hex');
   const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
 
   const handleFormatChange = (event) => {
     setFormat(event.target.value);
+
     // Call Palette component's format handler
-    props.changeFormat(event.target.value);
+    changeFormat(event.target.value);
 
     console.log('CHANGING');
     setIsOpenSnackbar(true);
@@ -25,25 +33,25 @@ function Navbar(props) {
   };
 
   return (
-    <header className='Navbar'>
-      <div className='logo'>
+    <header className={classes.Navbar}>
+      <div className={classes.NavbarLogo}>
         <Link to='/'>React-Color-Picker</Link>
       </div>
-      {props.showingAllColors && (
+      {showingAllColors && (
         <div className='slider-container'>
-          <span>Level: {props.level}</span>
-          <div className='slider'>
+          <span>Level: {level}</span>
+          <div className={classes.NavbarSlider}>
             <Slider
-              defaultValue={props.level}
+              defaultValue={level}
               min={100}
               max={900}
               step={100}
-              onAfterChange={props.changeLevel}
+              onAfterChange={changeLevel}
             />
           </div>
         </div>
       )}
-      <div className='select-container'>
+      <div className={classes.NavbarSelectContainer}>
         <Select value={format} onChange={handleFormatChange}>
           <MenuItem value='hex'>HEX - #fff</MenuItem>
           <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
@@ -74,4 +82,4 @@ function Navbar(props) {
   );
 }
 
-export default Navbar;
+export default withStyles(navbarStyles)(Navbar);
