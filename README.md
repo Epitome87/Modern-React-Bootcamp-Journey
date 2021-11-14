@@ -2003,7 +2003,13 @@ export default MiniPalette;
 
 ## Section 27: The Massive Color Project Part 3
 
-### `Originally Started: TBD`
+### `Originally Started: 11/13/2021`
+
+(Technically Part 4 of the Color Project -- not sure why Colt doesn't consider the last section as Part 3!)
+
+### Linking to Palettes
+
+To link from our homepage to an individual Palette, we _could_ wrap each MiniPalette around a **Link** component. This basically just results in an anchor tag under the React hook. But it is not a good idea to put interactive content, a div, delete button, etc inside of an anchor tag. It is not good practice, and results in some default text-decoration styling. We'll have to arrive at a new solution.
 
 ## Section 28: The Massive Color Project Part 4
 
