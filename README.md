@@ -1922,7 +1922,84 @@ Let's break down the props it receives!
 
 ## Section 26: JSS and withStyles (Color App)
 
-### `Originally Started: TBD`
+### `Originally Started: 11/13/2021`
+
+We've reached a point in the Colors project where learning some more dynamic CSS would be useful. There are many libraries that help us do so, by essentially writing styles in JavaScript files. One of the most popular is Styled Components. But we will be using one that is included with Material UI. Why do we want this?
+
+- Allows you to write SASS-style syntax, which is converted to "CSX" in JS/JSX.
+- Can use fancier syntax (nest things, etc)
+- Can scope our styles to a given component
+  - The way we do it currently, if we use a class called "color" and write styles for it, and in multiple components use a class called color, they will be styled the same way. We might not want that
+
+Installation
+
+- Just like with Material Icons, we have to install the Styles package separate:
+  `npm install @mui/styles` (current way as of 11/13/2021)
+  `npm install @material-ui/styles` (old way)
+
+Importing Material UI Styles
+`import { makeStyles } from '@mui/styles';`
+
+Using Material UI Styles
+
+```js
+import React from 'react';
+import { makeStyles } from '@mui/styles';
+
+const styles = {
+  main: {
+    backgroundColor: 'purple',
+    border: '3px solid teal',
+  },
+};
+
+function MiniPalette(props) {
+  const { classes } = props;
+
+  return (
+    <div classname={classes.main}>
+      <h1>Mini Palette</h1>
+    </div>
+  );
+}
+
+export default makeStyles(styles)(MiniPalette);
+```
+
+This creates what is known as a **higher-order component**. Basically, it takes the MiniPalette and returns a new version of that component that has some magic styles passed down to the props.
+
+**NOTE** After many many hours of trying, I cannot get Material UI Styles or Styled-Components (both popular packages for styling React components) to work!!! It sounds like it may have something to do with duplicate React packages, or perhaps the fact I have something called "@emotions/styled" installed, and it is conflicing with other Styling engines? As a temporary fix, I'm just using @emotion/styled:
+
+```js
+import React from 'react';
+import styled from '@emotion/styled';
+
+const MiniPalette = (props) => {
+  const StyledDiv = styled.div`
+    background-color: pink;
+    border: 5px solid blue;
+
+    & h1 {
+      color: yellow;
+    }
+
+    & p {
+      font-size: 10rem;
+    }
+  `;
+
+  return (
+    <StyledDiv>
+      <h1>Mini Palette</h1>
+      <p>Test</p>
+    </StyledDiv>
+  );
+};
+
+export default MiniPalette;
+```
+
+**ANOTHER UPDATE!!!** The above method wasn't very good to follow Colt along with. But after restarting my project and React server, Colt's method using the Material UI Style package seems to work! Although for personal use in the future, both Emotion and Styled-Components seem better, as the CSS you write is true CSS and not a `camelCase: "use parenthesis"` version
 
 ## Section 27: The Massive Color Project Part 3
 
