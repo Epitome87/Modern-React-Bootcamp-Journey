@@ -2019,7 +2019,19 @@ When we click on a color on a Palette, we want to be directed to a new URL and p
 
 ### Adding More Links
 
-We need to make the "More" button (span, really) on an individal ColorBox actually do something. 
+We need to make the "More" button (span, really) on an individal ColorBox actually do something.
+
+Sounds simple, but we have an issue. When we click on "More", the onClick method for our clipboard also triggers, as the "More" button is inside the div that the clipboard's onClick fires off of. How can we fix this?
+
+```js
+<Link to="/" onClick{(event) => event.stopPropagation()} >
+  <span>More</span>
+</Link>
+```
+
+With the `event.stopPropagation` method, we ensure that all onClick events stop "bubbling" up the DOM.
+
+### Creating Single Color Palette
 
 ## Section 28: The Massive Color Project Part 4
 

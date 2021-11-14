@@ -6,9 +6,9 @@ import Navbar from './Navbar';
 import { generatePalette } from './colorHelpers';
 
 // Receives all "palettes"
-const Palette = (props) => {
+const Palette = ({ palettes }) => {
   function findPalette(id) {
-    return props.palettes.find((palette) => palette.id === id);
+    return palettes.find((palette) => palette.id === id);
   }
 
   const params = useParams();
@@ -32,7 +32,13 @@ const Palette = (props) => {
   };
 
   const colorBoxes = palette.colors[level].map((color) => (
-    <ColorBox key={color.id} background={color[format]} name={color.name} />
+    <ColorBox
+      key={color.id}
+      background={color[format]}
+      name={color.name}
+      id={color.id}
+      paletteId={palette.id}
+    />
   ));
 
   return (
