@@ -6,7 +6,7 @@ import { withStyles } from '@mui/styles';
 const styles = {
   root: {
     backgroundColor: 'blue',
-    height: '100%',
+    height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -23,6 +23,11 @@ const styles = {
     width: '100%',
     justifyContent: 'space-between',
     color: 'white',
+
+    // Colt didn't do this
+    '& h1': {
+      margin: '1.5rem 0',
+    },
   },
   palettes: {
     boxSizing: 'border-box',
@@ -30,6 +35,9 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 30%)',
     gridGap: '5%',
+  },
+  link: {
+    textDecoration: 'none',
   },
 };
 
@@ -44,8 +52,15 @@ function PaletteList(props) {
         </nav>
         <div className={classes.palettes}>
           {props.palettes.map((palette) => {
-            // return <Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>;
-            return <MiniPalette {...palette} />;
+            return (
+              <Link
+                className={classes.link}
+                key={`link-${palette.id}`}
+                to={`/palette/${palette.id}`}
+              >
+                <MiniPalette key={palette.id} {...palette} />
+              </Link>
+            );
           })}
         </div>
       </div>
