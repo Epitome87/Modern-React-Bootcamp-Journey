@@ -32,7 +32,6 @@
 
 import React from 'react';
 import { withStyles } from '@mui/styles';
-
 import { useNavigate } from 'react-router-dom';
 
 const styles = {
