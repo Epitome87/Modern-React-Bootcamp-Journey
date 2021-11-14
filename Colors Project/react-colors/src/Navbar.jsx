@@ -29,18 +29,20 @@ function Navbar(props) {
       <div className='logo'>
         <Link to='/'>React-Color-Picker</Link>
       </div>
-      <div className='slider-container'>
-        <span>Level: {props.level}</span>
-        <div className='slider'>
-          <Slider
-            defaultValue={props.level}
-            min={100}
-            max={900}
-            step={100}
-            onAfterChange={props.changeLevel}
-          />
+      {props.showingAllColors && (
+        <div className='slider-container'>
+          <span>Level: {props.level}</span>
+          <div className='slider'>
+            <Slider
+              defaultValue={props.level}
+              min={100}
+              max={900}
+              step={100}
+              onAfterChange={props.changeLevel}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className='select-container'>
         <Select value={format} onChange={handleFormatChange}>
           <MenuItem value='hex'>HEX - #fff</MenuItem>

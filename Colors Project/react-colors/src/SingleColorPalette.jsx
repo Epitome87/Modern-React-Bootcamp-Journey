@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
-import { color } from '@mui/system';
+import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 
 function SingleColorPalette({ palettes }) {
+  const [format, setFormat] = useState('hex');
   const params = useParams();
 
   function findPalette(id) {
@@ -30,12 +32,16 @@ function SingleColorPalette({ palettes }) {
     return shades.slice(1);
   }
 
+  const handleChangeFormat = (formatValue) => {
+    setFormat(formatValue);
+  };
+
   const renderedShades = shades.map((shade) => {
     return (
       <ColorBox
         key={shade.id}
         name={shade.name}
-        background={shade.hex}
+        background={shade[format]}
         showLink={false}
       />
     );
@@ -43,8 +49,9 @@ function SingleColorPalette({ palettes }) {
 
   return (
     <div className='Palette'>
-      <h1>Single color palette!</h1>
+      <Navbar changeFormat={handleChangeFormat} showingAllColors={false} />
       <div className='Palette__colors'>{renderedShades}</div>
+      <PaletteFooter palette={palette} />
     </div>
   );
 }

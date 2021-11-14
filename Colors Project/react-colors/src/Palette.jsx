@@ -4,6 +4,7 @@ import './Palette.css';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import { generatePalette } from './colorHelpers';
+import PaletteFooter from './PaletteFooter';
 
 // Receives all "palettes"
 const Palette = ({ palettes }) => {
@@ -16,9 +17,7 @@ const Palette = ({ palettes }) => {
   const palette = generatePalette(findPalette(params.id));
 
   // Basically componentDidMount
-  useEffect(() => {
-    console.log('PAL', palette);
-  }, [palette]);
+  useEffect(() => {}, [palette]);
 
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');
@@ -48,12 +47,10 @@ const Palette = ({ palettes }) => {
         level={level}
         changeLevel={handleSliderChange}
         changeFormat={handleChangeFormat}
+        showingAllColors={true}
       />
       <div className='Palette__colors'>{colorBoxes}</div>
-      <footer className='Palette__footer'>
-        {palette.paletteName}
-        <span className='emoji'>{palette.emoji}</span>
-      </footer>
+      <PaletteFooter palette={palette} />
     </div>
   );
 };
