@@ -2033,11 +2033,20 @@ With the `event.stopPropagation` method, we ensure that all onClick events stop 
 
 ### Dynamic Text with Luminosity
 
-I left off here at the end of 11/13/2021
+Using the `.luminance()` method from Chroma-JS, we can test how "bright" each color is (from 0 to 1) and change different text elements based on that value. For example, if we have a high brightness ColorBox background, we want to give all the text that is written on top of it a black color. If we have a low brightness box, we want white text.
+
+Example usage in our ColorBox's JSS styles:
+
+```js
+copyText: {
+  color: (props) =>
+    chroma(props.background).luminance() >= 0.07 ? 'black' : 'white',
+},
+```
 
 ## Section 28: The Massive Color Project Part 4
 
-### `Originally Started: TBD`
+### `Originally Started: 11/14/2021`
 
 ## Section 29: The Massive Color Project Part 5
 

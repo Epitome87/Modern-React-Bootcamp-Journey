@@ -4,8 +4,54 @@ import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
+import { withStyles } from '@mui/styles';
 
-function SingleColorPalette({ palettes }) {
+const styles = {
+  Palette: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  PaletteColors: {
+    height: '90%',
+    overflow: 'hidden',
+  },
+
+  goBack: {
+    width: '20%',
+    height: '50%',
+    margin: '0 auto',
+    display: 'inline-block',
+    position: 'relative',
+    marginBottom: '-3.5px',
+    opacity: 1,
+    backgroundColor: 'black',
+
+    '& a': {
+      color: 'white',
+      width: '100px',
+      height: '30px',
+      position: 'absolute',
+      display: 'inline-block',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      textAlign: 'center',
+      outline: 'none',
+      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+      fontFamily: 'inherit',
+      fontSize: '1rem',
+      lineHeight: '30px',
+      textTransform: 'uppercase',
+      border: 'none',
+      textDecoration: 'none',
+      transition: 'opacity 0.5s linear',
+    },
+  },
+};
+
+function SingleColorPalette({ palettes, classes }) {
   const [format, setFormat] = useState('hex');
   const params = useParams();
 
@@ -48,14 +94,12 @@ function SingleColorPalette({ palettes }) {
   });
 
   return (
-    <div className='SingleColorPalette Palette'>
+    <div className={classes.Palette}>
       <Navbar changeFormat={handleChangeFormat} showingAllColors={false} />
-      <div className='Palette__colors'>
+      <div className={classes.PaletteColors}>
         {renderedShades}
-        <div className='go-back ColorBox'>
-          <Link to={`/palette/${params.paletteId}`} className='back-button'>
-            GO BACK
-          </Link>
+        <div className={classes.goBack}>
+          <Link to={`/palette/${params.paletteId}`}>GO BACK</Link>
         </div>
       </div>
       <PaletteFooter palette={palette} />
@@ -63,4 +107,4 @@ function SingleColorPalette({ palettes }) {
   );
 }
 
-export default SingleColorPalette;
+export default withStyles(styles)(SingleColorPalette);

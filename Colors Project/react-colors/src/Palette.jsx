@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './Palette.css';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import { generatePalette } from './colorHelpers';
 import PaletteFooter from './PaletteFooter';
+import { withStyles } from '@mui/styles';
+
+const styles = {
+  Palette: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  PaletteColors: {
+    height: '90%',
+    overflow: 'hidden',
+  },
+};
 
 // Receives all "palettes"
-const Palette = ({ palettes }) => {
+const Palette = ({ palettes, classes }) => {
   function findPalette(id) {
     return palettes.find((palette) => palette.id === id);
   }
@@ -42,17 +55,17 @@ const Palette = ({ palettes }) => {
   ));
 
   return (
-    <div className='Palette'>
+    <div className={classes.Palette}>
       <Navbar
         level={level}
         changeLevel={handleSliderChange}
         changeFormat={handleChangeFormat}
         showingAllColors={true}
       />
-      <div className='Palette__colors'>{colorBoxes}</div>
+      <div className={classes.PaletteColors}>{colorBoxes}</div>
       <PaletteFooter palette={palette} />
     </div>
   );
 };
 
-export default Palette;
+export default withStyles(styles)(Palette);
