@@ -2031,7 +2031,9 @@ Sounds simple, but we have an issue. When we click on "More", the onClick method
 
 With the `event.stopPropagation` method, we ensure that all onClick events stop "bubbling" up the DOM.
 
-### Creating Single Color Palette
+### Dynamic Text with Luminosity
+
+I left off here at the end of 11/13/2021
 
 ## Section 28: The Massive Color Project Part 4
 

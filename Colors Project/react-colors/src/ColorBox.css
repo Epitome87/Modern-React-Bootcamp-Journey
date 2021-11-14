@@ -56,6 +56,14 @@
   font-size: 12px;
 }
 
+.ColorBox .light-text {
+  color: white;
+}
+
+.ColorBox .dark-text {
+  color: rgba(0, 0, 0, 0.6);
+}
+
 .ColorBox:hover .copy-button {
   opacity: 1;
 }
@@ -96,7 +104,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -104,6 +112,9 @@
   transform: scale(0.1);
   opacity: 0;
   color: white;
+
+  /* Fixes a bug where the last ColorBox in a Palette had its copy-msg element blocking the center ColorBox from being clicked */
+  display: none;
 }
 
 .copy-msg.show {
@@ -111,6 +122,9 @@
   transform: scale(1);
   z-index: 25;
   transition: all 0.4s ease-in-out 0.5s;
+
+  /* Fixes a bug where the last ColorBox in a Palette had its copy-msg element blocking the center ColorBox from being clicked */
+  display: flex;
 }
 
 .copy-msg h1 {
