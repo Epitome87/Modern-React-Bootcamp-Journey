@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import './Palette.css';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
-
 import { generatePalette } from './colorHelpers';
 
 // Receives all "palettes"

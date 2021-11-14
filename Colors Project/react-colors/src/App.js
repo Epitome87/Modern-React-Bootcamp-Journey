@@ -5,6 +5,7 @@ import PaletteList from './PaletteList';
 import seedPalettes from './seedPalettes';
 
 function App() {
+  console.log(seedPalettes);
   return (
     <Routes>
       <Route path='/' element={<PaletteList palettes={seedPalettes} />} />
