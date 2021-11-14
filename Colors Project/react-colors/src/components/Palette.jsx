@@ -2,22 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
-import { generatePalette } from './colorHelpers';
 import PaletteFooter from './PaletteFooter';
+import { generatePalette } from '../colorHelpers';
 import { withStyles } from '@mui/styles';
-
-const styles = {
-  Palette: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  PaletteColors: {
-    height: '90%',
-    overflow: 'hidden',
-  },
-};
+import paletteStyles from '../styles/PaletteStyles';
 
 // Receives all "palettes"
 const Palette = ({ palettes, classes }) => {
@@ -68,4 +56,4 @@ const Palette = ({ palettes, classes }) => {
   );
 };
 
-export default withStyles(styles)(Palette);
+export default withStyles(paletteStyles)(Palette);
