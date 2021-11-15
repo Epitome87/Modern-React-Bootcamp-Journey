@@ -6,8 +6,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 
-function PaletteMetaForm({ palettes, handleSubmitNewPalette }) {
+function PaletteMetaForm({ palettes, handleSubmitNewPalette, handleHideForm }) {
   const [open, setOpen] = React.useState(true);
 
   const [newPaletteName, setNewPaletteName] = useState('');
@@ -17,7 +19,10 @@ function PaletteMetaForm({ palettes, handleSubmitNewPalette }) {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    // Why doesn't Colt have to setOpen to false?
+    // setOpen(false);
+
+    handleHideForm();
   };
 
   const handlePaletteNameValidatorChange = (event) => {
@@ -40,6 +45,8 @@ function PaletteMetaForm({ palettes, handleSubmitNewPalette }) {
             Please enter a name for your new beautiful palette! Make sure the
             name is unique.
           </DialogContentText>
+
+          <Picker />
 
           <TextValidator
             label='Palette Name'

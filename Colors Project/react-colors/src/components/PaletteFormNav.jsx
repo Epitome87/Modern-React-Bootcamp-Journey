@@ -48,6 +48,10 @@ function PaletteFormNav({
     setIsFormShowing(true);
   };
 
+  const handleHideForm = (event) => {
+    setIsFormShowing(false);
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <CssBaseline />
@@ -100,6 +104,7 @@ function PaletteFormNav({
         <PaletteMetaForm
           palettes={palettes}
           handleSubmitNewPalette={handleSubmitNewPalette}
+          handleHideForm={handleHideForm}
         />
       )}
     </div>
