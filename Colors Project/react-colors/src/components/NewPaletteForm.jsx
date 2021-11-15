@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DraggableColorBox from './DraggableColorBox';
 // Start requires for Drawer component
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -76,7 +75,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-function NewPaletteForm({ savePalette, palettes }) {
+function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -85,6 +84,7 @@ function NewPaletteForm({ savePalette, palettes }) {
     // { color: '#fff', name: 'White' },
     // { color: '#349', name: 'Blue' },
     // { color: '#831', name: 'Light Red' },
+    ...palettes[0].colors,
   ]);
 
   // TODO: Only add these validation rules once
@@ -108,7 +108,7 @@ function NewPaletteForm({ savePalette, palettes }) {
   });
 
   // Drawer State:
-  const [open, setOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
 
   // Color State:
   const [currentColor, setCurrentColor] = useState('#333');
@@ -119,12 +119,12 @@ function NewPaletteForm({ savePalette, palettes }) {
 
   /* Drawer Component: Open */
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setIsDrawerOpen(true);
   };
 
   /* Drawer Component: Close */
   const handleDrawerClose = () => {
-    setOpen(false);
+    setIsDrawerOpen(false);
   };
 
   //   Form Logic:
@@ -173,17 +173,32 @@ function NewPaletteForm({ savePalette, palettes }) {
     setColors([...arrayMove(colors, oldIndex, newIndex)]);
   };
 
+  const handleRandomColor = (event) => {
+    // Pick a random color from existing palettes
+    // We .flat() it since it is an array of arrays
+    const allColors = palettes.map((pal) => pal.colors).flat();
+    const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+    // Todo: Ensure this color is unique
+    setColors([...colors, randomColor]);
+  };
+
+  const handleClearPalette = (event) => {
+    setColors([]);
+  };
+
+  const paletteIsFull = colors.length >= maxColors;
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position='fixed' open={open} color='default'>
+      <AppBar position='fixed' open={isDrawerOpen} color='default'>
         <Toolbar>
           <IconButton
             color='inherit'
             aria-label='open drawer'
             onClick={handleDrawerOpen}
             edge='start'
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
@@ -220,7 +235,7 @@ function NewPaletteForm({ savePalette, palettes }) {
         }}
         variant='persistent'
         anchor='left'
-        open={open}
+        open={isDrawerOpen}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
@@ -234,10 +249,19 @@ function NewPaletteForm({ savePalette, palettes }) {
         <Divider />
         <Typography variant='h4'>Design Your Palette</Typography>
         <div>
-          <Button variant='contained' color='secondary'>
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={handleClearPalette}
+          >
             Clear Palette
           </Button>
-          <Button variant='contained' color='primary'>
+          <Button
+            variant='contained'
+            color='primary'
+            disabled={paletteIsFull}
+            onClick={handleRandomColor}
+          >
             Random Color
           </Button>
         </div>
@@ -265,13 +289,14 @@ function NewPaletteForm({ savePalette, palettes }) {
             variant='contained'
             type='Submit'
             color='primary'
-            style={{ backgroundColor: currentColor }}
+            disabled={paletteIsFull}
+            style={{ backgroundColor: paletteIsFull ? 'grey' : currentColor }}
           >
-            Add Color
+            {paletteIsFull ? 'Palette Full' : 'Add Color'}
           </Button>
         </ValidatorForm>
       </Drawer>
-      <Main open={open} sx={{ height: 'calc(100vh - 64px)' }}>
+      <Main open={isDrawerOpen} sx={{ height: 'calc(100vh - 64px)' }}>
         <DrawerHeader />
 
         <DraggableColorList
