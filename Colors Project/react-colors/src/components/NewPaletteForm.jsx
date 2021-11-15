@@ -134,6 +134,10 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+
+            // testing
+            // display: 'flex',
+            // alignItems: 'center',
           },
         }}
         variant='persistent'
@@ -150,30 +154,60 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Typography variant='h4'>Design Your Palette</Typography>
-        <div>
-          <Button
-            variant='contained'
-            color='secondary'
-            onClick={handleClearPalette}
-          >
-            Clear Palette
-          </Button>
-          <Button
-            variant='contained'
-            color='primary'
-            disabled={paletteIsFull}
-            onClick={handleRandomColor}
-          >
-            Random Color
-          </Button>
-        </div>
+        <div
+          className='palette-form__drawer-container'
+          style={{
+            display: 'flex',
+            width: '90%',
+            height: '100%',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
 
-        <ColorPickerForm
-          paletteIsFull={paletteIsFull}
-          addNewColor={addNewColor}
-          colors={colors}
-        />
+            // Colt doesn't do this
+            margin: '0 auto',
+          }}
+        >
+          <Typography variant='h4' gutterBottom>
+            Design Your Palette
+          </Typography>
+
+          <div
+            className='palette-form__buttons'
+            style={{
+              width: '100%',
+              marginBottom: '1rem',
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Button
+              className='palette-form__button'
+              variant='contained'
+              color='secondary'
+              onClick={handleClearPalette}
+              style={{ width: '45%' }}
+            >
+              Clear Palette
+            </Button>
+            <Button
+              className='palette-form__button'
+              variant='contained'
+              color='primary'
+              disabled={paletteIsFull}
+              onClick={handleRandomColor}
+              style={{ width: '45%' }}
+            >
+              Random Color
+            </Button>
+          </div>
+
+          <ColorPickerForm
+            paletteIsFull={paletteIsFull}
+            addNewColor={addNewColor}
+            colors={colors}
+          />
+        </div>
       </Drawer>
       <Main open={isDrawerOpen} sx={{ height: 'calc(100vh - 64px)' }}>
         <DrawerHeader />

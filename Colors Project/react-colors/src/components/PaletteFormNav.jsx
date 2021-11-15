@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom';
 // Start requires for Drawer component
 import { styled, useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 // End requires for Drawer component
@@ -57,9 +55,18 @@ function PaletteFormNav({
   };
 
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position='fixed' open={isDrawerOpen} color='default'>
+      <AppBar
+        position='fixed'
+        open={isDrawerOpen}
+        color='default'
+        sx={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          height: '64px',
+        }}
+      >
         <Toolbar>
           <IconButton
             color='inherit'
@@ -73,7 +80,9 @@ function PaletteFormNav({
           <Typography variant='h6' noWrap component='div'>
             Create A Palette!
           </Typography>
+        </Toolbar>
 
+        <div className='classes.NavButtons'>
           <ValidatorForm
             onSubmit={() => handleSubmitNewPalette(newPaletteName)}
           >
@@ -91,13 +100,13 @@ function PaletteFormNav({
             <Button variant='contained' color='primary' type='submit'>
               Save Palette
             </Button>
-            <Link to='/'>
-              <Button variant='contained' color='secondary'>
-                Go Back
-              </Button>
-            </Link>
           </ValidatorForm>
-        </Toolbar>
+          <Link to='/'>
+            <Button variant='contained' color='secondary'>
+              Go Back
+            </Button>
+          </Link>
+        </div>
       </AppBar>
     </div>
   );

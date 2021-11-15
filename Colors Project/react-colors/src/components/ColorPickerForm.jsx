@@ -6,6 +6,8 @@ import { ChromePicker } from 'react-color';
 // Form Validation
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
+import '../styles/ColorPickerFormStyles.css';
+
 function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
   // Color State:
   const [currentColor, setCurrentColor] = useState('teal');
@@ -22,6 +24,11 @@ function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
     setNewColorName(event.target.value);
   };
 
+  const handleOnSubmit = () => {
+    addNewColor({ name: newColorName, color: currentColor });
+    setNewColorName('');
+  };
+
   // TODO: Only add these validation rules once
   // Validation for New Color's Name:
   ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -36,35 +43,47 @@ function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
   });
 
   return (
-    <div>
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
       <ChromePicker
+        className='ColorPicker'
         color={currentColor}
         onChangeComplete={handleChangeComplete}
+        style={{ width: '100% !important', marginTop: '2rem !important' }}
       />
       <ValidatorForm
-        onSubmit={() =>
-          addNewColor({ name: newColorName, color: currentColor })
-        }
+        onSubmit={handleOnSubmit}
         onError={(errors) => console.log(errors)}
       >
         <TextValidator
-          label='Color'
+          className='ColorPicker__colorNameInput'
+          label='Color Name'
           onChange={handleColorNameValidatorChange}
+          variant='filled'
+          margin='normal'
           name='newColorName'
           value={newColorName}
+          //   placeholder='Color Name'
           validators={['required', 'isColorNameUnique', 'isColorUnique']}
           errorMessages={[
             'Color name is required',
             'Color name must be unique',
             'Color already used',
           ]}
+          style={{ width: '100%', height: '70px' }}
         />
         <Button
+          className='ColorPicker__addColor'
           variant='contained'
           type='Submit'
           color='primary'
           disabled={paletteIsFull}
-          style={{ backgroundColor: paletteIsFull ? 'grey' : currentColor }}
+          style={{
+            backgroundColor: paletteIsFull ? 'grey' : currentColor,
+            width: '100%',
+            padding: '1rem',
+            marginTop: '1rem',
+            fontSize: '2rem',
+          }}
         >
           {paletteIsFull ? 'Palette Full' : 'Add Color'}
         </Button>
