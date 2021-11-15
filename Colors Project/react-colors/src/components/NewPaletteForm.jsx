@@ -72,7 +72,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-function NewPaletteForm({ savePalette }) {
+function NewPaletteForm({ savePalette, palettes }) {
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -84,6 +84,8 @@ function NewPaletteForm({ savePalette }) {
   ]);
 
   // TODO: Only add these validation rules once
+
+  // Validation for New Color Name:
   ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
     return colors.every(
       (color) => color.name.toLowerCase() !== value.toLowerCase()
@@ -94,6 +96,13 @@ function NewPaletteForm({ savePalette }) {
     return colors.every((color) => color.color !== currentColor);
   });
 
+  // Validation for Palette Name:
+  ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
+    return palettes.every(
+      (palette) => palette.paletteName.toLowerCase() !== value.toLowerCase()
+    );
+  });
+
   // Drawer State:
   const [open, setOpen] = useState(false);
 
@@ -102,6 +111,7 @@ function NewPaletteForm({ savePalette }) {
 
   // Validator State:
   const [newColorName, setNewColorName] = useState('');
+  const [newPaletteName, setNewPaletteName] = useState('');
 
   /* Drawer Component: Open */
   const handleDrawerOpen = () => {
@@ -122,8 +132,12 @@ function NewPaletteForm({ savePalette }) {
     setNewColorName('');
   };
 
-  const handleTextValidatorChange = (event) => {
+  const handleColorNameValidatorChange = (event) => {
     setNewColorName(event.target.value);
+  };
+
+  const handlePaletteNameValidatorChange = (event) => {
+    setNewPaletteName(event.target.value);
   };
 
   /* Color Picker Component: Change Complete */
@@ -135,8 +149,8 @@ function NewPaletteForm({ savePalette }) {
     // Create a new Palette out of all the information we have constructed
     const newPalette = {
       colors,
-      paletteName: 'My New Palette',
-      id: 'My New Palette'.trim().toLowerCase().replace(/\s/g, '-'),
+      paletteName: newPaletteName,
+      id: newPaletteName.trim().toLowerCase().replace(/\s/g, '-'),
       emoji: '🎁',
     };
     // Call the parent's (App) callback for palette saving
@@ -163,13 +177,23 @@ function NewPaletteForm({ savePalette }) {
           <Typography variant='h6' noWrap component='div'>
             Create A Palette!
           </Typography>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={handleSubmitNewPalette}
-          >
-            Save Palette
-          </Button>
+
+          <ValidatorForm onSubmit={handleSubmitNewPalette}>
+            <TextValidator
+              label='Palette Name'
+              value={newPaletteName}
+              name={'newPaletteName'}
+              onChange={handlePaletteNameValidatorChange}
+              validators={['required', 'isPaletteNameUnique']}
+              errorMessages={[
+                'Palette name is required',
+                'Palette name already exists',
+              ]}
+            />
+            <Button variant='contained' color='primary' type='submit'>
+              Save Palette
+            </Button>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -214,8 +238,8 @@ function NewPaletteForm({ savePalette }) {
         >
           <TextValidator
             label='Color'
-            onChange={handleTextValidatorChange}
-            name='color'
+            onChange={handleColorNameValidatorChange}
+            name='newColorName'
             value={newColorName}
             validators={['required', 'isColorNameUnique', 'isColorUnique']}
             errorMessages={[
