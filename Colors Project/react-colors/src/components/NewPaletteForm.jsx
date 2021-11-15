@@ -1,19 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 // Start requires for Drawer component
 import { styled, useTheme } from '@mui/material/styles';
+import PaletteFormNav from './PaletteFormNav';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-
-import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // End requires for Drawer component
@@ -49,23 +45,6 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   })
 );
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
-
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -75,47 +54,35 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+// Our NewPaletteForm Component
 function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
   const theme = useTheme();
   const navigate = useNavigate();
 
   // Form logic States:
-  const [colors, setColors] = useState([
-    // { color: '#fff', name: 'White' },
-    // { color: '#349', name: 'Blue' },
-    // { color: '#831', name: 'Light Red' },
-    ...palettes[0].colors,
-  ]);
+  const [colors, setColors] = useState([...palettes[0].colors]);
+
+  // Drawer State (we also pass this to this form's Nav component):
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+
+  // Color State:
+  const [currentColor, setCurrentColor] = useState('#485');
+
+  // Color Name State:
+  const [newColorName, setNewColorName] = useState('');
 
   // TODO: Only add these validation rules once
-
-  // Validation for New Color Name:
+  // Validation for New Color's Name:
   ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
     return colors.every(
       (color) => color.name.toLowerCase() !== value.toLowerCase()
     );
   });
 
+  // Validation for New Color's...Color
   ValidatorForm.addValidationRule('isColorUnique', (value) => {
     return colors.every((color) => color.color !== currentColor);
   });
-
-  // Validation for Palette Name:
-  ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-    return palettes.every(
-      (palette) => palette.paletteName.toLowerCase() !== value.toLowerCase()
-    );
-  });
-
-  // Drawer State:
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
-
-  // Color State:
-  const [currentColor, setCurrentColor] = useState('#333');
-
-  // Validator State:
-  const [newColorName, setNewColorName] = useState('');
-  const [newPaletteName, setNewPaletteName] = useState('');
 
   /* Drawer Component: Open */
   const handleDrawerOpen = () => {
@@ -127,7 +94,7 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
     setIsDrawerOpen(false);
   };
 
-  //   Form Logic:
+  // Form Logic:
   const addNewColor = () => {
     const newColor = { color: currentColor, name: newColorName };
     setColors([...colors, newColor]);
@@ -136,12 +103,9 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
     setNewColorName('');
   };
 
+  // Called when the "Color Name" text validator receives new input
   const handleColorNameValidatorChange = (event) => {
     setNewColorName(event.target.value);
-  };
-
-  const handlePaletteNameValidatorChange = (event) => {
-    setNewPaletteName(event.target.value);
   };
 
   /* Color Picker Component: Change Complete */
@@ -149,7 +113,8 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
     setCurrentColor(color.hex);
   };
 
-  const handleSubmitNewPalette = (event) => {
+  // Called when "Save Palette" is pressed
+  const handleSubmitNewPalette = (newPaletteName) => {
     // Create a new Palette out of all the information we have constructed
     const newPalette = {
       colors,
@@ -169,10 +134,12 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
     setColors(colors.filter((color) => color.name !== colorName));
   };
 
+  // Called at the end of a Drag-and-Drop to help re-arrange the items
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setColors([...arrayMove(colors, oldIndex, newIndex)]);
   };
 
+  // Adds a new, random Color to the Palette
   const handleRandomColor = (event) => {
     // Pick a random color from existing palettes
     // We .flat() it since it is an array of arrays
@@ -182,48 +149,22 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
     setColors([...colors, randomColor]);
   };
 
+  // Clears the Palette by resetting the Colors state to be empty
   const handleClearPalette = (event) => {
     setColors([]);
   };
 
+  // Helper variable to describe if our Palette is full
   const paletteIsFull = colors.length >= maxColors;
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position='fixed' open={isDrawerOpen} color='default'>
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' noWrap component='div'>
-            Create A Palette!
-          </Typography>
-
-          <ValidatorForm onSubmit={handleSubmitNewPalette}>
-            <TextValidator
-              label='Palette Name'
-              value={newPaletteName}
-              name={'newPaletteName'}
-              onChange={handlePaletteNameValidatorChange}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Palette name is required',
-                'Palette name already exists',
-              ]}
-            />
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav
+        palettes={palettes}
+        handleSubmitNewPalette={handleSubmitNewPalette}
+        handleDrawerOpen={handleDrawerOpen}
+        isDrawerOpen={isDrawerOpen}
+      />
       <Drawer
         sx={{
           width: drawerWidth,
