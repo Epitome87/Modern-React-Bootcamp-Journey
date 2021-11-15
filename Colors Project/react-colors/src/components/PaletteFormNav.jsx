@@ -42,6 +42,12 @@ function PaletteFormNav({
   handleDrawerOpen,
   handleSubmitNewPalette,
 }) {
+  const [isFormShowing, setIsFormShowing] = useState(false);
+
+  const handleShowForm = (event) => {
+    setIsFormShowing(true);
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <CssBaseline />
@@ -52,6 +58,7 @@ function PaletteFormNav({
         sx={{
           flexDirection: 'row',
           justifyContent: 'space-between',
+          alignItems: 'center',
           height: '64px',
         }}
       >
@@ -70,19 +77,31 @@ function PaletteFormNav({
           </Typography>
         </Toolbar>
 
-        <div className='classes.NavButtons'>
-          <PaletteMetaForm
-            palettes={palettes}
-            handleSubmitNewPalette={handleSubmitNewPalette}
-          />
-
-          <Link to='/'>
-            <Button variant='contained' color='secondary'>
+        <div className='classes.NavButtons' style={{ marginRight: '1rem' }}>
+          <Link to='/' style={{ textDecoration: 'none' }}>
+            <Button
+              variant='contained'
+              color='secondary'
+              style={{ margin: '0 0.5rem' }}
+            >
               Go Back
             </Button>
           </Link>
+          <Button
+            variant='contained'
+            onClick={handleShowForm}
+            style={{ margin: '0 0.5rem' }}
+          >
+            Save
+          </Button>
         </div>
       </AppBar>
+      {isFormShowing && (
+        <PaletteMetaForm
+          palettes={palettes}
+          handleSubmitNewPalette={handleSubmitNewPalette}
+        />
+      )}
     </div>
   );
 }
