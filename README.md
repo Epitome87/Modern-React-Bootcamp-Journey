@@ -2048,6 +2048,10 @@ copyText: {
 
 ### `Originally Started: 11/14/2021`
 
+### Introducing Form Validator
+
+Stopped for the night on this lecture.
+
 ## Section 29: The Massive Color Project Part 5
 
 ### `Originally Started: TBD`
