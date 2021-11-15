@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 // Start requires for Drawer component
 import { styled, useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -41,19 +42,6 @@ function PaletteFormNav({
   handleDrawerOpen,
   handleSubmitNewPalette,
 }) {
-  const [newPaletteName, setNewPaletteName] = useState('');
-
-  // Validation for Palette Name:
-  ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-    return palettes.every(
-      (palette) => palette.paletteName.toLowerCase() !== value.toLowerCase()
-    );
-  });
-
-  const handlePaletteNameValidatorChange = (event) => {
-    setNewPaletteName(event.target.value);
-  };
-
   return (
     <div style={{ display: 'flex' }}>
       <CssBaseline />
@@ -83,24 +71,11 @@ function PaletteFormNav({
         </Toolbar>
 
         <div className='classes.NavButtons'>
-          <ValidatorForm
-            onSubmit={() => handleSubmitNewPalette(newPaletteName)}
-          >
-            <TextValidator
-              label='Palette Name'
-              value={newPaletteName}
-              name={'newPaletteName'}
-              onChange={handlePaletteNameValidatorChange}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={[
-                'Palette name is required',
-                'Palette name already exists',
-              ]}
-            />
-            <Button variant='contained' color='primary' type='submit'>
-              Save Palette
-            </Button>
-          </ValidatorForm>
+          <PaletteMetaForm
+            palettes={palettes}
+            handleSubmitNewPalette={handleSubmitNewPalette}
+          />
+
           <Link to='/'>
             <Button variant='contained' color='secondary'>
               Go Back

@@ -2079,7 +2079,7 @@ Documentation and Installation of **react-sortable-hoc**
 
 ## Section 30: The Massive Color Project Part 6
 
-### `Originally Started: TBD`
+### `Originally Started: 11/15/2021`
 
 ## Section 31: The Massive Color Project Part 7
 
