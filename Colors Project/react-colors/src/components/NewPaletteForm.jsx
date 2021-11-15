@@ -160,6 +160,11 @@ function NewPaletteForm({ savePalette, palettes }) {
     navigate('/');
   };
 
+  // Handles deletion of a ColorBox. Called from wihin DraggableColorBox
+  const handleDelete = (colorName) => {
+    setColors(colors.filter((color) => color.name !== colorName));
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -262,7 +267,15 @@ function NewPaletteForm({ savePalette, palettes }) {
         <DrawerHeader />
 
         {colors.map((color) => {
-          return <DraggableColorBox color={color.color} name={color.name} />;
+          return (
+            <DraggableColorBox
+              key={color.name}
+              color={color.color}
+              name={color.name}
+              handleDelete={handleDelete}
+              // Could also do () => handleDelete(name) and not have to pass name from DraggableColorBox
+            />
+          );
         })}
       </Main>
     </Box>

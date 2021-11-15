@@ -3,9 +3,14 @@ import { withStyles } from '@mui/styles';
 import draggableColorBoxStyles from '../styles/DraggableColorBoxStyles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function DraggableColorBox({ color, name, classes }) {
+function DraggableColorBox({ color, name, classes, handleDelete }) {
+  const deleteColor = () => {
+    // Delete this item from parent's (NewPaletteForm) color array
+    handleDelete(name);
+  };
+
   return (
-    <div className={classes.DraggableColorBox}>
+    <div className={classes.DraggableColorBox} onClick={deleteColor}>
       <div className={classes.boxContent}>
         <span>
           {name} - {color}
