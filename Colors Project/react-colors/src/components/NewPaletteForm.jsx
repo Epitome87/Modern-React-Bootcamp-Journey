@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 // Start requires for Drawer component
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme, useStyles } from '@mui/material/styles';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import Box from '@mui/material/Box';
@@ -25,6 +25,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
+    // I added padding and height
+    // padding: 0,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -210,7 +212,10 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
           />
         </div>
       </Drawer>
-      <Main open={isDrawerOpen} sx={{ height: 'calc(100vh - 64px)' }}>
+      <Main
+        open={isDrawerOpen}
+        sx={{ height: 'calc(100vh - 75px) !important', padding: '0' }}
+      >
         <DrawerHeader />
 
         <DraggableColorList

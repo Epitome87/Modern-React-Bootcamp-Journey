@@ -11,6 +11,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 // End requires for Drawer component
 
 // Form Validation
@@ -74,7 +75,7 @@ function PaletteFormNav({
             edge='start'
             sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <AddToPhotosIcon />
           </IconButton>
           <Typography variant='h6' noWrap component='div'>
             Create A Palette!
