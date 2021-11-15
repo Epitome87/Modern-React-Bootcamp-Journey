@@ -1,4 +1,5 @@
 import React from 'react';
+import DraggableColorBox from './DraggableColorBox';
 // Start requires for Drawer component
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -162,14 +163,12 @@ function NewPaletteForm() {
           Add Color
         </Button>
       </Drawer>
-      <Main open={open}>
+      <Main open={open} sx={{ height: 'calc(100vh - 64px)' }}>
         <DrawerHeader />
 
-        <div>
-          {colors.map((color) => {
-            return <p style={{ backgroundColor: color }}>{color}</p>;
-          })}
-        </div>
+        {colors.map((color) => {
+          return <DraggableColorBox color={color} />;
+        })}
       </Main>
     </Box>
   );
