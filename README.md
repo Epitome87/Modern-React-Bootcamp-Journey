@@ -2056,6 +2056,27 @@ Using react-material-ui-form-validator library for this.
 
 ### `Originally Started: 11/14/2021`
 
+### It's Drag and Drop Time!
+
+There are two very popular libraries that provide us with easy Drag-and-Drop functioanlity:react-dnd and react-beautiful-dnd
+
+Although react-dnd is nice, it is mostly for list-type items. We want to use ours in a grid. So we will choose to use react-beautiful-dnd!
+
+Documentation and Installation
+
+We can read about this library here: https://www.npmjs.com/package/react-beautiful-dnd
+
+And install it via:
+`npm install react-beautiful-dnd`
+
+**UPDATE** Oops! We are actually using a third library for drag-and-drop:
+**react-sortable-hoc**
+
+Documentation and Installation of **react-sortable-hoc**
+
+- We can read about this library here: https://github.com/clauderic/react-sortable-hoc
+- And install it via: `npm install react-sortable-hoc`
+
 ## Section 30: The Massive Color Project Part 6
 
 ### `Originally Started: TBD`

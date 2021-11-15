@@ -25,6 +25,10 @@ import { ChromePicker } from 'react-color';
 // Form Validation
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
+// Drag and Drop!
+import DraggableColorList from './DraggableColorList';
+import { arrayMove } from 'react-sortable-hoc';
+
 const drawerWidth = 400;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -165,6 +169,10 @@ function NewPaletteForm({ savePalette, palettes }) {
     setColors(colors.filter((color) => color.name !== colorName));
   };
 
+  const onSortEnd = ({ oldIndex, newIndex }) => {
+    setColors([...arrayMove(colors, oldIndex, newIndex)]);
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -266,17 +274,12 @@ function NewPaletteForm({ savePalette, palettes }) {
       <Main open={open} sx={{ height: 'calc(100vh - 64px)' }}>
         <DrawerHeader />
 
-        {colors.map((color) => {
-          return (
-            <DraggableColorBox
-              key={color.name}
-              color={color.color}
-              name={color.name}
-              handleDelete={handleDelete}
-              // Could also do () => handleDelete(name) and not have to pass name from DraggableColorBox
-            />
-          );
-        })}
+        <DraggableColorList
+          colors={colors}
+          handleDelete={handleDelete}
+          axis='xy'
+          onSortEnd={onSortEnd}
+        />
       </Main>
     </Box>
   );
