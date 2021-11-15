@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DraggableColorBox from './DraggableColorBox';
 // Start requires for Drawer component
 import { styled, useTheme } from '@mui/material/styles';
@@ -71,8 +72,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm({ savePalette }) {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   // Form logic States:
   const [colors, setColors] = useState([
@@ -129,10 +131,25 @@ function NewPaletteForm() {
     setCurrentColor(color.hex);
   };
 
+  const handleSubmitNewPalette = (event) => {
+    // Create a new Palette out of all the information we have constructed
+    const newPalette = {
+      colors,
+      paletteName: 'My New Palette',
+      id: 'My New Palette'.trim().toLowerCase().replace(/\s/g, '-'),
+      emoji: '🎁',
+    };
+    // Call the parent's (App) callback for palette saving
+    savePalette(newPalette);
+
+    // Navigate back to the home route.
+    navigate('/');
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position='fixed' open={open}>
+      <AppBar position='fixed' open={open} color='default'>
         <Toolbar>
           <IconButton
             color='inherit'
@@ -144,8 +161,15 @@ function NewPaletteForm() {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap component='div'>
-            Persistent drawer
+            Create A Palette!
           </Typography>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={handleSubmitNewPalette}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

@@ -2050,11 +2050,11 @@ copyText: {
 
 ### Introducing Form Validator
 
-Stopped for the night on this lecture.
+Using react-material-ui-form-validator library for this.
 
 ## Section 29: The Massive Color Project Part 5
 
-### `Originally Started: TBD`
+### `Originally Started: 11/14/2021`
 
 ## Section 30: The Massive Color Project Part 6
 
