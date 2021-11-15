@@ -76,14 +76,15 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
   };
 
   // Called when "Save Palette" is pressed
-  const handleSubmitNewPalette = (newPaletteName) => {
+  const handleSubmitNewPalette = (newPalette) => {
     // Create a new Palette out of all the information we have constructed
-    const newPalette = {
-      colors,
-      paletteName: newPaletteName,
-      id: newPaletteName.trim().toLowerCase().replace(/\s/g, '-'),
-      emoji: '🎁',
-    };
+    // Note: Now emoji and paletteName come from PaletteMetaForm, so just add the rest here
+    newPalette.id = newPalette.paletteName
+      .trim()
+      .toLowerCase()
+      .replace(/\s/g, '-');
+    newPalette.colors = colors;
+
     // Call the parent's (App) callback for palette saving
     savePalette(newPalette);
 
