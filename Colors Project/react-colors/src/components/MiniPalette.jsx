@@ -1,7 +1,8 @@
 import React from 'react';
 import { withStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
-import miniPaletteStyles from "../styles/MiniPaletteStyles";
+import miniPaletteStyles from '../styles/MiniPaletteStyles';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 function MiniPalette(props) {
   const { classes } = props;
@@ -23,6 +24,10 @@ function MiniPalette(props) {
       onClick={() => navigate(`/palette/${props.id}`)}
       //   onClick={() => props.handleClick(props.id)}
     >
+      <div className={classes.delete}>
+        <DeleteForeverIcon className={classes.deleteIcon} />
+      </div>
+
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {props.paletteName}
