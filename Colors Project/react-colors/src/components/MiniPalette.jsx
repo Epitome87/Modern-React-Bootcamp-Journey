@@ -4,11 +4,25 @@ import { useNavigate } from 'react-router-dom';
 import miniPaletteStyles from '../styles/MiniPaletteStyles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function MiniPalette(props) {
-  const { classes } = props;
+function MiniPalette({
+  classes,
+  colors,
+  id,
+  paletteName,
+  emoji,
+  handleDelete,
+}) {
   const navigate = useNavigate();
 
-  const miniColorBoxes = props.colors.map((color) => {
+  const handleDeletePalette = (event) => {
+    event.stopPropagation();
+
+    // Call PaletteList's callback, which will then call App's!
+    console.log('MINI ID:', id);
+    handleDelete(id);
+  };
+
+  const miniColorBoxes = colors.map((color) => {
     return (
       <div
         key={color.name}
@@ -19,19 +33,15 @@ function MiniPalette(props) {
   });
 
   return (
-    <div
-      className={classes.root}
-      onClick={() => navigate(`/palette/${props.id}`)}
-      //   onClick={() => props.handleClick(props.id)}
-    >
-      <div className={classes.delete}>
-        <DeleteForeverIcon className={classes.deleteIcon} />
-      </div>
-
+    <div className={classes.root} onClick={() => navigate(`/palette/${id}`)}>
+      <DeleteForeverIcon
+        className={classes.deleteIcon}
+        onClick={handleDeletePalette}
+      />
       <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
-        {props.paletteName}
-        <span className={classes.emoji}>{props.emoji}</span>
+        {paletteName}
+        <span className={classes.emoji}>{emoji}</span>
       </h5>
     </div>
   );

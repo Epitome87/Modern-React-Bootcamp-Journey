@@ -19,6 +19,10 @@ function App() {
     // We will accomplish this through a useEffect hook!
   };
 
+  const deletePalette = (id) => {
+    setPalettes(palettes.filter((palette) => palette.id !== id));
+  };
+
   useEffect(() => {
     syncLocalStorage();
   }, [palettes]);
@@ -35,7 +39,12 @@ function App() {
           <NewPaletteForm savePalette={savePalette} palettes={palettes} />
         }
       />
-      <Route path='/' element={<PaletteList palettes={palettes} />} />
+      <Route
+        path='/'
+        element={
+          <PaletteList palettes={palettes} handleDelete={deletePalette} />
+        }
+      />
       <Route path='/palette/:id' element={<Palette palettes={palettes} />} />
       <Route
         path='/palette/:paletteId/:colorId'
