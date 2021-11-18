@@ -1,4 +1,5 @@
 import sizes from './sizes';
+import bg from './bg.svg';
 
 const styles = {
   PaletteList: {
@@ -7,6 +8,14 @@ const styles = {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    backgroundColor: '#3d2de6',
+    backgroundImage: `url(${bg})`,
+    /* background by SVGBackgrounds.com */
+    overflow: 'scroll',
+  },
+
+  title: {
+    fontSize: '2rem',
   },
 
   container: {
@@ -55,7 +64,7 @@ const styles = {
 
     [sizes.down('xs')]: {
       gridTemplateColumns: 'repeat(1, 100%)',
-      gridGap: '1rem',
+      gridGap: '1.4rem',
     },
   },
 
