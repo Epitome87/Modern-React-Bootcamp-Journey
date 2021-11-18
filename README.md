@@ -2089,6 +2089,16 @@ Stopping at lecture 12 of 12, "Make Form & Navbar Responsive. Will continue when
 
 The `gap` property for `display: grid` seems to not like percentages as values on certain browsers. Better to use px, rem, or em!
 
+### Fade Animations with Transition Group
+
+A popular library for handling transitions in React: `https://reactcommunity.org/react-transition-group/`
+
+We will use it for our transitions!
+
+`npm install react-transition-group --save`
+
+Not going to take too much notes on how to use this library, as I don't find it particularly useful.
+
 ### `Originally Started: TBD`
 
 ## Section 32: Introducing React Hooks
