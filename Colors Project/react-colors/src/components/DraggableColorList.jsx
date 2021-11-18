@@ -4,7 +4,8 @@ import { SortableContainer } from 'react-sortable-hoc';
 
 function DraggableColorList({ colors, handleDelete }) {
   return (
-    <div style={{ height: '100%' }}>
+    // Line height seems to fix my ColorBoxes having gaps between one another
+    <div style={{ height: '100%', lineHeight: '1.4' }}>
       {colors.map((color, idx) => (
         <DraggableColorBox
           index={idx} // for drag and drop

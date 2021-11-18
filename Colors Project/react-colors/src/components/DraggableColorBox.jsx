@@ -12,7 +12,11 @@ const DraggableColorBox = SortableElement(
     };
 
     return (
-      <div className={classes.DraggableColorBox} onClick={deleteColor}>
+      <div
+        className={classes.DraggableColorBox}
+        onClick={deleteColor}
+        style={{ margin: "-3px 0" }}
+      >
         <div className={classes.boxContent}>
           <span>
             {name} - {color}

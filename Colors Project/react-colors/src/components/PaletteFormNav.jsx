@@ -16,6 +16,7 @@ import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 
 // Form Validation
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import styles from '../styles//PaletteFormNavStyles';
 
 // TODO: This is being set in NwePaletteForm too, not good
 const drawerWidth = 400;
@@ -69,6 +70,7 @@ function PaletteFormNav({
       >
         <Toolbar>
           <IconButton
+            className='menubutton'
             color='inherit'
             aria-label='open drawer'
             onClick={handleDrawerOpen}
@@ -82,20 +84,25 @@ function PaletteFormNav({
           </Typography>
         </Toolbar>
 
-        <div className='classes.NavButtons' style={{ marginRight: '1rem' }}>
+        <div
+          className={styles.navBtns}
+          // style={{ marginRight: '1rem' }}
+        >
           <Link to='/' style={{ textDecoration: 'none' }}>
             <Button
+              className={styles.button}
               variant='contained'
               color='secondary'
-              style={{ margin: '0 0.5rem' }}
+              // style={{ margin: '0 0.5rem' }}
             >
               Go Back
             </Button>
           </Link>
           <Button
+            className={styles.button}
             variant='contained'
             onClick={handleShowForm}
-            style={{ margin: '0 0.5rem' }}
+            // style={{ margin: '0 0.5rem' }}
           >
             Save
           </Button>

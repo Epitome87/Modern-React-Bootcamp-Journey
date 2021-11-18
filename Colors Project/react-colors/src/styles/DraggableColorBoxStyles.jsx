@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 const styles = {
   DraggableColorBox: {
     backgroundColor: (props) => props.color,
@@ -19,6 +21,21 @@ const styles = {
       color: 'white',
       transform: 'scale(1.5)',
     },
+
+    [sizes.down('lg')]: {
+      width: '25%',
+      height: '20%',
+    },
+
+    [sizes.down('md')]: {
+      width: '50%',
+      height: '10%',
+    },
+
+    [sizes.down('sm')]: {
+      width: '100%',
+      height: '5%',
+    },
   },
 
   boxContent: {
@@ -34,7 +51,7 @@ const styles = {
 
     // Unique to DraggableColorBox over ColorBox
     display: 'flex',
-    alignItems: "center",
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
 

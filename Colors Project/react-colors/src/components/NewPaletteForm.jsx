@@ -214,7 +214,7 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
       </Drawer>
       <Main
         open={isDrawerOpen}
-        sx={{ height: 'calc(100vh - 75px) !important', padding: '0' }}
+        sx={{ height: 'calc(100vh - 64px) !important', padding: '0' }}
       >
         <DrawerHeader />
 

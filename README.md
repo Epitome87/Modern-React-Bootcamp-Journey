@@ -2081,7 +2081,13 @@ Documentation and Installation of **react-sortable-hoc**
 
 ### `Originally Started: 11/15/2021`
 
+Stopping at lecture 12 of 12, "Make Form & Navbar Responsive. Will continue when I'm home!
+
 ## Section 31: The Massive Color Project Part 7
+
+### Make Palette List Responsive
+
+The `gap` property for `display: grid` seems to not like percentages as values on certain browsers. Better to use px, rem, or em!
 
 ### `Originally Started: TBD`
 

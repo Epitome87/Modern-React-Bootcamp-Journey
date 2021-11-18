@@ -18,7 +18,6 @@ function MiniPalette({
     event.stopPropagation();
 
     // Call PaletteList's callback, which will then call App's!
-    console.log('MINI ID:', id);
     handleDelete(id);
   };
 

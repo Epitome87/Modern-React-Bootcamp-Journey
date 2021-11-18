@@ -1,7 +1,12 @@
+import sizes from './sizes';
+
+const drawerWidth = 400;
+
 const styles = (theme) => ({
   root: {
     display: 'flex',
   },
+
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -12,6 +17,7 @@ const styles = (theme) => ({
     alignItems: 'center',
     height: '64px',
   },
+
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
@@ -20,18 +26,30 @@ const styles = (theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+
   menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
+    marginLeft: '12px',
+    marginRight: '20px',
   },
+
   navBtns: {
     marginRight: '1rem',
     '& a': {
       textDecoration: 'none',
     },
+
+    [sizes.down('xs')]: {
+      marginRight: 0,
+    },
   },
+
   button: {
     margin: '0 0.5rem',
+    color: 'pink !important',
+  },
+
+  [sizes.down('xs')]: {
+    margin: 0,
   },
 });
 
