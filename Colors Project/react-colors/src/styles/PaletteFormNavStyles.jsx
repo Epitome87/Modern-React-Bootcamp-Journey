@@ -39,13 +39,16 @@ const styles = (theme) => ({
     },
 
     [sizes.down('xs')]: {
-      marginRight: 0,
+      marginRight: '0.5rem',
     },
   },
 
   button: {
     margin: '0 0.5rem',
-    color: 'pink !important',
+    [sizes.down('xs')]: {
+      margin: '0 0.2rem',
+      padding: '0.3rem',
+    },
   },
 
   [sizes.down('xs')]: {

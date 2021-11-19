@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // Start requires for Drawer component
 import { styled } from '@mui/material/styles';
+// import { withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
@@ -13,6 +14,8 @@ import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 // End requires for Drawer component
 import PaletteMetaForm from './PaletteMetaForm';
 import styles from '../styles//PaletteFormNavStyles';
+import Box from '@mui/material/Box';
+import sizes from '../styles/sizes';
 
 // TODO: This is being set in NwePaletteForm too, not good
 const drawerWidth = 400;
@@ -75,21 +78,46 @@ function PaletteFormNav({
           >
             <AddToPhotosIcon />
           </IconButton>
-          <Typography variant='h6' noWrap component='div'>
+          <Typography
+            variant='h6'
+            noWrap
+            component='div'
+            sx={{
+              [sizes.down('xs')]: {
+                fontSize: '1rem',
+              },
+            }}
+          >
             Create A Palette!
           </Typography>
         </Toolbar>
 
-        <div
+        <Box
           className={styles.navBtns}
-          // style={{ marginRight: '1rem' }}
+          sx={{
+            marginRight: '1rem',
+            '& a': {
+              textDecoration: 'none',
+            },
+
+            [sizes.down('xs')]: {
+              marginRight: '0.5rem',
+            },
+          }}
         >
           <Link to='/' style={{ textDecoration: 'none' }}>
             <Button
               className={styles.button}
               variant='contained'
               color='secondary'
-              // style={{ margin: '0 0.5rem' }}
+              sx={{
+                margin: '0 0.5rem',
+                [sizes.down('xs')]: {
+                  margin: '0 0.2rem',
+                  padding: '0.3rem',
+                  fontSize: '0.75rem',
+                },
+              }}
             >
               Go Back
             </Button>
@@ -98,11 +126,18 @@ function PaletteFormNav({
             className={styles.button}
             variant='contained'
             onClick={handleShowForm}
-            // style={{ margin: '0 0.5rem' }}
+            sx={{
+              margin: '0 0.5rem',
+              [sizes.down('xs')]: {
+                margin: '0 0.2rem',
+                padding: '0.3rem',
+                fontSize: '0.75rem',
+              },
+            }}
           >
             Save
           </Button>
-        </div>
+        </Box>
       </AppBar>
       {isFormShowing && (
         <PaletteMetaForm
