@@ -5,14 +5,15 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import miniPaletteStyles from '../styles/MiniPaletteStyles';
 
 const MiniPalette = React.memo(
-  ({ classes, colors, id, paletteName, emoji, handleDelete }) => {
+  ({ classes, colors, id, paletteName, emoji, openDialog, handleDelete }) => {
     const navigate = useNavigate();
 
     const handleDeletePalette = useCallback((event) => {
       event.stopPropagation();
 
       // Call PaletteList's callback, which will then call App's!
-      handleDelete(id);
+      // handleDelete(id);
+      openDialog(id);
     }, []);
 
     const handleClickPalette = useCallback(() => {
