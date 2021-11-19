@@ -43,6 +43,7 @@ function PaletteMetaForm({ palettes, handleSubmitNewPalette, handleHideForm }) {
 
   const handleSelectEmoji = (emoji) => {
     const newPalette = { paletteName: newPaletteName, emoji: emoji.native };
+    setFormStage('');
     handleSubmitNewPalette(newPalette);
   };
 

@@ -80,13 +80,20 @@ const styles = {
       opacity: 0,
       transition: 'opacity 0.5s ease-out',
     },
-    '.fade-enter': {
-      opacity: 0,
-    },
-    '.fade-enter-active': {
-      opacity: 1,
-      transition: 'opacity 0.5s ease-in',
-    },
+    // '.fade-exit': {
+    //   left: 0,
+    // },
+    // '.fade-exit-active': {
+    //   left: '-100%',
+    //   transition: 'all 0.5s ease-out',
+    // },
+    // '.fade-enter': {
+    //   left: '-100%',
+    // },
+    // '.fade-enter-active': {
+    //   left: '0',
+    //   transition: 'all 0.5s ease-in',
+    // },
   },
 };
 
