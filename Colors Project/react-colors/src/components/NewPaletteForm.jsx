@@ -17,6 +17,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // Drag and Drop!
 import { arrayMove } from 'react-sortable-hoc';
 import DraggableColorList from './DraggableColorList';
+import seedColors from '../seedPalettes';
 
 const drawerWidth = 400;
 
@@ -56,7 +57,7 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
   const navigate = useNavigate();
 
   // Form logic States:
-  const [colors, setColors] = useState([...palettes[0].colors]);
+  const [colors, setColors] = useState(seedColors[0].colors);
 
   // Drawer State (we also pass this to this form's Nav component):
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);

@@ -20,19 +20,20 @@ function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
     setNewColorName(event.target.value);
   };
 
-  useEffect(() => {
-    // Validation for New Color's Name:
-    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-      return colors.every(
-        (color) => color.name.toLowerCase() !== value.toLowerCase()
-      );
-    });
+  useEffect(() => {}, []);
 
-    // Validation for New Color's...Color
-    ValidatorForm.addValidationRule('isColorUnique', (value) => {
-      return colors.every((color) => color.color !== currentColor);
-    });
-  }, []);
+  // TODO: Make these validation rules be added once? Yet that seems to break things.
+  // Validation for New Color's Name:
+  ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
+    return colors.every(
+      (color) => color.name.toLowerCase() !== value.toLowerCase()
+    );
+  });
+
+  // Validation for New Color's...Color
+  ValidatorForm.addValidationRule('isColorUnique', (value) => {
+    return colors.every((color) => color.color !== currentColor);
+  });
 
   // Called when the form is submitted: Sets color name to the form's input
   const handleOnSubmit = () => {
@@ -51,6 +52,7 @@ function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
       <ValidatorForm
         onSubmit={handleOnSubmit}
         onError={(errors) => console.log(errors)}
+        instantValidate={false}
       >
         <TextValidator
           className='ColorPicker__colorNameInput'
