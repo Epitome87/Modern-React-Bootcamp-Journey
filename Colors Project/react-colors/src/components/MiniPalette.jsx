@@ -1,49 +1,50 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { withStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
 import miniPaletteStyles from '../styles/MiniPaletteStyles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function MiniPalette({
-  classes,
-  colors,
-  id,
-  paletteName,
-  emoji,
-  handleDelete,
-}) {
-  const navigate = useNavigate();
+const MiniPalette = React.memo(
+  ({ classes, colors, id, paletteName, emoji, handleDelete }) => {
+    const navigate = useNavigate();
 
-  const handleDeletePalette = (event) => {
-    event.stopPropagation();
+    const handleDeletePalette = useCallback((event) => {
+      event.stopPropagation();
 
-    // Call PaletteList's callback, which will then call App's!
-    handleDelete(id);
-  };
+      // Call PaletteList's callback, which will then call App's!
+      handleDelete(id);
+    }, [handleDelete, id]);
 
-  const miniColorBoxes = colors.map((color) => {
+    const handleClickPalette = useCallback(() => {
+      navigate(`/palette/${id}`);
+    }, [id, navigate]);
+
+    const miniColorBoxes = colors.map((color) => {
+      return (
+        <div
+          key={color.name}
+          className={classes.miniColor}
+          style={{ backgroundColor: color.color }}
+        />
+      );
+    });
+
+    console.log('rendering', paletteName);
+
     return (
-      <div
-        key={color.name}
-        className={classes.miniColor}
-        style={{ backgroundColor: color.color }}
-      />
+      <div className={classes.root} onClick={handleClickPalette}>
+        <DeleteForeverIcon
+          className={classes.deleteIcon}
+          onClick={handleDeletePalette}
+        />
+        <div className={classes.colors}>{miniColorBoxes}</div>
+        <h5 className={classes.title}>
+          {paletteName}
+          <span className={classes.emoji}>{emoji}</span>
+        </h5>
+      </div>
     );
-  });
-
-  return (
-    <div className={classes.root} onClick={() => navigate(`/palette/${id}`)}>
-      <DeleteForeverIcon
-        className={classes.deleteIcon}
-        onClick={handleDeletePalette}
-      />
-      <div className={classes.colors}>{miniColorBoxes}</div>
-      <h5 className={classes.title}>
-        {paletteName}
-        <span className={classes.emoji}>{emoji}</span>
-      </h5>
-    </div>
-  );
-}
+  }
+);
 
 export default withStyles(miniPaletteStyles)(MiniPalette);

@@ -5,7 +5,7 @@ import { withStyles } from '@mui/styles';
 import paletteListStyles from '../styles/PaletteListStyles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-function PaletteList({ classes, palettes, handleDelete }) {
+const PaletteList = React.memo(({ classes, palettes, handleDelete }) => {
   return (
     <div className={classes.PaletteList}>
       <div className={classes.container}>
@@ -21,7 +21,6 @@ function PaletteList({ classes, palettes, handleDelete }) {
                 <MiniPalette
                   key={palette.id}
                   {...palette}
-                  palettes={palettes}
                   handleDelete={handleDelete}
                 />
               </CSSTransition>
@@ -31,6 +30,6 @@ function PaletteList({ classes, palettes, handleDelete }) {
       </div>
     </div>
   );
-}
+});
 
 export default withStyles(paletteListStyles)(PaletteList);

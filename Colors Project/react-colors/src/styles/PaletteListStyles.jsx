@@ -3,7 +3,6 @@ import bg from './bg.svg';
 
 const styles = {
   PaletteList: {
-    backgroundColor: 'blue',
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',

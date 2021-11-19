@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Start requires for Drawer component
-import { styled, useTheme, useStyles } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import Box from '@mui/material/Box';

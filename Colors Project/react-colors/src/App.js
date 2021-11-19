@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import NewPaletteForm from './components/NewPaletteForm';
@@ -13,35 +13,35 @@ function App() {
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(savedPalettes || seedPalettes);
 
-  const savePalette = (newPalette) => {
-    setPalettes([...palettes, newPalette]);
+  const savePalette = useCallback((newPalette) => {
+    setPalettes((p) => [...p, newPalette]);
 
     // Also save to Local Storage!
     // syncLocalStorage();
     // We will accomplish this through a useEffect hook!
-  };
+  }, []);
 
-  const deletePalette = (id) => {
-    setPalettes(palettes.filter((palette) => palette.id !== id));
-  };
+  const deletePalette = useCallback((id) => {
+    setPalettes((p) => p.filter((palette) => palette.id !== id));
+  }, []);
+
+  const syncLocalStorage = useCallback(() => {
+    window.localStorage.setItem('palettes', JSON.stringify(palettes));
+  }, [palettes]);
 
   useEffect(() => {
     syncLocalStorage();
-  }, [palettes]);
-
-  const syncLocalStorage = () => {
-    window.localStorage.setItem('palettes', JSON.stringify(palettes));
-  };
-
-  // const routes = [
-  //   { path: "/", name: "Home", Component: }
-  // ]
+  }, [palettes, syncLocalStorage]);
 
   const location = useLocation();
 
   return (
-    <TransitionGroup component={null}>
-      <CSSTransition key={location.key} classNames='page' timeout={500}>
+    <TransitionGroup component={useMemo(() => null)}>
+      <CSSTransition
+        key={location.key}
+        classNames='page'
+        timeout={useMemo(() => 500)}
+      >
         <Routes location={location}>
           <Route
             path='/palette/new'
@@ -55,7 +55,10 @@ function App() {
             path='/'
             element={
               <Page>
-                <PaletteList palettes={palettes} handleDelete={deletePalette} />
+                <PaletteList
+                  palettes={palettes}
+                  handleDelete={useMemo(() => deletePalette, [deletePalette])}
+                />
               </Page>
             }
           />

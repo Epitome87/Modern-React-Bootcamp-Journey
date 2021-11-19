@@ -8,16 +8,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
-import emoji from 'emoji-mart/dist-es/components/emoji/emoji';
 
 function PaletteMetaForm({ palettes, handleSubmitNewPalette, handleHideForm }) {
-  //   const [open, setOpen] = React.useState(true);
   const [newPaletteName, setNewPaletteName] = useState('');
   const [formStage, setFormStage] = useState('paletteName');
-
-  const handleClickOpen = () => {
-    // setOpen(true);
-  };
 
   const handleClose = () => {
     // Why doesn't Colt have to setOpen to false?

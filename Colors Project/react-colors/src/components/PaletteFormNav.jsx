@@ -3,19 +3,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 // Start requires for Drawer component
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 // End requires for Drawer component
 
-// Form Validation
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import styles from '../styles//PaletteFormNavStyles';
 
 // TODO: This is being set in NwePaletteForm too, not good
