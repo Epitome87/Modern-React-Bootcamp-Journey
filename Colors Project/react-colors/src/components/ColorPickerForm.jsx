@@ -1,11 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-// React Color
 import { ChromePicker } from 'react-color';
-// Form Validation
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'; // Form Validation
 import '../styles/ColorPickerFormStyles.css';
 
 function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
@@ -24,23 +20,25 @@ function ColorPickerForm({ paletteIsFull, addNewColor, colors }) {
     setNewColorName(event.target.value);
   };
 
+  useEffect(() => {
+    // Validation for New Color's Name:
+    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
+      return colors.every(
+        (color) => color.name.toLowerCase() !== value.toLowerCase()
+      );
+    });
+
+    // Validation for New Color's...Color
+    ValidatorForm.addValidationRule('isColorUnique', (value) => {
+      return colors.every((color) => color.color !== currentColor);
+    });
+  }, []);
+
+  // Called when the form is submitted: Sets color name to the form's input
   const handleOnSubmit = () => {
     addNewColor({ name: newColorName, color: currentColor });
     setNewColorName('');
   };
-
-  // TODO: Only add these validation rules once
-  // Validation for New Color's Name:
-  ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-    return colors.every(
-      (color) => color.name.toLowerCase() !== value.toLowerCase()
-    );
-  });
-
-  // Validation for New Color's...Color
-  ValidatorForm.addValidationRule('isColorUnique', (value) => {
-    return colors.every((color) => color.color !== currentColor);
-  });
 
   return (
     <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>

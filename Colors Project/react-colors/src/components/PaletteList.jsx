@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MiniPalette from './MiniPalette';
 import { withStyles } from '@mui/styles';
-import paletteListStyles from '../styles/PaletteListStyles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import MiniPalette from './MiniPalette';
+import paletteListStyles from '../styles/PaletteListStyles';
 
 const PaletteList = React.memo(({ classes, palettes, handleDelete }) => {
   return (

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
-import { withStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
-import miniPaletteStyles from '../styles/MiniPaletteStyles';
+import { withStyles } from '@mui/styles';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import miniPaletteStyles from '../styles/MiniPaletteStyles';
 
 const MiniPalette = React.memo(
   ({ classes, colors, id, paletteName, emoji, handleDelete }) => {
@@ -13,11 +13,11 @@ const MiniPalette = React.memo(
 
       // Call PaletteList's callback, which will then call App's!
       handleDelete(id);
-    }, [handleDelete, id]);
+    }, []);
 
     const handleClickPalette = useCallback(() => {
       navigate(`/palette/${id}`);
-    }, [id, navigate]);
+    }, []);
 
     const miniColorBoxes = colors.map((color) => {
       return (

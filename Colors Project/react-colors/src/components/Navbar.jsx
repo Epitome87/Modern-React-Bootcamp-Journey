@@ -23,12 +23,10 @@ function Navbar({
     // Call Palette component's format handler
     changeFormat(event.target.value);
 
-    console.log('CHANGING');
     setIsOpenSnackbar(true);
   };
 
   const closeSnackbar = () => {
-    console.log('CLOSING');
     setIsOpenSnackbar(false);
   };
 

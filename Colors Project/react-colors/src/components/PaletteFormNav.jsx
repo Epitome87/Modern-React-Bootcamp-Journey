@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PaletteMetaForm from './PaletteMetaForm';
 // Start requires for Drawer component
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -12,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 // End requires for Drawer component
-
+import PaletteMetaForm from './PaletteMetaForm';
 import styles from '../styles//PaletteFormNavStyles';
 
 // TODO: This is being set in NwePaletteForm too, not good

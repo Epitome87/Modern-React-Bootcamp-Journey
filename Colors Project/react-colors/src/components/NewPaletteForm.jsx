@@ -14,10 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // End requires for Drawer component
-
 // Drag and Drop!
-import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
+import DraggableColorList from './DraggableColorList';
 
 const drawerWidth = 400;
 
@@ -137,10 +136,6 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-
-            // testing
-            // display: 'flex',
-            // alignItems: 'center',
           },
         }}
         variant='persistent'
