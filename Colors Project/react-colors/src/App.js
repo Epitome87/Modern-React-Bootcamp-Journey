@@ -77,6 +77,18 @@ function App() {
               </Page>
             }
           />
+          {/* Catch-all Route */}
+          <Route
+            path='*'
+            element={
+              <Page>
+                <PaletteList
+                  palettes={palettes}
+                  handleDelete={useMemo(() => deletePalette, [deletePalette])}
+                />
+              </Page>
+            }
+          />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
