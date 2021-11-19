@@ -3,6 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'; // Easy Clipboard fun
 import { Link } from 'react-router-dom';
 import { withStyles } from '@mui/styles';
 import colorBoxStyles from '../styles/ColorBoxStyles';
+import classNames from 'classnames';
 
 const ColorBox = ({
   background,
@@ -29,15 +30,15 @@ const ColorBox = ({
     <CopyToClipboard text={background} onCopy={changeCopyState}>
       <div className={classes.ColorBox} style={{ background }}>
         <div
-          className={`${classes.copyOverlay} ${
-            isCopied ? classes.showOverlay : ''
-          }`}
+          className={classNames(classes.copyOverlay, {
+            [classes.showOverlay]: isCopied,
+          })}
           style={{ background }}
         />
         <div
-          className={`${classes.copyMessage} ${
-            isCopied ? classes.showCopyMessage : ''
-          }`}
+          className={classNames(classes.copyMessage, {
+            [classes.showCopyMessage]: isCopied,
+          })}
         >
           <h1>Copied!</h1>
           <p className={classes.copyText}>{background}</p>
