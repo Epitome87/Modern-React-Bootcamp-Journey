@@ -227,6 +227,10 @@ function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
           handleDelete={handleDelete}
           axis='xy'
           onSortEnd={onSortEnd}
+          // Setting Distance prevents other events from being "Swalloed" by our Drag event. By setting a higher distance, we give
+          // some wiggle room for distinguishing a regular click from an actual attempted drag. This fixes a bug where it was sometimes hard to
+          // delete our ColorBox.
+          distance={20}
         />
       </Main>
     </Box>
