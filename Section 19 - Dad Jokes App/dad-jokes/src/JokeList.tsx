@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './JokeList.css';
 import Joke from './Joke';
 import axios from 'axios';
@@ -6,12 +6,10 @@ import axios from 'axios';
 const JOKE_API_URL = 'https://icanhazdadjoke.com/';
 
 // Defines the shape of our "Joke", which we pass as a prop(s) to a Joke component
-interface IJoke {
+export interface IJoke {
   id: string;
   text: string;
   votes: number;
-  upvote: () => void;
-  downvote: () => void;
 }
 
 // Defines the shape of the props the JokeList expects
@@ -51,8 +49,8 @@ const JokeList: React.FC<JokeListProps> = (props) => {
           text: joke.data.joke,
           id: joke.data.id,
           votes: 0,
-          upvote: () => handleVote(joke.data.id, 1),
-          downvote: () => handleVote(joke.data.id, -1),
+          // upvote: () => handleVote(joke.data.id, 1),
+          // downvote: () => handleVote(joke.data.id, -1),
         };
 
         fetchedJokes.push(newJoke);
@@ -68,11 +66,11 @@ const JokeList: React.FC<JokeListProps> = (props) => {
   };
 
   const handleVote = (id: string, delta: number) => {
-    const updatedJokes = jokes.map((joke) =>
-      id === joke.id ? { ...joke, votes: joke.votes + delta } : joke
-    );
-
-    setJokes(updatedJokes);
+    setJokes((prevJokes) => {
+      return prevJokes.map((joke) => {
+        return id === joke.id ? { ...joke, votes: joke.votes + delta } : joke;
+      });
+    });
     window.localStorage.setItem('jokes', JSON.stringify(jokes));
   };
 
@@ -94,11 +92,11 @@ const JokeList: React.FC<JokeListProps> = (props) => {
     );
   }
 
-  const renderedJokes = jokes.map((joke: IJoke) => {
+  const renderedJokes = jokes.map((joke) => {
     return (
       <Joke
         key={joke.id}
-        // id={joke.id}
+        id={joke.id}
         text={joke.text}
         votes={joke.votes}
         upvote={() => handleVote(joke.id, 1)}
@@ -126,4 +124,4 @@ const JokeList: React.FC<JokeListProps> = (props) => {
   );
 };
 
-export default JokeList;
+export default React.memo(JokeList);

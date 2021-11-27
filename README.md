@@ -2388,15 +2388,241 @@ Even though the React documentation warns against using Context too much, you ca
 
 ### Adding a Responsive Navbar to Our Context App
 
-(As this lesson and the project it builds throughout the rest of the section rely on information taught in the Colors project, I am taking a small detour away from the Context API)
+This section is just a lot of (outdated) Material UI stuff to build a Navbar component.
+
+### Adding a Responsive Form to our Context App
+
+Again, this section is just a lot of (outdated) Material UI stuff to build a Form component.
+
+### Intro to Context and Providers
+
+There are two main pieces to context:
+
+1. Provider: Where we put the state / methods that we want to have context to
+2. Consumer: A component that needs access to that content can consume it
+
+Here is how we _provide_ the context:
+
+```js
+// ThemeProvider.js
+import React, { createContext } from "react";
+
+export const ThemeContext = createContext();
+
+export class ThemeProvider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isDarkMode: true };
+  }
+
+  render () {
+    <ThemeContext.Provider value={ ...this.state }>
+      {this.props.children}
+    </ThemeContext.Provider>
+  }
+}
+
+// App.js
+import { ThemeProvider } from "./ThemeContext";
+
+// In render
+<ThemeProvider>
+  <Navbar />
+  <Form />
+</ThemeProvider>
+
+```
+
+### Consuming a Context
+
+There are a couple of options to _consume_ a Context.
+
+One way, in a Class-component, is to set the `contextType` property:
+
+```js
+// At the end of a Component, outside of its definition:
+class MyClass extends React.Component {
+  // Etc
+}
+MyClass.contextType = MyContext;
+```
+
+The first way also has a slight variation:
+
+```js
+class MyClass extends React.Component {
+  static contextType = myContext;
+  // etc
+}
+```
+
+So in our case, we would have:
+
+```js
+// Navbar.js
+import { ThemeContext } from './ThemeContext';
+class Navbar extends Component {
+  static contextType = ThemeContext;
+
+  // Now have access to this:
+  const {isDarkMode } = this.context;
+}
+```
+
+This tells the component: Look up and see if you are nested inside a ThemeContext Provider. If you are, if you're inside more than one, find the nearest one.
+
+- Doesn't have to be a direct descendant of the ThemeProvider
+- We now have acess to the data with a now-added property: `this.context`
+
+### Updating a Context Dynamically
+
+To update a context, just do so how you would normally change the state of a component: We pass a function that handles changing the state, as part of the object we pass into the Provider's `value` prop:
+
+```js
+// ThemeContext.js
+toggleTheme() { this.setState( {isDarkMode: !this.state.isDarkMode}) }
+
+return (
+  <ThemeContext.Provider value={{...this.state, toggleTheme: this.toggleTheme }}>
+);
+
+// Then in another Component which consumes this Context, let's say we change theme via a button:
+
+static contextType = ThemeContext;
+const {isDarkMode, toggleTheme} = this.context;
+
+<button onClick={toggleTheme}>Change Theme!</button>
+```
+
+### Writing the Language Context
+
+Here we just write another Context for the ability to change the Language of the app.
+
+### Consuming 2 Contexts - Enter the Higher Order Component
+
+The issue here is we already have the Navbar consuming the Theme Context. But we can only _simply_ consume one Context with a Class-component. How can we get around this?
+
+- We make use of `Context.Consumer`
+  - It requires a function as a child, which receives the value of the Context
+- We can also refactor to a higher order component
+
+Solving the issue in-line using `Context.Consumer`
+
+```js
+return (
+  <LanguageContext.Consumer>
+    {(value) => (
+      <div>
+        The stuff we'd normally find in our Component's render method, now with
+        access to "value"
+        {value === 'English' ? 'Welcome!' : 'Hola!'}
+      </div>
+    )}
+  </LanguageContext.Consumer>
+);
+```
+
+- This somewhat clutters our JSX, so we may prefer to refactor as a higher order component
+  - I personally think the above solution is way easier and more elegant than the next solution!
+
+Solving the issue with higher order components
+
+- Takes the Navbar as an argument and returns a special verson of the Navbar where we have already passed in the Context
+
+```js
+// In LanguageContext.js, after the usual stuff
+export const withLanguageContext = (Component) => (props) =>
+  (
+    <LanguageContext.Consumer>
+      {(value) => <Component languageContext={value} {...props} />}
+    </LanguageContext.Consumer>
+  );
+
+// In Navbar, which consumes the LanguageContext:
+// We no longer import { LanguageContext } from "./LanguageContext", but rather...
+import { withLanguageContext } from './LanguageContext';
+
+// And when we export  Navbar:
+export default withLanguageContext(Navbar);
+```
+
+- This creates a higher order component, which takes a Component and props in as an argument, returns that component with all the original props plus a prop called langaugeContext (coming from LanguageContext.Consumer)
 
 ## Section 35: Using Context with Hooks
 
-### `Originally Started: TBD`
+### `Originally Started: 11/26/2021`
+
+### Introducing the useContext Hook
+
+We refactor our previous Class-component to use Hooks for context, as we will now explore Context in a Functional component. Using Context in a Functonal component is much simpler!
+
+- Basically, when we consume the Context, we replace `static contextType = OurContext;` with:
+
+```js
+import React, { useContext } from 'react';
+const ourContext = useContext(OurContext);
+
+// ourContext, when using our ThemeProvider, now stores: { isDarkMode: true }
+```
+
+### Consuming Multiple Contexts with Hooks
+
+Sooo much simpler with Hooks to consume multiple contexts! We simply make multiple calls to `useContext`:
+
+```js
+const themeContext = useContext(ThemeContext);
+// Showing object destructuring (since we know our LanguageContext holds these properties):
+const { language, chooseLanguage } = useContext(LanguageContext);
+```
+
+### Rewriting a Context Provider with Hooks
+
+Next we rewrite the Language Context itself to be a Functional component. As with re-writing / using a Functional component for _consuming_ the Context, making the conversion to a Functional component that _provides_ the Context is simple:
+
+- Remove class constructor and replace with a function one
+- Make use of `useState` for our state instead of setting `this.state = { }`
+- Remove all occurences of `this`
+
+Overall, a lot less code required than with a Class component as a Context provider.
+
+### Context Providers with Custom Hooks
+
+Here we rewrite our Theme Context to be a Functioanl component. Same as the last section, but we make use of a custom hook that can toggle a state between two values:
+
+```js
+// useToggleState.js
+import { useState } from 'react';
+
+const useToggle = (initialValue) => {
+  const [state, setState] = useState(intialValue);
+  const toggle = () => {
+    setState((prevState) => !prevState);
+  };
+  return [state, toggle];
+};
+
+export default useToggle;
+```
+
+```js
+// ThemeContext.js
+import useToggleStage from './useToggleState';
+export function ThemeProvider(props) {
+  const [isDarkMode, toggleTheme] = useToggleState(false);
+
+  return (
+    <ThemeContext.Providre value={{isDarkMode, toggleTheme}}>{props.children}</ThemeContext.Provider>
+  );
+}
+```
+
+### Hookify-ing the Rest of the App
+
+Just very simple, minor tweaks to refactor App.js and PageContent.js in our project to be Functional.
 
 ## Section 36: State Management with useReducer and useContext
 
-### `Originally Started: TBD`
+### `Originally Started: 11/26/2021`
 
 ## Section 37: Next JS
 
