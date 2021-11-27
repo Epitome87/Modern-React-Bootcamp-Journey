@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './RuleRow.css';
+import { gameContext } from '../contexts/GameContext';
 
 const RuleRow = (props) => {
-  const { score, name, doScore, description, isRolling } = props;
+  const { score, name, doScore, description } = props;
+  const { isRolling } = useContext(gameContext);
   const disabled = props.score !== undefined;
+
   return (
     <tr
       className={`RuleRow RuleRow-${disabled ? 'disabled' : 'active'}`}

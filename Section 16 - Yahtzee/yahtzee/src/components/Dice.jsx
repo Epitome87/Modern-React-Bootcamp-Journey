@@ -1,20 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { gameContext } from '../contexts/GameContext';
 import Die from './Die';
 import './Dice.css';
 
 function Dice(props) {
+  const { locked, dice } = useContext(gameContext);
   return (
     <div className='Dice'>
-      {props.dice.map((d, idx) => {
+      {dice.map((d, idx) => {
         return (
           <Die
-            handleClick={props.handleClick}
             val={d}
-            locked={props.locked[idx]}
+            locked={locked[idx]}
             idx={idx}
             key={idx}
-            disabled={props.disabled}
-            isRolling={props.isRolling}
           />
         );
       })}

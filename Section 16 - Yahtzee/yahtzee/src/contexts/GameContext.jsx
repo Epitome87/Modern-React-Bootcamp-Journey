@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Dice from './Dice';
-import './Game.css';
-import ScoreTable from './ScoreTable';
+import React, { useState, useEffect, createContext } from 'react';
 
 const NUM_DICE = 5;
 const NUM_ROLLS = 3;
 
-function Game() {
+export const gameContext = createContext();
+
+export function GameProvider(props) {
   const [dice, setDice] = useState(
-    Array.from({ length: NUM_DICE }).map(
-      (d) => Math.floor(Math.random() * 6) + 1
-    )
+    Array.from({ length: NUM_DICE }).map((d) => Math.ceil(Math.random() * 6))
   );
   const [locked, setLocked] = useState(Array(NUM_DICE).fill(false));
   const [rollsLeft, setRollsLeft] = useState(NUM_ROLLS);
@@ -50,9 +47,9 @@ function Game() {
       )
     );
 
-    setLocked((prevLocked) =>
-      rollsLeft > 1 ? prevLocked : Array(NUM_DICE).fill(true)
-    );
+    // setLocked((prevLocked) =>
+    //   rollsLeft > 1 ? prevLocked : Array(NUM_DICE).fill(true)
+    // );
 
     // Subtract 1 from the number of rolls left
     setRollsLeft((prevRolls) => prevRolls - 1);
@@ -79,48 +76,25 @@ function Game() {
     });
 
     setRollsLeft(NUM_ROLLS);
-    setLocked(Array.from(NUM_DICE).fill(false));
+    setLocked(Array(NUM_DICE).fill(false));
 
     animateRoll();
   };
 
-  const displayRollInfo = () => {
-    const messages = [
-      '0 Rolls Left',
-      '1 Roll Left',
-      '2 Rolls Left',
-      'Starting Round',
-    ];
-
-    return messages[rollsLeft];
-  };
-
   return (
-    <div className='Game'>
-      <header className='Game-header'>
-        <h1 className='App-title'>Yahtzee!</h1>
-        <section className='Game-dice-section'>
-          <Dice
-            dice={dice}
-            locked={locked}
-            handleClick={toggleLocked}
-            disabled={rollsLeft === 0}
-            isRolling={isRolling}
-          />
-          <div className='Game-button-wrapper'>
-            <button
-              className='Game-reroll'
-              disabled={locked.every((x) => x) || rollsLeft <= 0 || isRolling}
-              onClick={animateRoll}
-            >
-              {displayRollInfo()}
-            </button>
-          </div>
-        </section>
-      </header>
-      <ScoreTable doScore={doScore} scores={scores} isRolling={isRolling} />
-    </div>
+    <gameContext.Provider
+      value={{
+        scores,
+        isRolling,
+        locked,
+        dice,
+        rollsLeft,
+        toggleLocked,
+        animateRoll,
+        doScore,
+      }}
+    >
+      {props.children}
+    </gameContext.Provider>
   );
 }
-
-export default Game;

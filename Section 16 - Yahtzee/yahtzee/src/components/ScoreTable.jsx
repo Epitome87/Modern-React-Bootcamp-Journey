@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { gameContext } from '../contexts/GameContext';
 import RuleRow from './RuleRow';
 import './ScoreTable.css';
 import {
@@ -15,19 +16,18 @@ import {
   largeStraight,
   yahtzee,
   chance,
-} from './Rules';
+} from '../Rules';
 
 function ScoreTable(props) {
+  const { scores, doScore, isRolling } = useContext(gameContext);
+
   const getTotalScore = () => {
-    const { scores } = props;
     let totalScore = 0;
     for (let key in scores) {
       if (scores[key]) totalScore += scores[key];
     }
     return totalScore;
   };
-
-  const { scores, doScore, isRolling } = props;
 
   return (
     <div className='ScoreTable'>

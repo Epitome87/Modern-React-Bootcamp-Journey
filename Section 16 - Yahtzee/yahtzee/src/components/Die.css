@@ -34,7 +34,7 @@
 
 .Die-rolling:hover,
 .Die[disabled] {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 
 @keyframes spin {

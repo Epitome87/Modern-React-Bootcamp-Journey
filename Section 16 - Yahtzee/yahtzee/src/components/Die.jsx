@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { gameContext } from '../contexts/GameContext';
 import './Die.css';
 
 const numberWords = ['one', 'two', 'three', 'four', 'five', 'six'];
 
 function Die(props) {
+  const { isRolling, toggleLocked, rollsLeft } = useContext(gameContext);
+
   const handleClick = () => {
-    props.handleClick(props.idx);
+    toggleLocked(props.idx);
   };
 
-  const { locked, val, disabled, isRolling } = props;
+  const { locked, val } = props;
+
+  const disabled = rollsLeft === 0 || isRolling;
 
   let classes = `Die fas fa-dice-${numberWords[val - 1]} fa-5x ${
     locked ? 'Die-locked' : ''
