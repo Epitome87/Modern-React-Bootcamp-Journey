@@ -1,7 +1,7 @@
 const palettes = [
   {
-    paletteName: 'Material UI Colors',
-    id: 'material-ui-colors',
+    paletteName: 'Material UI Palette',
+    id: 'material-ui-palette',
     emoji: '🎨',
     colors: [
       { name: 'red', color: '#F44336' },
@@ -26,8 +26,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors v1',
-    id: 'flat-ui-colors-v1',
+    paletteName: 'Flat UI Palette v1',
+    id: 'flat-ui-palette-v1',
     emoji: '🤙',
     colors: [
       { name: 'Turquoise', color: '#1abc9c' },
@@ -53,8 +53,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Dutch',
-    id: 'flat-ui-colors-dutch',
+    paletteName: 'Dutch Palette',
+    id: 'dutch-palette',
     emoji: '🇳🇱',
     colors: [
       { name: 'Sunflower', color: '#FFC312' },
@@ -80,8 +80,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors American',
-    id: 'flat-ui-colors-american',
+    paletteName: 'American Palette',
+    id: 'american-palette',
     emoji: '🇺🇸',
     colors: [
       { name: 'LightGreenishBlue', color: '#55efc4' },
@@ -107,8 +107,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Aussie',
-    id: 'flat-ui-colors-aussie',
+    paletteName: 'Aussie Palette',
+    id: 'aussie-alette',
     emoji: '🎈', // 🇦🇺
     colors: [
       { name: 'Beekeeper', color: '#f6e58d' },
@@ -134,8 +134,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors British',
-    id: 'flat-ui-colors-british',
+    paletteName: 'British Palette',
+    id: 'british-palette',
     emoji: '🇬🇧',
     colors: [
       { name: 'ProtossPylon', color: '#00a8ff' },
@@ -161,8 +161,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Spanish',
-    id: 'flat-ui-colors-spanish',
+    paletteName: 'Spanish Palette',
+    id: 'spanish-palette',
     emoji: '🇪🇸',
     colors: [
       { name: 'JacksonsPurple', color: '#40407a' },
@@ -188,8 +188,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Indian',
-    id: 'flat-ui-colors-indian',
+    paletteName: 'Indian Palette',
+    id: 'indian-palette',
     emoji: '🇮🇳',
     colors: [
       { name: 'OrchidOrange', color: '#FEA47F' },
@@ -215,8 +215,8 @@ const palettes = [
     ],
   },
   {
-    paletteName: 'Flat UI Colors French',
-    id: 'flat-ui-colors-french',
+    paletteName: 'French Palette',
+    id: 'french-palette',
     emoji: '🇫🇷',
     colors: [
       { name: 'FlatFlesh', color: '#fad390' },

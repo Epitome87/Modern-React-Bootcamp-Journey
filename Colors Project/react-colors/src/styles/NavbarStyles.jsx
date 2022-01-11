@@ -11,7 +11,7 @@ const styles = {
   NavbarLogo: {
     marginRight: '15px',
     padding: '0 13px',
-    fontSize: '22px',
+    fontSize: '1.25rem',
     backgroundColor: '#eceff1',
     fontFamily: 'Roboto, sans-serif',
     height: '100%',
@@ -59,7 +59,7 @@ const styles = {
   },
 
   NavbarSelectContainer: {
-    margin: '0 1rem 0 auto',
+    margin: '0.3rem 1rem 0.3rem auto',
   },
 };
 

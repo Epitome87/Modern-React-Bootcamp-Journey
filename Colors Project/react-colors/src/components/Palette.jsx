@@ -6,19 +6,26 @@ import PaletteFooter from './PaletteFooter';
 import { generatePalette } from '../colorHelpers';
 import { withStyles } from '@mui/styles';
 import paletteStyles from '../styles/PaletteStyles';
+import useDocumentTitle from '../effects/useDocumentTitle';
 
 // Receives all "palettes"
 const Palette = ({ palettes, classes }) => {
+  const [documentTitle, setDocumentTitle] = useDocumentTitle('');
+
   function findPalette(id) {
     return palettes.find((palette) => palette.id === id);
   }
 
-  const params = useParams();
+  const { id: paletteId } = useParams();
+
   // Generate the palette based on the URL
-  const palette = generatePalette(findPalette(params.id));
+  const palette = generatePalette(findPalette(paletteId));
 
   // Basically componentDidMount
-  useEffect(() => {}, [palette]);
+  useEffect(() => {
+    console.log('PAL', palette);
+    setDocumentTitle(`${palette.paletteName}`);
+  }, [palette]);
 
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState('hex');

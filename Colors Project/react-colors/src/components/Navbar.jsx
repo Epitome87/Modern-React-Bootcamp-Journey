@@ -33,7 +33,7 @@ function Navbar({
   return (
     <header className={classes.Navbar}>
       <div className={classes.NavbarLogo}>
-        <Link to='/'>React-Color-Picker</Link>
+        <Link to='/'>&#x2B05; Back</Link>
       </div>
       {showingAllColors && (
         <div className='slider-container'>
@@ -50,10 +50,25 @@ function Navbar({
         </div>
       )}
       <div className={classes.NavbarSelectContainer}>
-        <Select value={format} onChange={handleFormatChange}>
-          <MenuItem value='hex'>HEX - #fff</MenuItem>
-          <MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
-          <MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
+        <Select
+          value={format}
+          onChange={handleFormatChange}
+          renderValue={(selected) => {
+            let formatText = '';
+            if (selected === 'hex') formatText = '(#010203)';
+            if (selected === 'rgb') formatText = '- (1, 2, 3)';
+            if (selected === 'rgba') formatText = '- (1, 2, 3, 0.4)';
+            return `Copy Format: ${selected.toUpperCase()} ${formatText.toUpperCase()}`;
+          }}
+          sx={{
+            color: 'white',
+            backgroundColor: 'black',
+            height: '50px',
+          }}
+        >
+          <MenuItem value='hex'>HEX (#010203)</MenuItem>
+          <MenuItem value='rgb'>RGB - (1, 2, 3)</MenuItem>
+          <MenuItem value='rgba'>RGBA - (1, 2, 3, 0.4)</MenuItem>
         </Select>
       </div>
       <Snackbar

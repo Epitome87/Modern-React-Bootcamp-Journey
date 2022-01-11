@@ -7,8 +7,13 @@ import Palette from './components/Palette';
 import PaletteList from './components/PaletteList';
 import SingleColorPalette from './components/SingleColorPalette';
 import seedPalettes from './seedPalettes';
+import useDocumentTitle from './effects/useDocumentTitle';
 
 function App() {
+  const [documentTitle, setDocumentTitle] = useDocumentTitle(
+    'Palettes | Flat UI Clone'
+  );
+
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(savedPalettes || seedPalettes);
 

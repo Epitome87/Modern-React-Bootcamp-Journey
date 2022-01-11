@@ -15,8 +15,13 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import blue from '@mui/material/colors/blue';
 import red from '@mui/material/colors/red';
+import useDocumentTitle from '../effects/useDocumentTitle';
 
 const PaletteList = React.memo(({ classes, palettes, handleDelete }) => {
+  const [documentTitle, setDocumentTitle] = useDocumentTitle(
+    'Palettes | Flat UI Clone'
+  );
+
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState('');
 
@@ -39,7 +44,9 @@ const PaletteList = React.memo(({ classes, palettes, handleDelete }) => {
     <div className={classes.PaletteList}>
       <div className={classes.container}>
         <nav className={classes.nav}>
-          <h1 className={classes.title}>React Colors</h1>
+          <Link to='/'>
+            <h1 className={classes.title}>Flat UI - React Clone</h1>
+          </Link>
           <Link to='/palette/new'>Create New Palette</Link>
         </nav>
 

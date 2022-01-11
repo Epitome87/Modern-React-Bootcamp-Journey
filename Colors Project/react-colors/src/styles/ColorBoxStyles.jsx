@@ -1,3 +1,4 @@
+import { withThemeCreator } from '@mui/styles';
 import chroma from 'chroma-js';
 import sizes from './sizes';
 
@@ -66,7 +67,7 @@ const styles = {
     color: (props) =>
       chroma(props.background).luminance() >= 0.7 ? 'rgba(0,0,0,0.6)' : 'white',
     width: '100px',
-    height: '30px',
+    height: '40px', //'30px',
     position: 'absolute',
     display: 'inline-block',
     top: '50%',
@@ -74,15 +75,17 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     textAlign: 'center',
     outline: 'none',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'transparent', //'rgba(255, 255, 255, 0.3)',
     fontFamily: 'inherit',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     lineHeight: '30px',
     textTransform: 'uppercase',
-    border: 'none',
+    border: '2px solid rgba(255, 255, 255, 0.8)', //'none',
     opacity: '0',
     textDecoration: 'none',
     transition: 'opacity 0.5s linear',
+    borderRadius: '5px',
+    cursor: 'pointer',
   },
 
   boxContent: {
@@ -94,7 +97,7 @@ const styles = {
     color: 'black',
     letterSpacing: '1px',
     textTransform: 'uppercase',
-    fontSize: '12px',
+    fontSize: '0.8rem',
   },
 
   copyOverlay: {
