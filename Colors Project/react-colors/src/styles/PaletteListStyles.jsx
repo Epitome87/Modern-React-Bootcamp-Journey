@@ -11,6 +11,12 @@ const styles = {
     backgroundImage: `url(${bg})`,
     /* background by SVGBackgrounds.com */
     overflow: 'scroll',
+    marginBottom: '5rem',
+    paddingBottom: '4rem',
+
+    '& a': {
+      textDecoration: 'none',
+    },
   },
 
   title: {
