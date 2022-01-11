@@ -29,7 +29,7 @@ const styles = {
   },
 
   NavbarSlider: {
-    width: '340px',
+    width: '300px', //'340px',
     margin: '0 10px',
     display: 'inline-block',
 
@@ -43,12 +43,12 @@ const styles = {
 
     '& .rc-slider-handle, .rc-slider-handle:active, .rc-slider-handle:focus .rc-slider-handle:hover':
       {
-        backgroundColor: 'green',
+        backgroundColor: 'blue',
         outline: 'none',
-        border: '2px solid green',
+        border: '2px solid blue',
         boxShadow: 'none',
-        width: '13px',
-        height: '13px',
+        width: '1rem',
+        height: '1rem',
         marginLeft: '-7px',
         marginTop: '-3px',
       },
@@ -58,8 +58,21 @@ const styles = {
     },
   },
 
+  SliderContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    // justifyContent: 'center',
+    backgroundColor: 'black',
+    color: 'white',
+    // margin: '0.3rem 1rem 0.3rem 1rem',
+    padding: '1rem',
+    borderRadius: '5px',
+    height: '50px',
+  },
+
   NavbarSelectContainer: {
     margin: '0.3rem 1rem 0.3rem auto',
+    padding: '1rem 2rem',
   },
 };
 

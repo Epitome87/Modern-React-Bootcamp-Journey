@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Select, MenuItem, Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { withStyles } from '@mui/styles';
+import { makeStyles, withStyles } from '@mui/styles';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import navbarStyles from '../styles/NavbarStyles';
@@ -36,7 +36,7 @@ function Navbar({
         <Link to='/'>&#x2B05; Back</Link>
       </div>
       {showingAllColors && (
-        <div className='slider-container'>
+        <div className={classes.SliderContainer}>
           <span>Level: {level}</span>
           <div className={classes.NavbarSlider}>
             <Slider
@@ -64,6 +64,13 @@ function Navbar({
             color: 'white',
             backgroundColor: 'black',
             height: '50px',
+            // padding: '1rem 2rem',
+
+            // Not the proper way to target dropdown arrow, but whatever!
+            '& svg': {
+              color: 'white',
+              fill: 'white',
+            },
           }}
         >
           <MenuItem value='hex'>HEX (#010203)</MenuItem>
