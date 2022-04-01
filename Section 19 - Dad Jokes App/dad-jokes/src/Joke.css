@@ -2,7 +2,7 @@
   font-weight: 400;
   padding: 1rem;
   display: flex;
-  border-bottom: 2px solid #eeeeee;
+  /* border-bottom: 1px solid #eeeeee; */
   justify-content: center;
   align-items: center;
 }
@@ -13,6 +13,7 @@
   align-items: center;
   width: 15%;
   margin-right: 1rem;
+  min-width: 125px;
 }
 
 .Joke__text {
@@ -51,7 +52,9 @@
 }
 
 .Joke__smiley {
-  font-size: 3rem;
+  /* font-size: 3rem; */
+  /* Testing responsive viewport-based sizing */
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
   /* Push it all the way to right */
   margin-left: auto;
   border-radius: 50%;
@@ -60,6 +63,19 @@
 
 .Joke__smiley:hover {
   animation: spin 0.7s ease-in-out 0s;
+}
+
+@media screen and (max-width: 750px) {
+  .Joke__buttons {
+    display: none;
+  }
+  .Joke__text {
+    font-size: 1rem;
+    width: 100%;
+  }
+  .Joke__smiley {
+    display: none;
+  }
 }
 
 @keyframes spin {
